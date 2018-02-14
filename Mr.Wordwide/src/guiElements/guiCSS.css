@@ -1,0 +1,26 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14.Şub.2018, 13:35:23
+    Author     : brspo
+*/
+
+* {
+    -fx-primary: #2A2E37;
+    -fx-secondary: #FFFF8D;
+    -fx-primarytext: #B2B2B2;
+}
+
+.root{
+    -fx-background-color: #051a3d;
+}
+
+.solve-button-ai {
+    -fx-border-color: #0844a5;
+    -fx-border-radius: 60px;
+    -fx-background-radius: 60px;
+    -fx-border-width: 2px;
+}
