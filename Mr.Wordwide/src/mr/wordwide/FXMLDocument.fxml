@@ -7,7 +7,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="854.0" prefWidth="1070.0" style="-fx-background-color: #353434;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mr.wordwide.FXMLDocumentController">
     <children>
-      <AnchorPane prefHeight="99.0" prefWidth="1070.0" style="-fx-background-color: #000000;" stylesheets="@../../guiElements/guiCSS2.css">
+      <AnchorPane prefHeight="99.0" prefWidth="1070.0" style="-fx-background-color: #000000;" stylesheets="@../../guiElements/guiCSS.css">
          <children>
             <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_LEFT" layoutX="161.0" layoutY="60.0" size="30" />
             <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_RIGHT" layoutX="236.0" layoutY="60.0" size="30" />
