@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane id="AnchorPane" prefHeight="854.0" prefWidth="1070.0" style="-fx-background-color: #353434;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mr.wordwide.FXMLDocumentController">
     <children>
       <AnchorPane prefHeight="99.0" prefWidth="1070.0" style="-fx-background-color: #000000;" stylesheets="@../../guiElements/guiCSS.css">
          <children>
-            <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_LEFT" layoutX="161.0" layoutY="60.0" size="30" />
-            <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_RIGHT" layoutX="236.0" layoutY="60.0" size="30" />
-            <FontAwesomeIconView fill="#ff5900" glyphName="FOLDER" layoutX="80.0" layoutY="60.0" size="30" />
-            <FontAwesomeIconView fill="#ff5900" glyphName="QUESTION_CIRCLE" layoutX="1016.0" layoutY="61.0" size="30" />
-            <JFXButton layoutX="914.0" layoutY="34.0" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" textFill="#16d70c" />
+            <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_LEFT" layoutX="30.0" layoutY="59.0" size="30" />
+            <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_RIGHT" layoutX="105.0" layoutY="59.0" size="30" />
+            <FontAwesomeIconView fill="#ff5900" glyphName="QUESTION_CIRCLE" layoutX="1018.0" layoutY="60.0" size="30" />
+            <JFXButton layoutX="940.0" layoutY="35.0" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" textFill="#16d70c" />
+            <JFXDatePicker layoutX="165.0" layoutY="15.0" prefHeight="68.0" prefWidth="226.0" promptText="Please select a date for its puzzle" />
          </children>
       </AnchorPane>
-      <JFXTextField id="puzzle_date" editable="false" layoutX="26.0" layoutY="123.0" prefHeight="54.0" prefWidth="326.0" styleClass="day-text-field" stylesheets="@../../guiElements/guiCSS.css" />
+      <GridPane layoutX="94.0" layoutY="167.0" style="-fx-grid-lines-visible: true; -fx-border-color: ff5900; -fx-border-width: 10;" stylesheets="@../../../build/classes/guiElements/guiCSS.css">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="NEVER" />
+        </rowConstraints>
+         <effect>
+            <InnerShadow color="#ff5900" />
+         </effect>
+      </GridPane>
     </children>
 </AnchorPane>
