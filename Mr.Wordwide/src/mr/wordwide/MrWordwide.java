@@ -5,16 +5,18 @@
  */
 package mr.wordwide;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author brspo
- */
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+
+
 public class MrWordwide extends Application {
     
     @Override
@@ -30,7 +32,11 @@ public class MrWordwide extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {  
+        
+        PuzzleQuestions puzzleQuestions = 
+                new PuzzleQuestions("https://www.nytimes.com/crosswords/game/mini"); 
+         
         launch(args);
     }
     
