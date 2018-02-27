@@ -18,7 +18,7 @@
             <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_RIGHT" layoutX="105.0" layoutY="59.0" size="30" />
             <FontAwesomeIconView fill="#ff5900" glyphName="QUESTION_CIRCLE" layoutX="1018.0" layoutY="60.0" size="30" />
             <JFXButton layoutX="940.0" layoutY="35.0" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" textFill="#16d70c" />
-            <JFXDatePicker layoutX="165.0" layoutY="15.0" prefHeight="68.0" prefWidth="226.0" promptText="Please select a date for its puzzle" />
+            <JFXDatePicker disable="true" layoutX="165.0" layoutY="15.0" prefHeight="68.0" prefWidth="226.0" promptText="Please select a date for its puzzle" />
          </children>
       </AnchorPane>
       <GridPane layoutX="14.0" layoutY="110.0" style="-fx-grid-lines-visible: true; -fx-border-color: ff5900; -fx-border-width: 10;" stylesheets="@../../../build/classes/guiElements/guiCSS.css">
@@ -40,7 +40,7 @@
             <InnerShadow />
          </effect>
          <children>
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ff5900;" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" />
