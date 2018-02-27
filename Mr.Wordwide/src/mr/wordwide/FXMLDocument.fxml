@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="854.0" prefWidth="1070.0" style="-fx-background-color: #353434;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mr.wordwide.FXMLDocumentController">
     <children>
@@ -20,7 +21,7 @@
             <JFXDatePicker layoutX="165.0" layoutY="15.0" prefHeight="68.0" prefWidth="226.0" promptText="Please select a date for its puzzle" />
          </children>
       </AnchorPane>
-      <GridPane layoutX="94.0" layoutY="167.0" style="-fx-grid-lines-visible: true; -fx-border-color: ff5900; -fx-border-width: 10;" stylesheets="@../../../build/classes/guiElements/guiCSS.css">
+      <GridPane layoutX="14.0" layoutY="110.0" style="-fx-grid-lines-visible: true; -fx-border-color: ff5900; -fx-border-width: 10;" stylesheets="@../../../build/classes/guiElements/guiCSS.css">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -36,8 +37,35 @@
           <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="NEVER" />
         </rowConstraints>
          <effect>
-            <InnerShadow color="#ff5900" />
+            <InnerShadow />
          </effect>
+         <children>
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ff5900;" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="4" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+         </children>
       </GridPane>
     </children>
 </AnchorPane>
