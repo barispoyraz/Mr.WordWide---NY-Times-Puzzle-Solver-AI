@@ -12,10 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-/**
- *
- * @author brspo
- */
+
 public class FXMLDocumentController implements Initializable {
     
     @FXML
