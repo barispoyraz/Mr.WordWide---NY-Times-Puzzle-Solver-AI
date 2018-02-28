@@ -52,7 +52,7 @@ public class PuzzleStructure {
         
         for(int i = 4; i < 29; i++){
             grid = gridProperties.eq(i);
-            gridNo = i -4;
+            gridNo = i - 4;
             
             if(grid.select("rect").hasClass(ACTIVE_GRID_CLASS)){
                 active = "ACTIVE";
@@ -76,37 +76,6 @@ public class PuzzleStructure {
             System.out.println(theGrid.toString());
         }
         
-        /*//System.out.println(gridProperties.eq(4).select("rect"));
-        System.out.println(gridProperties.eq(4).select("text").text());
-        System.out.println("------------------------------");
-        System.out.println("------------------------------");
-        System.out.println("------------------------------");
-        System.out.println("------------------------------");
-        if(gridProperties.eq(8).select("text").text() == null){
-            System.out.println("NULLLLLL");
-        }
-        System.out.println(gridProperties.eq(8).select("text").text());
-        //Elements gridPropertiesChild = gridProperties.eq
-        
-        //System.out.println(structure.eq(0).select("g").eq(4).toString());
-        
-        //System.out.println(gridProperties.eq(4).select());
-        
-        System.out.println("------------------------------");
-        System.out.println("------------------------------");
-        System.out.println("------------------------------");
-        System.out.println("------------------------------");
-        System.out.println(gridProperties.eq(4).first().toString());
-        System.out.println("------------------------------");
-        System.out.println(gridProperties.eq(4).first().hasClass(ACTIVE_GRID_CLASS ));
-        System.out.println("------------------------------");
-        System.out.println(structure.eq(0).select("g").eq(8).toString());
-        System.out.println("------------------------------");
-        System.out.println(gridProperties.eq(8).select("." + BLOCKED_GRID_CLASS ));
-        System.out.println("------------------------------");
-        System.out.println("------------------------------");
-        System.out.println("------------------------------");
-        System.out.println("------------------------------");*/
     }
     
     public Grid[] getGrids(){
