@@ -37,6 +37,9 @@ public class MrWordwide extends Application {
         
         PuzzleQuestions puzzleQuestions = 
                 new PuzzleQuestions("https://www.nytimes.com/crosswords/game/mini"); 
+        
+        PuzzleStructure puzzleStructure =
+                new PuzzleStructure(puzzleQuestions.getDocument());
          
         launch(args);
     }

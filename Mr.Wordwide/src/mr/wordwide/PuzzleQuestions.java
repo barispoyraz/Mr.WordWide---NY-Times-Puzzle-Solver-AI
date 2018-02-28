@@ -13,13 +13,13 @@ import org.jsoup.select.Elements;
 
 
 public class PuzzleQuestions {
-    
-    private String url;
-    
+
     private final String CLUE_LIST_CLASS = "ClueList-title--1-3oW";
     private final String CLUE_TEXT_CLASS = "Clue-text--3lZl7";
     private final String CLUE_TEXT_CLASS_2 = "ClueList-list--2dD5- ClueList-obscured--UdyXT";  
     private final String CLUE_NUMBER_CLASS = "Clue-label--2IdMY";
+    
+    private String url;
     
     private Question[] acrossQuestions;
     private Question[] downQuestions;
@@ -78,7 +78,7 @@ public class PuzzleQuestions {
             
             //System.out.println("-------------------------------------------");
             
-            for(int i = 0; i < numberOfAcrossQuestions; i++){
+            /*for(int i = 0; i < numberOfAcrossQuestions; i++){
                 System.out.println(this.acrossQuestions[i].toString());
                 System.out.println("----");
             }
@@ -86,7 +86,7 @@ public class PuzzleQuestions {
             for(int i = 0; i < numberOfDownQuestions; i++){
                 System.out.println(this.downQuestions[i].toString());
                 System.out.println("----");
-            }
+            }*/
             
             
         }catch(IOException ioException){
