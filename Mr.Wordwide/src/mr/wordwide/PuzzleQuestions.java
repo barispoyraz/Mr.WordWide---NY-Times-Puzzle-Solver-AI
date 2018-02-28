@@ -5,8 +5,13 @@
  */
 package mr.wordwide;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -40,22 +45,51 @@ public class PuzzleQuestions {
     private void connectAndParseThePuzzleQuestions(String url) {
         
         try{
+            LocalDate localDate = LocalDate.now();
             if(checkDownloaded() == false)
             {
-                this.document = Jsoup.connect(url).get();
-            }
-            else
-            {
-                String path = new File("CS461--ArtificialIntelligence/ai-puzzles")
-                .getAbsolutePath();
-                LocalDate localDate = LocalDate.now();
+                //this.document = Jsoup.connect(url).get();
+                URL puzzle = new URL("https://www.nytimes.com/crosswords/game/mini");
+                BufferedReader in = new BufferedReader(new InputStreamReader(puzzle.openStream()));
+
+                String inputLine;
+                String htmlText = "";
+                while((inputLine = in.readLine()) != null){
+                    //System.out.println(inputLine);
+                    htmlText += inputLine;
+                }
+                in.close();
+
                 
-                path = path + "/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue()
-                + "-" + localDate.getYear();
+                File newDir = new File("ai-puzzles\\" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
+                + "-" + localDate.getYear());
                 
-                File puzzle = new File(path);
-                this.document = Jsoup.parse(puzzle, "UTF-8", "https://www.nytimes.com/crosswords/game/mini");
+                if (!newDir.exists()) {
+                    if (newDir.mkdir()) {
+                        System.out.println("Directory is created!");
+                    } else {
+                        System.out.println("Failed to create directory!");
+                    }
+                }
+                
+                FileWriter fileWriter = new FileWriter("ai-puzzles/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
+                + "-" + localDate.getYear() + "/puzzle.html");
+                
+                BufferedWriter bufferedWriter  = new BufferedWriter(fileWriter);
+                bufferedWriter.write(htmlText);
+                bufferedWriter.newLine();
+                bufferedWriter.close();
             }
+            
+            String path = new File("ai-puzzles")
+            .getAbsolutePath();
+
+            path = path + "/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue()
+            + "-" + localDate.getYear();
+
+            File puzzle = new File(path);
+            this.document = Jsoup.parse(puzzle, "UTF-8");
+            
             
             Elements questions = this.document.getElementsByClass(CLUE_TEXT_CLASS_2);
             Elements numbers = this.document.getElementsByClass(CLUE_NUMBER_CLASS);
@@ -116,12 +150,12 @@ public class PuzzleQuestions {
         
     }
     private boolean checkDownloaded() {
-        String path = new File("")
+        String path = new File("ai-puzzles")
                 .getAbsolutePath();
         
         LocalDate localDate = LocalDate.now();
                 
-        path = path + "/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
+        path = path + "\\" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
                 + "-" + localDate.getYear();
         
         Path p = Paths.get(path);
