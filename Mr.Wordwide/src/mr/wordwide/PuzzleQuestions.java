@@ -114,33 +114,6 @@ public class PuzzleQuestions {
                         .select("." + CLUE_NUMBER_CLASS).eq(i).text() 
                         ,questions.eq(1).select("." + CLUE_TEXT_CLASS).eq(i).text());
             }
-                 
-            //for (Element element : questions){
-            /*System.out.println("SIZE!!!");
-            System.out.println(questions.size());
-            
-            System.out.println(questions.eq(0).toString());
-            System.out.println("-------------------------------");
-            System.out.println(questions.eq(0).select("." + CLUE_TEXT_CLASS).eq(0).toString());
-            System.out.println(questions.eq(0).select("." + CLUE_TEXT_CLASS).size());
-            System.out.println("-------------------------------");
-            System.out.println(questions.eq(1).select("." + CLUE_NUMBER_CLASS).eq(1).toString());
-            System.out.println(questions.first().select("." + CLUE_NUMBER_CLASS).size());*/
-            //System.out.println(questions.eq(1).text());
-               
-            //}
-            
-            //System.out.println("-------------------------------------------");
-            
-            /*for(int i = 0; i < numberOfAcrossQuestions; i++){
-                System.out.println(this.acrossQuestions[i].toString());
-                System.out.println("----");
-            }
-            
-            for(int i = 0; i < numberOfDownQuestions; i++){
-                System.out.println(this.downQuestions[i].toString());
-                System.out.println("----");
-            }*/
             
             
         }catch(IOException ioException){
