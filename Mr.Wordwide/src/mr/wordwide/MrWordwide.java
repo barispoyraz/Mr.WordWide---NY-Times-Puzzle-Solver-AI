@@ -5,17 +5,17 @@
  */
 package mr.wordwide;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
-
 
 public class MrWordwide extends Application {
     
@@ -33,14 +33,31 @@ public class MrWordwide extends Application {
      * @param args the command line arguments
      * @throws java.io.IOException
      */
-    public static void main(String[] args) throws IOException {  
+    public static void main(String[] args) throws IOException {
         
-        PuzzleQuestions puzzleQuestions = 
+        URL puzzle = new URL("https://www.nytimes.com/crosswords/game/mini");
+        BufferedReader in = new BufferedReader(new InputStreamReader(puzzle.openStream()));
+        
+        String inputLine;
+        String htmlText = "";
+        while((inputLine = in.readLine()) != null){
+            //System.out.println(inputLine);
+            htmlText += inputLine;
+        }
+        in.close();
+        
+        FileWriter fileWriter = new FileWriter("puzzle.html");
+        BufferedWriter bufferedWriter  = new BufferedWriter(fileWriter);
+        bufferedWriter.write(htmlText);
+        bufferedWriter.newLine();
+        bufferedWriter.close();
+        
+        /*PuzzleQuestions puzzleQuestions = 
                 new PuzzleQuestions("https://www.nytimes.com/crosswords/game/mini"); 
         
         PuzzleStructure puzzleStructure =
                 new PuzzleStructure(puzzleQuestions.getDocument());
-         
+         */
         launch(args);
     }
     
