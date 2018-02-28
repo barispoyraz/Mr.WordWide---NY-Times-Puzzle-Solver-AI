@@ -108,4 +108,8 @@ public class PuzzleStructure {
         System.out.println("------------------------------");
         System.out.println("------------------------------");*/
     }
+    
+    public Grid[] getGrids(){
+        return this.grids;
+    }
 }
