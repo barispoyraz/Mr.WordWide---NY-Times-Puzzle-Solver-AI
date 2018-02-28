@@ -31,6 +31,7 @@ public class MrWordwide extends Application {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {  
         

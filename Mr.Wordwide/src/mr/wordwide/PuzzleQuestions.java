@@ -8,7 +8,6 @@ package mr.wordwide;
 import java.io.IOException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 
@@ -24,6 +23,8 @@ public class PuzzleQuestions {
     
     private Question[] acrossQuestions;
     private Question[] downQuestions;
+    
+    private Document document;
 
     public PuzzleQuestions(String url){
         this.url = url;
@@ -34,7 +35,7 @@ public class PuzzleQuestions {
     private void connectAndParseThePuzzleQuestions(String url) {
         
         try{
-            Document document = Jsoup.connect(url).get();
+            this.document = Jsoup.connect(url).get();
             
             Elements questions = document.getElementsByClass(CLUE_TEXT_CLASS_2);
             Elements numbers = document.getElementsByClass(CLUE_NUMBER_CLASS);
@@ -59,7 +60,7 @@ public class PuzzleQuestions {
                         .select("." + CLUE_NUMBER_CLASS).eq(i).text() 
                         ,questions.eq(1).select("." + CLUE_TEXT_CLASS).eq(i).text());
             }
-            
+                 
             //for (Element element : questions){
             /*System.out.println("SIZE!!!");
             System.out.println(questions.size());
@@ -93,6 +94,18 @@ public class PuzzleQuestions {
         }
         
         
+    }
+    
+    public Document getDocument(){
+        return this.document;
+    }
+    
+    public Question[] getAcrossQuestions(){
+        return this.acrossQuestions;
+    }
+    
+    public Question[] getDownQuestions(){
+        return this.downQuestions;
     }
     
 }
