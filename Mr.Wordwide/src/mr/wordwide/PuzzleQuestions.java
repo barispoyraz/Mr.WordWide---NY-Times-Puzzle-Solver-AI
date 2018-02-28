@@ -85,7 +85,7 @@ public class PuzzleQuestions {
             .getAbsolutePath();
 
             path = path + "/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue()
-            + "-" + localDate.getYear();
+            + "-" + localDate.getYear() + "/puzzle.html";
 
             File puzzle = new File(path);
             this.document = Jsoup.parse(puzzle, "UTF-8");
