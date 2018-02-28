@@ -5,7 +5,12 @@
  */
 package mr.wordwide;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -35,10 +40,25 @@ public class PuzzleQuestions {
     private void connectAndParseThePuzzleQuestions(String url) {
         
         try{
-            this.document = Jsoup.connect(url).get();
+            if(checkDownloaded() == false)
+            {
+                this.document = Jsoup.connect(url).get();
+            }
+            else
+            {
+                String path = new File("CS461--ArtificialIntelligence/ai-puzzles")
+                .getAbsolutePath();
+                LocalDate localDate = LocalDate.now();
+                
+                path = path + "/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue()
+                + "-" + localDate.getYear();
+                
+                File puzzle = new File(path);
+                this.document = Jsoup.parse(puzzle, "UTF-8", "https://www.nytimes.com/crosswords/game/mini");
+            }
             
-            Elements questions = document.getElementsByClass(CLUE_TEXT_CLASS_2);
-            Elements numbers = document.getElementsByClass(CLUE_NUMBER_CLASS);
+            Elements questions = this.document.getElementsByClass(CLUE_TEXT_CLASS_2);
+            Elements numbers = this.document.getElementsByClass(CLUE_NUMBER_CLASS);
             
             int numberOfAcrossQuestions = questions.eq(0).select("." + CLUE_TEXT_CLASS).size();
             int numberOfDownQuestions = questions.eq(1).select("." + CLUE_TEXT_CLASS).size();
@@ -94,6 +114,19 @@ public class PuzzleQuestions {
         }
         
         
+    }
+    private boolean checkDownloaded() {
+        String path = new File("")
+                .getAbsolutePath();
+        
+        LocalDate localDate = LocalDate.now();
+                
+        path = path + "/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
+                + "-" + localDate.getYear();
+        
+        Path p = Paths.get(path);
+        
+        return Files.exists(p);
     }
     
     public Document getDocument(){

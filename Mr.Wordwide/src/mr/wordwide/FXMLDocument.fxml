@@ -26,7 +26,7 @@
                </effect></JFXDatePicker>
          </children>
       </AnchorPane>
-      <GridPane layoutX="14.0" layoutY="110.0" style="-fx-grid-lines-visible: true; -fx-border-color: ff5900; -fx-border-width: 10;" stylesheets="@../../../build/classes/guiElements/guiCSS.css">
+      <GridPane layoutX="14.0" layoutY="110.0" style="-fx-grid-lines-visible: true; -fx-border-color: ff5900; -fx-border-width: 10;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
