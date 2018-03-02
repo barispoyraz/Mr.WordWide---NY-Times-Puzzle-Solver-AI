@@ -21,4 +21,9 @@ public class Grid {
         return "Grid no: " + this.gridNo + ", number: " 
                 + this.number + ", active: " + this.active;
     }
+    
+    public String getActive()
+    {
+        return active;
+    }
 }

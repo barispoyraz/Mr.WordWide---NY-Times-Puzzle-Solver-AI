@@ -218,6 +218,9 @@
                      </font></Label>
                </children></StackPane>
          </children>
+         <effect>
+            <InnerShadow color="#ff5900" />
+         </effect>
       </GridPane>
       <GridPane layoutX="578.0" layoutY="110.0" prefHeight="360.0" prefWidth="450.0">
         <columnConstraints>
@@ -243,23 +246,23 @@
             </StackPane>
             <StackPane fx:id="acrossSP0" prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="1">
                <children>
-                  <Label prefHeight="60.0" prefWidth="450.0" textFill="#ff5900" />
+                  <Label fx:id="across1" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900" />
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="2">
                <children>
-                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+                  <Label fx:id="across2" prefHeight="60.0" prefWidth="450.0" text="Label" />
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="3">
                <children>
-                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+                  <Label fx:id="across3" prefHeight="60.0" prefWidth="450.0" text="Label" />
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="4">
                <children>
-                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+                  <Label fx:id="across4" prefHeight="60.0" prefWidth="450.0" text="Label" />
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="5">
                <children>
-                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+                  <Label fx:id="across5" prefHeight="60.0" prefWidth="450.0" text="Label" />
                </children></StackPane>
          </children>
       </GridPane>
@@ -287,23 +290,23 @@
             </StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="1">
                <children>
-                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+                  <Label fx:id="down1" prefHeight="60.0" prefWidth="450.0" text="Label" />
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="2">
                <children>
-                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+                  <Label fx:id="down2" prefHeight="60.0" prefWidth="450.0" text="Label" />
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="3">
                <children>
-                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+                  <Label fx:id="down3" prefHeight="60.0" prefWidth="450.0" text="Label" />
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="4">
                <children>
-                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+                  <Label fx:id="down4" prefHeight="60.0" prefWidth="450.0" text="Label" />
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="5">
                <children>
-                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+                  <Label fx:id="down5" prefHeight="60.0" prefWidth="450.0" text="Label" />
                </children></StackPane>
          </children>
       </GridPane>

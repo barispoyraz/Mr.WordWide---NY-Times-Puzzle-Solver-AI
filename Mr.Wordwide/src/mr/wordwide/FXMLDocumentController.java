@@ -15,7 +15,7 @@ import javafx.scene.control.Label;
 
 
 public class FXMLDocumentController implements Initializable {
-    
+  
     @FXML
     private Label puzzleGrid0;
     @FXML
@@ -97,7 +97,133 @@ public class FXMLDocumentController implements Initializable {
     {
         Grid[] grids = structure.getGrids();
         
+        if(grids[0].getActive().equals("BLOCKED"))
+            puzzleGrid0.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid0.setStyle(null);
+        
+        if(grids[1].getActive().equals("BLOCKED"))
+            puzzleGrid1.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid1.setStyle(null);
+        
+        if(grids[2].getActive().equals("BLOCKED"))
+            puzzleGrid2.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid2.setStyle(null);
+        
+        if(grids[3].getActive().equals("BLOCKED"))
+            puzzleGrid3.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid3.setStyle(null);
+        
+        if(grids[4].getActive().equals("BLOCKED"))
+            puzzleGrid4.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid4.setStyle(null);
+        
+        if(grids[5].getActive().equals("BLOCKED"))
+            puzzleGrid5.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid5.setStyle(null);
+        
+        if(grids[6].getActive().equals("BLOCKED"))
+            puzzleGrid6.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid6.setStyle(null);
+        
+        if(grids[7].getActive().equals("BLOCKED"))
+            puzzleGrid7.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid7.setStyle(null);
+        
+        if(grids[8].getActive().equals("BLOCKED"))
+            puzzleGrid8.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid8.setStyle(null);
+        
+        if(grids[9].getActive().equals("BLOCKED"))
+            puzzleGrid9.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid9.setStyle(null);
+        
+        if(grids[10].getActive().equals("BLOCKED"))
+            puzzleGrid10.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid10.setStyle(null);
+        
+        if(grids[11].getActive().equals("BLOCKED"))
+            puzzleGrid11.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid11.setStyle(null);
+        
+        if(grids[12].getActive().equals("BLOCKED"))
+            puzzleGrid12.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid12.setStyle(null);
+        
+        if(grids[13].getActive().equals("BLOCKED"))
+            puzzleGrid13.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid13.setStyle(null);
+        
+        if(grids[14].getActive().equals("BLOCKED"))
+            puzzleGrid14.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid14.setStyle(null);
+        
+        if(grids[15].getActive().equals("BLOCKED"))
+            puzzleGrid15.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid15.setStyle(null);
+        
+        if(grids[16].getActive().equals("BLOCKED"))
+            puzzleGrid16.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid16.setStyle(null);
+        
+        if(grids[17].getActive().equals("BLOCKED"))
+            puzzleGrid17.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid17.setStyle(null);
+        
+        if(grids[18].getActive().equals("BLOCKED"))
+            puzzleGrid18.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid18.setStyle(null);
+        
+        if(grids[19].getActive().equals("BLOCKED"))
+            puzzleGrid19.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid19.setStyle(null);
+        
+        if(grids[20].getActive().equals("BLOCKED"))
+            puzzleGrid20.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid20.setStyle(null);
+        
+        if(grids[21].getActive().equals("BLOCKED"))
+            puzzleGrid21.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid21.setStyle(null);
+        
+        if(grids[22].getActive().equals("BLOCKED"))
+            puzzleGrid22.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid22.setStyle(null);
+        
+        if(grids[23].getActive().equals("BLOCKED"))
+            puzzleGrid23.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid23.setStyle(null);
+        
+        if(grids[24].getActive().equals("BLOCKED"))
+            puzzleGrid24.setStyle("-fx-background-color:ff5900");
+        else
+            puzzleGrid24.setStyle(null);
     }
+    
+    @FXML
     public void setAcrossQuestions(PuzzleQuestions puzzleQuestions)
     {
         Question[] acrossQuestions = puzzleQuestions.getAcrossQuestions();
@@ -111,6 +237,8 @@ public class FXMLDocumentController implements Initializable {
         }
         
     }
+    
+    @FXML
     public void setDownQuestions(PuzzleQuestions puzzleQuestions)
     {
         Question[] downQuestions = puzzleQuestions.getDownQuestions();
