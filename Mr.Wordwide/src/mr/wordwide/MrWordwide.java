@@ -16,12 +16,28 @@ public class MrWordwide extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        PuzzleQuestions puzzleQuestions = 
+                new PuzzleQuestions("https://www.nytimes.com/crosswords/game/mini"); 
+        
+        PuzzleStructure puzzleStructure =
+                new PuzzleStructure(puzzleQuestions.getDocument());
+        
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("FXMLDocument.fxml"));
+        
+        Parent root = loader.load();
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setTitle("Mr.Wordwide");
         stage.show();
+        
+        FXMLDocumentController controller = loader.getController();
+        controller.setPuzzleGrid(puzzleStructure);
+        controller.setAcrossQuestions(puzzleQuestions);
+        controller.setDownQuestions(puzzleQuestions);
     }
 
     /**
@@ -29,13 +45,6 @@ public class MrWordwide extends Application {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        
-        PuzzleQuestions puzzleQuestions = 
-                new PuzzleQuestions("https://www.nytimes.com/crosswords/game/mini"); 
-        
-        PuzzleStructure puzzleStructure =
-                new PuzzleStructure(puzzleQuestions.getDocument());
-        
         launch(args);
     }
     

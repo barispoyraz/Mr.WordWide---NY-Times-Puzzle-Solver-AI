@@ -147,5 +147,4 @@ public class PuzzleQuestions {
     public Question[] getDownQuestions(){
         return this.downQuestions;
     }
-    
 }

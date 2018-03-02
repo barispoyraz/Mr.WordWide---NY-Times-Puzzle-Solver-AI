@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="854.0" prefWidth="1070.0" style="-fx-background-color: #353434;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mr.wordwide.FXMLDocumentController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="854.0" prefWidth="1070.0" style="-fx-background-color: #353434;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mr.wordwide.FXMLDocumentController">
     <children>
       <AnchorPane prefHeight="99.0" prefWidth="1070.0" style="-fx-background-color: #000000;" stylesheets="@../../guiElements/guiCSS.css">
          <children>
@@ -20,7 +20,7 @@
             <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_RIGHT" layoutX="105.0" layoutY="59.0" size="30" />
             <FontAwesomeIconView fill="#ff5900" glyphName="QUESTION_CIRCLE" layoutX="1018.0" layoutY="60.0" size="30" />
             <JFXButton layoutX="940.0" layoutY="35.0" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" textFill="#16d70c" />
-            <JFXDatePicker editable="false" layoutX="309.0" layoutY="16.0" prefHeight="68.0" prefWidth="226.0" promptText="Please select a date for its puzzle">
+            <JFXDatePicker fx:id="dateSelector" editable="false" layoutX="309.0" layoutY="16.0" prefHeight="60.0" prefWidth="230.0" promptText="Please select a date for its puzzle">
                <effect>
                   <InnerShadow color="#ff5900" offsetX="10.0" />
                </effect></JFXDatePicker>
@@ -41,38 +41,185 @@
           <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="NEVER" />
           <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="NEVER" />
         </rowConstraints>
-         <effect>
-            <InnerShadow />
-         </effect>
          <children>
-            <StackPane prefHeight="150.0" prefWidth="200.0" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <StackPane prefHeight="100.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="puzzleGrid0" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1">
+               <children>
+                  <Label fx:id="puzzleGrid1" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2">
+               <children>
+                  <Label fx:id="puzzleGrid2" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3">
+               <children>
+                  <Label fx:id="puzzleGrid3" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4">
+               <children>
+                  <Label fx:id="puzzleGrid4" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="puzzleGrid5" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="puzzleGrid6" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="puzzleGrid7" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="puzzleGrid8" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="puzzleGrid9" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="2">
+               <children>
+                  <Label fx:id="puzzleGrid10" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label fx:id="puzzleGrid11" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <Label fx:id="puzzleGrid12" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <children>
+                  <Label fx:id="puzzleGrid13" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+               <children>
+                  <Label fx:id="puzzleGrid14" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="3">
+               <children>
+                  <Label fx:id="puzzleGrid15" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Label fx:id="puzzleGrid16" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <children>
+                  <Label fx:id="puzzleGrid17" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <children>
+                  <Label fx:id="puzzleGrid18" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+               <children>
+                  <Label fx:id="puzzleGrid19" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="4">
+               <children>
+                  <Label fx:id="puzzleGrid20" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <Label fx:id="puzzleGrid21" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <children>
+                  <Label fx:id="puzzleGrid22" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <children>
+                  <Label fx:id="puzzleGrid23" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
+            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+               <children>
+                  <Label fx:id="puzzleGrid24" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
+                     <font>
+                        <Font size="65.0" />
+                     </font></Label>
+               </children></StackPane>
          </children>
       </GridPane>
-      <GridPane layoutX="578.0" layoutY="110.0">
+      <GridPane layoutX="578.0" layoutY="110.0" prefHeight="360.0" prefWidth="450.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -85,23 +232,38 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <StackPane alignment="CENTER_LEFT" disable="true" prefHeight="150.0" prefWidth="200.0">
+            <StackPane alignment="CENTER_LEFT" disable="true" prefHeight="60.0" prefWidth="450.0">
                <children>
-                  <Label text="ACROSS" textFill="#ff5900" underline="true">
+                  <Label prefHeight="60.0" prefWidth="450.0" text="ACROSS" textFill="#ff5900" underline="true">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
                </children>
             </StackPane>
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="5" />
+            <StackPane fx:id="acrossSP0" prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="1">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="450.0" textFill="#ff5900" />
+               </children></StackPane>
+            <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="2">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+               </children></StackPane>
+            <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="3">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+               </children></StackPane>
+            <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="4">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+               </children></StackPane>
+            <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="5">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+               </children></StackPane>
          </children>
       </GridPane>
-      <GridPane layoutX="578.0" layoutY="337.0">
+      <GridPane layoutX="578.0" layoutY="480.0" prefHeight="360.0" prefWidth="450.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -114,20 +276,35 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <StackPane alignment="CENTER_LEFT" disable="true" prefHeight="150.0" prefWidth="200.0">
+            <StackPane alignment="CENTER_LEFT" disable="true" prefHeight="60.0" prefWidth="450.0">
                <children>
-                  <Label text="DOWN" textFill="#ff5900" underline="true">
+                  <Label prefHeight="60.0" prefWidth="450.0" text="DOWN" textFill="#ff5900" underline="true">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
                </children>
             </StackPane>
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="5" />
+            <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="1">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+               </children></StackPane>
+            <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="2">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+               </children></StackPane>
+            <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="3">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+               </children></StackPane>
+            <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="4">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+               </children></StackPane>
+            <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="5">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="450.0" text="Label" />
+               </children></StackPane>
          </children>
       </GridPane>
     </children>
