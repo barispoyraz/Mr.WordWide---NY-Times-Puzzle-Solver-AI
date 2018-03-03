@@ -235,7 +235,7 @@
          <children>
             <StackPane alignment="CENTER_LEFT" disable="true" prefHeight="60.0" prefWidth="450.0">
                <children>
-                  <Label alignment="TOP_LEFT" prefHeight="60.0" prefWidth="450.0" text="ACROSS" textFill="#ff5900" underline="true">
+                  <Label alignment="BOTTOM_LEFT" prefHeight="60.0" prefWidth="450.0" text="ACROSS" textFill="#ff5900" underline="true">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -279,7 +279,7 @@
          <children>
             <StackPane alignment="CENTER_LEFT" disable="true" prefHeight="60.0" prefWidth="450.0">
                <children>
-                  <Label alignment="TOP_LEFT" prefHeight="60.0" prefWidth="450.0" text="DOWN" textFill="#ff5900" underline="true">
+                  <Label alignment="BOTTOM_LEFT" prefHeight="60.0" prefWidth="450.0" text="DOWN" textFill="#ff5900" underline="true">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
