@@ -55,7 +55,7 @@ public class PuzzleQuestions {
             LocalDate localDate = LocalDate.now();
             if(localDate.getDayOfWeek().getValue() == 6)
             {
-                //Today is Saturday
+                //localDate = 
             }
             if(checkDownloaded() == false)
             {

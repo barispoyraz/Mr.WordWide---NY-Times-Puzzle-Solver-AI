@@ -18,9 +18,7 @@ public class Question {
     }
     
     public String toString(){
-        return "Question type: " + this.questionType + "\n" 
-                + "Question number: " + this.questionNumber + "\n" 
-                + "Question: " + this.question;
+        return "" + this.questionNumber + "." + this.question;
     }
     
 }
