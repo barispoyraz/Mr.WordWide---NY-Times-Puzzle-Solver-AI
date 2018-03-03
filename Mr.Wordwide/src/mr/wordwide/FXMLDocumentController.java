@@ -5,13 +5,23 @@
  */
 package mr.wordwide;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Window;
 
 
 public class FXMLDocumentController implements Initializable {
@@ -91,6 +101,12 @@ public class FXMLDocumentController implements Initializable {
    
     @FXML
     private JFXDatePicker dateSelector;
+    
+    @FXML
+    private JFXButton puzzleSelectFolder;  
+    
+    @FXML
+    private JFXButton solveButton; 
     
     @FXML
     public void setPuzzleGrid(PuzzleStructure structure)
@@ -250,6 +266,51 @@ public class FXMLDocumentController implements Initializable {
             down4.setText(downQuestions[3].toString());
             down5.setText(downQuestions[4].toString());
         } 
+    }
+    
+    @FXML
+    private void openDirectoryChooser(ActionEvent event) throws IOException{
+    
+        Node node = (Node)event.getSource();
+        Window stage = node.getScene().getWindow();
+        
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Choose a folder to open a puzzle");
+        
+        String path = new File("ai-puzzles")
+                .getAbsolutePath();
+           
+        File firstDirectory = new File(path);
+        directoryChooser.setInitialDirectory(firstDirectory);
+        
+        File directoryChoosen = directoryChooser.showDialog(stage);
+        
+        System.out.println("choosen: " + directoryChoosen );
+        
+        File puzzle = 
+                new File(directoryChoosen.getAbsolutePath() + "/puzzle.html");
+        
+        PuzzleQuestions puzzleQuestionsChoosen = 
+                new PuzzleQuestions(puzzle.getAbsolutePath(), false);
+        
+        PuzzleStructure puzzleStructure = 
+                new PuzzleStructure(puzzleQuestionsChoosen.getDocument());
+        
+        this.setAcrossQuestions(puzzleQuestionsChoosen);
+        this.setDownQuestions(puzzleQuestionsChoosen);
+        this.setPuzzleGrid(puzzleStructure);
+        
+
+    }
+    
+    @FXML
+    private void handleMouseEntered(){
+        solveButton.setStyle("-fx-background-color: blue;");
+    }
+    
+    @FXML
+    private void handleMouseExited(){
+        solveButton.setStyle("-fx-background-color: black;");
     }
     
     @Override
