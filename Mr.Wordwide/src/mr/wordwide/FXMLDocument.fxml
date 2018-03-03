@@ -220,7 +220,7 @@
                </children></StackPane>
          </children>
       </GridPane>
-      <GridPane layoutX="578.0" layoutY="110.0" prefHeight="360.0" prefWidth="450.0">
+      <GridPane layoutX="578.0" layoutY="110.0" prefHeight="250.0" prefWidth="450.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -235,7 +235,7 @@
          <children>
             <StackPane alignment="CENTER_LEFT" disable="true" prefHeight="60.0" prefWidth="450.0">
                <children>
-                  <Label alignment="BOTTOM_LEFT" prefHeight="60.0" prefWidth="450.0" text="ACROSS" textFill="#ff5900" underline="true">
+                  <Label prefHeight="60.0" prefWidth="450.0" text="ACROSS" textFill="#ff5900" underline="true">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -264,7 +264,7 @@
                </children></StackPane>
          </children>
       </GridPane>
-      <GridPane layoutX="578.0" layoutY="480.0" prefHeight="360.0" prefWidth="450.0">
+      <GridPane layoutX="578.0" layoutY="370.0" prefHeight="250.0" prefWidth="450.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -279,7 +279,7 @@
          <children>
             <StackPane alignment="CENTER_LEFT" disable="true" prefHeight="60.0" prefWidth="450.0">
                <children>
-                  <Label alignment="BOTTOM_LEFT" prefHeight="60.0" prefWidth="450.0" text="DOWN" textFill="#ff5900" underline="true">
+                  <Label prefHeight="60.0" prefWidth="450.0" text="DOWN" textFill="#ff5900" underline="true">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
