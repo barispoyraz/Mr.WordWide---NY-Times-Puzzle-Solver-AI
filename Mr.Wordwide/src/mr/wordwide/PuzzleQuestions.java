@@ -46,6 +46,10 @@ public class PuzzleQuestions {
         
         try{
             LocalDate localDate = LocalDate.now();
+            if(localDate.getDayOfWeek().getValue() == 6)
+            {
+                //Today is Saturday
+            }
             if(checkDownloaded() == false)
             {
                 //this.document = Jsoup.connect(url).get();

@@ -98,129 +98,279 @@ public class FXMLDocumentController implements Initializable {
         Grid[] grids = structure.getGrids();
         
         if(grids[0].getActive().equals("BLOCKED"))
+        {
             puzzleGrid0.setStyle("-fx-background-color:ff5900");
+            puzzleGrid0.setDisable(true);
+        }
         else
+        {
             puzzleGrid0.setStyle(null);
+            puzzleGrid0.setDisable(false);
+        }
         
         if(grids[1].getActive().equals("BLOCKED"))
+        {
             puzzleGrid1.setStyle("-fx-background-color:ff5900");
+            puzzleGrid1.setDisable(true);
+        }
         else
+        {
             puzzleGrid1.setStyle(null);
+            puzzleGrid1.setDisable(false);
+        }
         
         if(grids[2].getActive().equals("BLOCKED"))
+        {
             puzzleGrid2.setStyle("-fx-background-color:ff5900");
+            puzzleGrid2.setDisable(true);
+        }
         else
+        {
             puzzleGrid2.setStyle(null);
+            puzzleGrid2.setDisable(false);
+        }
         
         if(grids[3].getActive().equals("BLOCKED"))
+        {
             puzzleGrid3.setStyle("-fx-background-color:ff5900");
+            puzzleGrid3.setDisable(true);
+        }
         else
+        {
             puzzleGrid3.setStyle(null);
+            puzzleGrid3.setDisable(false);
+        }
         
         if(grids[4].getActive().equals("BLOCKED"))
+        {
             puzzleGrid4.setStyle("-fx-background-color:ff5900");
+            puzzleGrid4.setDisable(true);
+        }
         else
+        {
             puzzleGrid4.setStyle(null);
+            puzzleGrid4.setDisable(false);
+        }
         
         if(grids[5].getActive().equals("BLOCKED"))
+        {
             puzzleGrid5.setStyle("-fx-background-color:ff5900");
+            puzzleGrid5.setDisable(true);
+        }
         else
+        {
             puzzleGrid5.setStyle(null);
+            puzzleGrid5.setDisable(false);
+        }
         
         if(grids[6].getActive().equals("BLOCKED"))
+        {
             puzzleGrid6.setStyle("-fx-background-color:ff5900");
+            puzzleGrid6.setDisable(true);
+        }
         else
+        {
             puzzleGrid6.setStyle(null);
+            puzzleGrid6.setDisable(false);
+        }
         
         if(grids[7].getActive().equals("BLOCKED"))
+        {
             puzzleGrid7.setStyle("-fx-background-color:ff5900");
+            puzzleGrid7.setDisable(true);
+        }
         else
+        {
             puzzleGrid7.setStyle(null);
+            puzzleGrid7.setDisable(false);
+        }
         
         if(grids[8].getActive().equals("BLOCKED"))
+        {
             puzzleGrid8.setStyle("-fx-background-color:ff5900");
+            puzzleGrid8.setDisable(true);
+        }
         else
+        {
             puzzleGrid8.setStyle(null);
+            puzzleGrid8.setDisable(false);
+        }
         
         if(grids[9].getActive().equals("BLOCKED"))
+        {
             puzzleGrid9.setStyle("-fx-background-color:ff5900");
+            puzzleGrid9.setDisable(true);
+        }
         else
+        {
             puzzleGrid9.setStyle(null);
+            puzzleGrid9.setDisable(false);
+        }
         
         if(grids[10].getActive().equals("BLOCKED"))
+        {
             puzzleGrid10.setStyle("-fx-background-color:ff5900");
+            puzzleGrid10.setDisable(true);
+        }
         else
+        {
             puzzleGrid10.setStyle(null);
+            puzzleGrid10.setDisable(false);
+        }
         
         if(grids[11].getActive().equals("BLOCKED"))
+        {
             puzzleGrid11.setStyle("-fx-background-color:ff5900");
+            puzzleGrid11.setDisable(true);
+        }
         else
+        {
             puzzleGrid11.setStyle(null);
+            puzzleGrid11.setDisable(false);
+        }
         
         if(grids[12].getActive().equals("BLOCKED"))
+        {
             puzzleGrid12.setStyle("-fx-background-color:ff5900");
+            puzzleGrid12.setDisable(true);
+        }
         else
+        {
             puzzleGrid12.setStyle(null);
+            puzzleGrid12.setDisable(false);
+        }
         
         if(grids[13].getActive().equals("BLOCKED"))
+        {
             puzzleGrid13.setStyle("-fx-background-color:ff5900");
+            puzzleGrid13.setDisable(true);
+        }
         else
+        {
             puzzleGrid13.setStyle(null);
+            puzzleGrid13.setDisable(false);
+        }
         
         if(grids[14].getActive().equals("BLOCKED"))
+        {
             puzzleGrid14.setStyle("-fx-background-color:ff5900");
+            puzzleGrid14.setDisable(true);
+        }
         else
+        {
             puzzleGrid14.setStyle(null);
+            puzzleGrid14.setDisable(false);
+        }
         
         if(grids[15].getActive().equals("BLOCKED"))
+        {
             puzzleGrid15.setStyle("-fx-background-color:ff5900");
+            puzzleGrid15.setDisable(true);
+        }
         else
+        {
             puzzleGrid15.setStyle(null);
+            puzzleGrid15.setDisable(false);
+        }
         
         if(grids[16].getActive().equals("BLOCKED"))
+        {
             puzzleGrid16.setStyle("-fx-background-color:ff5900");
+            puzzleGrid16.setDisable(true);
+        }
         else
+        {
             puzzleGrid16.setStyle(null);
+            puzzleGrid16.setDisable(false);
+        }
         
         if(grids[17].getActive().equals("BLOCKED"))
+        {
             puzzleGrid17.setStyle("-fx-background-color:ff5900");
+            puzzleGrid17.setDisable(true);
+        }
         else
+        {
             puzzleGrid17.setStyle(null);
+            puzzleGrid17.setDisable(false);
+        }
         
         if(grids[18].getActive().equals("BLOCKED"))
+        {
             puzzleGrid18.setStyle("-fx-background-color:ff5900");
+            puzzleGrid18.setDisable(true);
+        }
         else
+        {
             puzzleGrid18.setStyle(null);
+            puzzleGrid18.setDisable(false);
+        }
         
         if(grids[19].getActive().equals("BLOCKED"))
+        {
             puzzleGrid19.setStyle("-fx-background-color:ff5900");
+            puzzleGrid19.setDisable(true);
+        }
         else
+        {
             puzzleGrid19.setStyle(null);
+            puzzleGrid19.setDisable(false);
+        }
         
         if(grids[20].getActive().equals("BLOCKED"))
+        {
             puzzleGrid20.setStyle("-fx-background-color:ff5900");
+            puzzleGrid20.setDisable(true);
+        }
         else
+        {
             puzzleGrid20.setStyle(null);
+            puzzleGrid20.setDisable(false);
+        }
         
         if(grids[21].getActive().equals("BLOCKED"))
+        {
             puzzleGrid21.setStyle("-fx-background-color:ff5900");
+            puzzleGrid21.setDisable(true);
+        }
         else
+        {
             puzzleGrid21.setStyle(null);
+            puzzleGrid21.setDisable(false);
+        }
         
         if(grids[22].getActive().equals("BLOCKED"))
+        {
             puzzleGrid22.setStyle("-fx-background-color:ff5900");
+            puzzleGrid22.setDisable(true);
+        }
         else
+        {
             puzzleGrid22.setStyle(null);
+            puzzleGrid22.setDisable(false);
+        }
         
         if(grids[23].getActive().equals("BLOCKED"))
+        {
             puzzleGrid23.setStyle("-fx-background-color:ff5900");
+            puzzleGrid23.setDisable(true);
+        }
         else
+        {
             puzzleGrid23.setStyle(null);
+            puzzleGrid23.setDisable(false);
+        }
         
         if(grids[24].getActive().equals("BLOCKED"))
+        {
             puzzleGrid24.setStyle("-fx-background-color:ff5900");
+            puzzleGrid24.setDisable(true);
+        }
         else
+        {
             puzzleGrid24.setStyle(null);
+            puzzleGrid24.setDisable(false);
+        }
     }
     
     @FXML
