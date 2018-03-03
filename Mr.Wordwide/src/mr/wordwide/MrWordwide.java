@@ -17,7 +17,7 @@ public class MrWordwide extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         PuzzleQuestions puzzleQuestions = 
-                new PuzzleQuestions("https://www.nytimes.com/crosswords/game/mini"); 
+                new PuzzleQuestions("https://www.nytimes.com/crosswords/game/mini", true); 
         
         PuzzleStructure puzzleStructure =
                 new PuzzleStructure(puzzleQuestions.getDocument());

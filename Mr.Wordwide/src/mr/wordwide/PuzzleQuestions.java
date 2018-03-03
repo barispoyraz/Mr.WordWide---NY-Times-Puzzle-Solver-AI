@@ -30,19 +30,26 @@ public class PuzzleQuestions {
     private final String CLUE_NUMBER_CLASS = "Clue-label--2IdMY";
     
     private String url;
+    private boolean today = true;
     
     private Question[] acrossQuestions;
     private Question[] downQuestions;
     
     private Document document;
 
-    public PuzzleQuestions(String url){
+    public PuzzleQuestions(String url, boolean today) throws IOException{
         this.url = url;
 
-        connectAndParseThePuzzleQuestions(url);
+        if(today){
+            connectAndGetThePuzzleQuestions(url);
+        }
+        else{
+            File puzzle = new File(url);
+            parseThePuzzleQuestions(puzzle);
+        }
     }
 
-    private void connectAndParseThePuzzleQuestions(String url) {
+    private void connectAndGetThePuzzleQuestions(String url) {
         
         try{
             LocalDate localDate = LocalDate.now();
@@ -53,7 +60,7 @@ public class PuzzleQuestions {
             if(checkDownloaded() == false)
             {
                 //this.document = Jsoup.connect(url).get();
-                URL puzzle = new URL("https://www.nytimes.com/crosswords/game/mini");
+                URL puzzle = new URL(this.url);
                 BufferedReader in = new BufferedReader(new InputStreamReader(puzzle.openStream()));
 
                 String inputLine;
@@ -90,34 +97,13 @@ public class PuzzleQuestions {
 
             path = path + "/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue()
             + "-" + localDate.getYear() + "/puzzle.html";
+            
+            
 
             File puzzle = new File(path);
-            this.document = Jsoup.parse(puzzle, "UTF-8");
             
-            
-            Elements questions = this.document.getElementsByClass(CLUE_TEXT_CLASS_2);
-            Elements numbers = this.document.getElementsByClass(CLUE_NUMBER_CLASS);
-            
-            int numberOfAcrossQuestions = questions.eq(0).select("." + CLUE_TEXT_CLASS).size();
-            int numberOfDownQuestions = questions.eq(1).select("." + CLUE_TEXT_CLASS).size();
-            
-            this.acrossQuestions = new Question[numberOfAcrossQuestions];
-            this.downQuestions = new Question[numberOfDownQuestions];
-            
-            String numberOfTheQuestion;
-            String question;
-            
-            for(int i = 0; i < numberOfAcrossQuestions; i++){
-                this.acrossQuestions[i] = new Question("Across", questions.eq(0)
-                        .select("." + CLUE_NUMBER_CLASS).eq(i).text() 
-                        ,questions.eq(0).select("." + CLUE_TEXT_CLASS).eq(i).text());
-            }
-            
-            for(int i = 0; i < numberOfDownQuestions; i++){
-                this.downQuestions[i] = new Question("Down", questions.eq(1)
-                        .select("." + CLUE_NUMBER_CLASS).eq(i).text() 
-                        ,questions.eq(1).select("." + CLUE_TEXT_CLASS).eq(i).text());
-            }
+            parseThePuzzleQuestions(puzzle);
+                    
             
             
         }catch(IOException ioException){
@@ -126,6 +112,38 @@ public class PuzzleQuestions {
         
         
     }
+    
+    private void parseThePuzzleQuestions(File puzzle) throws IOException{
+        
+        
+        this.document = Jsoup.parse(puzzle, "UTF-8");
+            
+        Elements questions = this.document.getElementsByClass(CLUE_TEXT_CLASS_2);
+        Elements numbers = this.document.getElementsByClass(CLUE_NUMBER_CLASS);
+            
+        int numberOfAcrossQuestions = questions.eq(0).select("." + CLUE_TEXT_CLASS).size();
+        int numberOfDownQuestions = questions.eq(1).select("." + CLUE_TEXT_CLASS).size();
+            
+        this.acrossQuestions = new Question[numberOfAcrossQuestions];
+        this.downQuestions = new Question[numberOfDownQuestions];
+            
+        String numberOfTheQuestion;
+        String question;
+            
+        for(int i = 0; i < numberOfAcrossQuestions; i++){
+            this.acrossQuestions[i] = new Question("Across", questions.eq(0)
+                    .select("." + CLUE_NUMBER_CLASS).eq(i).text() 
+                    ,questions.eq(0).select("." + CLUE_TEXT_CLASS).eq(i).text());
+        }
+            
+        for(int i = 0; i < numberOfDownQuestions; i++){
+            this.downQuestions[i] = new Question("Down", questions.eq(1)
+                    .select("." + CLUE_NUMBER_CLASS).eq(i).text() 
+                    ,questions.eq(1).select("." + CLUE_TEXT_CLASS).eq(i).text());
+        }
+            
+    }
+    
     private boolean checkDownloaded() {
         String path = new File("ai-puzzles")
                 .getAbsolutePath();
