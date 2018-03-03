@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXDatePicker?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,19 +11,16 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="854.0" prefWidth="1070.0" style="-fx-background-color: #353434;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mr.wordwide.FXMLDocumentController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="854.0" prefWidth="1190.0" style="-fx-background-color: #353434;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mr.wordwide.FXMLDocumentController">
     <children>
-      <AnchorPane prefHeight="99.0" prefWidth="1070.0" style="-fx-background-color: #000000;" stylesheets="@../../guiElements/guiCSS.css">
+      <ImageView fx:id="solutionImage" fitHeight="150.0" fitWidth="200.0" layoutX="984.0" layoutY="704.0" pickOnBounds="true" preserveRatio="true" />
+      <AnchorPane prefHeight="99.0" prefWidth="1190.0" style="-fx-background-color: #000000;" stylesheets="@../../guiElements/guiCSS.css">
          <children>
-            <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_LEFT" layoutX="100.0" layoutY="60.0" size="30" />
-            <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_RIGHT" layoutX="159.0" layoutY="60.0" size="30" />
-            <FontAwesomeIconView fill="#ff5900" glyphName="QUESTION_CIRCLE" layoutX="1018.0" layoutY="60.0" size="30" />
-            <JFXButton fx:id="solveButton" layoutX="940.0" layoutY="35.0" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" text="Solve" textFill="#16d70c" />
-            <JFXDatePicker fx:id="dateSelector" editable="false" layoutX="309.0" layoutY="16.0" prefHeight="60.0" prefWidth="230.0" promptText="Please select a date for its puzzle">
-               <effect>
-                  <InnerShadow color="#ff5900" offsetX="10.0" />
-               </effect></JFXDatePicker>
-            <JFXButton fx:id="puzzleSelectFolder" layoutX="23.0" layoutY="34.0" onAction="#openDirectoryChooser" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" text="Folder" textFill="WHITE" />
+            <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_LEFT" layoutX="216.0" layoutY="60.0" size="30" />
+            <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_RIGHT" layoutX="289.0" layoutY="60.0" size="30" />
+            <FontAwesomeIconView fill="#ff5900" glyphName="QUESTION_CIRCLE" layoutX="1092.0" layoutY="60.0" size="30" />
+            <JFXButton fx:id="solveButton" layoutX="963.0" layoutY="34.0" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" text="Solve" textFill="#16d70c" />
+            <JFXButton fx:id="puzzleSelectFolder" layoutX="112.0" layoutY="34.0" onAction="#openDirectoryChooser" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" text="Folder" textFill="WHITE" />
          </children>
       </AnchorPane>
       <GridPane layoutX="14.0" layoutY="110.0" style="-fx-grid-lines-visible: true; -fx-border-color: ff5900; -fx-border-width: 10;">

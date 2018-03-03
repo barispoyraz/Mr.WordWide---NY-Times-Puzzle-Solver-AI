@@ -7,19 +7,19 @@ package mr.wordwide;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
+import static java.time.temporal.TemporalQueries.localDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
 
@@ -107,6 +107,9 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private JFXButton solveButton; 
+    
+    @FXML
+    private ImageView solutionImage = new ImageView();
     
     @FXML
     public void setPuzzleGrid(PuzzleStructure structure)
@@ -450,7 +453,15 @@ public class FXMLDocumentController implements Initializable {
         this.setDownQuestions(puzzleQuestionsChoosen);
         this.setPuzzleGrid(puzzleStructure);
         
-
+        File image =
+                new File(directoryChoosen.getAbsolutePath() + "/solution.PNG");
+        
+        System.out.println(image.exists());
+        
+        solutionImage.setImage(null);
+        solutionImage.setImage(new Image(image.toURI().toURL().toExternalForm()));
+        
+        System.out.println(solutionImage.isVisible());
     }
     
     @FXML
@@ -466,7 +477,21 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        dateSelector.setValue(LocalDate.now());
+        //dateSelector.setValue(LocalDate.now());
+        
+        LocalDate localDate = LocalDate.now();
+        
+        try{
+            File imagePath = new File("ai-puzzles\\" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
+                    + "-" + localDate.getYear() + "/solution.PNG");
+            
+            if(imagePath.exists()){
+                solutionImage.setImage(new Image(imagePath.getAbsolutePath()));
+            }
+        }catch(Exception e){
+            solutionImage.setImage(null);
+        }
+        
     }    
     
 }

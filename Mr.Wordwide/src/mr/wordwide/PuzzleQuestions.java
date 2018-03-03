@@ -18,6 +18,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 
@@ -60,7 +61,11 @@ public class PuzzleQuestions {
             if(checkDownloaded() == false)
             {
                 //this.document = Jsoup.connect(url).get();
-                URL puzzle = new URL(this.url);
+                        
+                Document doc = Jsoup.connect(this.url).get();
+                String htmlText = doc.toString();
+                
+                /*URL puzzle = new URL(this.url);
                 BufferedReader in = new BufferedReader(new InputStreamReader(puzzle.openStream()));
 
                 String inputLine;
@@ -69,7 +74,7 @@ public class PuzzleQuestions {
                     //System.out.println(inputLine);
                     htmlText += inputLine;
                 }
-                in.close();
+                in.close();*/
 
                 
                 File newDir = new File("ai-puzzles\\" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
@@ -115,11 +120,15 @@ public class PuzzleQuestions {
     
     private void parseThePuzzleQuestions(File puzzle) throws IOException{
         
+        System.out.println("aaaa");
+        
         
         this.document = Jsoup.parse(puzzle, "UTF-8");
             
         Elements questions = this.document.getElementsByClass(CLUE_TEXT_CLASS_2);
         Elements numbers = this.document.getElementsByClass(CLUE_NUMBER_CLASS);
+        
+        
             
         int numberOfAcrossQuestions = questions.eq(0).select("." + CLUE_TEXT_CLASS).size();
         int numberOfDownQuestions = questions.eq(1).select("." + CLUE_TEXT_CLASS).size();
