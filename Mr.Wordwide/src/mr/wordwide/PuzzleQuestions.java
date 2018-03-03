@@ -56,7 +56,7 @@ public class PuzzleQuestions {
             LocalDate localDate = LocalDate.now();
             if(localDate.getDayOfWeek().getValue() == 6)
             {
-                //localDate = 
+                localDate = localDate.minusDays(1);
             }
             if(checkDownloaded() == false)
             {
