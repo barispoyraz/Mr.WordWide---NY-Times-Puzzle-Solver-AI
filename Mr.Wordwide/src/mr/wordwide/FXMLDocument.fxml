@@ -45,12 +45,20 @@
                      <font>
                         <Font size="65.0" />
                      </font></Label>
+                  <Label fx:id="qNumber0" alignment="TOP_LEFT" disable="true" prefHeight="170.0" prefWidth="231.0" textFill="#ff5900">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1">
                <children>
                   <Label fx:id="puzzleGrid1" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
                         <Font size="65.0" />
+                     </font></Label>
+                  <Label fx:id="qNumber1" alignment="TOP_LEFT" disable="true" prefHeight="127.0" prefWidth="182.0" textFill="#ff5900">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2">
@@ -59,12 +67,20 @@
                      <font>
                         <Font size="65.0" />
                      </font></Label>
+                  <Label fx:id="qNumber2" alignment="TOP_LEFT" disable="true" prefHeight="160.0" prefWidth="168.0" textFill="#ff5900">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3">
                <children>
                   <Label fx:id="puzzleGrid3" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
                         <Font size="65.0" />
+                     </font></Label>
+                  <Label fx:id="qNumber3" alignment="TOP_LEFT" disable="true" prefHeight="218.0" prefWidth="252.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4">
@@ -73,12 +89,20 @@
                      <font>
                         <Font size="65.0" />
                      </font></Label>
+                  <Label fx:id="qNumber4" alignment="TOP_LEFT" disable="true" prefHeight="165.0" prefWidth="132.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="puzzleGrid5" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
                         <Font size="65.0" />
+                     </font></Label>
+                  <Label fx:id="qNumber5" alignment="TOP_LEFT" disable="true" prefHeight="160.0" prefWidth="194.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -87,12 +111,20 @@
                      <font>
                         <Font size="65.0" />
                      </font></Label>
+                  <Label fx:id="qNumber6" alignment="TOP_LEFT" disable="true" prefHeight="194.0" prefWidth="252.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="puzzleGrid7" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
                         <Font size="65.0" />
+                     </font></Label>
+                  <Label fx:id="qNumber7" alignment="TOP_LEFT" disable="true" prefHeight="188.0" prefWidth="263.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
@@ -101,12 +133,20 @@
                      <font>
                         <Font size="65.0" />
                      </font></Label>
+                  <Label fx:id="qNumber8" alignment="TOP_LEFT" disable="true" prefHeight="233.0" prefWidth="275.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="puzzleGrid9" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
                         <Font size="65.0" />
+                     </font></Label>
+                  <Label fx:id="qNumber9" alignment="TOP_LEFT" disable="true" prefHeight="177.0" prefWidth="221.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="2">
@@ -115,12 +155,20 @@
                      <font>
                         <Font size="65.0" />
                      </font></Label>
+                  <Label fx:id="qNumber10" alignment="TOP_LEFT" disable="true" prefHeight="188.0" prefWidth="248.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="puzzleGrid11" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
                         <Font size="65.0" />
+                     </font></Label>
+                  <Label fx:id="qNumber11" alignment="TOP_LEFT" disable="true" prefHeight="157.0" prefWidth="160.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -129,12 +177,20 @@
                      <font>
                         <Font size="65.0" />
                      </font></Label>
+                  <Label fx:id="qNumber12" alignment="TOP_LEFT" disable="true" prefHeight="156.0" prefWidth="153.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="puzzleGrid13" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
                         <Font size="65.0" />
+                     </font></Label>
+                  <Label fx:id="qNumber13" alignment="TOP_LEFT" disable="true" prefHeight="235.0" prefWidth="221.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
@@ -143,12 +199,20 @@
                      <font>
                         <Font size="65.0" />
                      </font></Label>
+                  <Label fx:id="qNumber14" alignment="TOP_LEFT" disable="true" prefHeight="152.0" prefWidth="237.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="puzzleGrid15" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
                         <Font size="65.0" />
+                     </font></Label>
+                  <Label fx:id="qNumber15" alignment="TOP_LEFT" disable="true" prefHeight="147.0" prefWidth="288.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -157,12 +221,20 @@
                      <font>
                         <Font size="65.0" />
                      </font></Label>
+                  <Label fx:id="qNumber16" alignment="TOP_LEFT" disable="true" prefHeight="253.0" prefWidth="284.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="puzzleGrid17" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
                         <Font size="65.0" />
+                     </font></Label>
+                  <Label fx:id="qNumber17" alignment="TOP_LEFT" disable="true" prefHeight="150.0" prefWidth="148.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
@@ -171,12 +243,20 @@
                      <font>
                         <Font size="65.0" />
                      </font></Label>
+                  <Label fx:id="qNumber18" alignment="TOP_LEFT" disable="true" prefHeight="215.0" prefWidth="359.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="puzzleGrid19" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
                         <Font size="65.0" />
+                     </font></Label>
+                  <Label fx:id="qNumber19" alignment="TOP_LEFT" disable="true" prefHeight="205.0" prefWidth="211.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="4">
@@ -185,12 +265,20 @@
                      <font>
                         <Font size="65.0" />
                      </font></Label>
+                  <Label fx:id="qNumber20" alignment="TOP_LEFT" disable="true" prefHeight="150.0" prefWidth="210.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="puzzleGrid21" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
                         <Font size="65.0" />
+                     </font></Label>
+                  <Label fx:id="qNumber21" alignment="TOP_LEFT" disable="true" prefHeight="149.0" prefWidth="217.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
@@ -199,6 +287,10 @@
                      <font>
                         <Font size="65.0" />
                      </font></Label>
+                  <Label fx:id="qNumber22" alignment="TOP_LEFT" disable="true" prefHeight="140.0" prefWidth="205.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <children>
@@ -206,12 +298,20 @@
                      <font>
                         <Font size="65.0" />
                      </font></Label>
+                  <Label fx:id="qNumber23" alignment="TOP_LEFT" disable="true" prefHeight="182.0" prefWidth="433.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="puzzleGrid24" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
                         <Font size="65.0" />
+                     </font></Label>
+                  <Label fx:id="qNumber24" alignment="TOP_LEFT" disable="true" prefHeight="167.0" prefWidth="266.0" textFill="#ff5900">
+                      <font>
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
          </children>

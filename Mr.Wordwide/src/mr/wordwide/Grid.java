@@ -27,4 +27,9 @@ public class Grid {
     {
         return active;
     }
+    
+    public String getQNumber()
+    {
+        return number;
+    }
 }
