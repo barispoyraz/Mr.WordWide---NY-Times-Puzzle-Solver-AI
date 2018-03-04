@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import static java.time.temporal.TemporalQueries.localDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -98,10 +97,7 @@ public class FXMLDocumentController implements Initializable {
     private Label down4;
     @FXML
     private Label down5;
-   
-    @FXML
-    private JFXDatePicker dateSelector;
-    
+     
     @FXML
     private JFXButton puzzleSelectFolder;  
     

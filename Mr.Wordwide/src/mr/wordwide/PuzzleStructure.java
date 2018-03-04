@@ -6,7 +6,6 @@
 package mr.wordwide;
 
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 
@@ -16,7 +15,7 @@ public class PuzzleStructure {
     private final String ACTIVE_GRID_CLASS = "Cell-cell--1p4gH";
     private final String BLOCKED_GRID_CLASS = "Cell-block--1oNaD";
     
-    private Document document;
+    private final Document document;
     
     private Grid[] grids;
     
@@ -32,50 +31,40 @@ public class PuzzleStructure {
         
         Elements structure = document.getElementsByClass(PUZZLE_STRUCTURE_CLASS);
         
-        if(structure == null){
-            System.out.println("it is null!");
+        if(structure != null){
+            //Grids start from index 4
+        
+            Elements gridProperties = structure.eq(0).select("g");
+
+            int gridNo;
+            String number; 
+            String active;
+
+            Elements grid;
+
+
+            for(int i = 4; i < 29; i++){
+                grid = gridProperties.eq(i);
+                gridNo = i - 4;
+
+                if(grid.select("rect").hasClass(ACTIVE_GRID_CLASS)){
+                    active = "ACTIVE";
+                }
+                else{
+                    active = "BLOCKED";
+                }
+
+                if(active.equals("BLOCKED")){
+                    number = "";
+                }
+                else{
+                    number = grid.select("text").text();
+                }
+
+                this.grids[gridNo] = new Grid(gridNo, number, active);
+
+            }
         }
-        
-        System.out.println("SIZE: " + structure.eq(0).select("g").size());
-        System.out.println("------------------------------");
-        
-        //Grids start from index 4
-        
-        Elements gridProperties = structure.eq(0).select("g");
-        
-        int gridNo;
-        String number; 
-        String active;
-        
-        Elements grid;
-        
-        
-        for(int i = 4; i < 29; i++){
-            grid = gridProperties.eq(i);
-            gridNo = i - 4;
-            
-            if(grid.select("rect").hasClass(ACTIVE_GRID_CLASS)){
-                active = "ACTIVE";
-            }
-            else{
-                active = "BLOCKED";
-            }
-            
-            if(active.equals("BLOCKED")){
-                number = "";
-            }
-            else{
-                number = grid.select("text").text();
-            }
-            
-            this.grids[gridNo] = new Grid(gridNo, number, active);
-            
-        }
-        
-        for(Grid theGrid : grids){
-            System.out.println(theGrid.toString());
-        }
-        
     }
     
     public Grid[] getGrids(){

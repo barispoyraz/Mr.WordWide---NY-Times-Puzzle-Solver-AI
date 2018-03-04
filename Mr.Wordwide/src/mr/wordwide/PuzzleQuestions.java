@@ -5,33 +5,28 @@
  */
 package mr.wordwide;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 
 
 public class PuzzleQuestions {
 
-    private final String CLUE_LIST_CLASS = "ClueList-title--1-3oW";
     private final String CLUE_TEXT_CLASS = "Clue-text--3lZl7";
     private final String CLUE_TEXT_CLASS_2 = "ClueList-list--2dD5- ClueList-obscured--UdyXT";  
     private final String CLUE_NUMBER_CLASS = "Clue-label--2IdMY";
     
-    private String url;
-    private boolean today = true;
+    private final String url;
+    private final boolean today = true;
     
     private Question[] acrossQuestions;
     private Question[] downQuestions;
@@ -56,7 +51,7 @@ public class PuzzleQuestions {
             LocalDate localDate = LocalDate.now();
             if(localDate.getDayOfWeek().getValue() == 6)
             {
-                localDate = localDate.minusDays(2);
+                localDate = localDate.minusDays(1);
             }
             if(checkDownloaded() == false)
             {
@@ -65,16 +60,6 @@ public class PuzzleQuestions {
                 Document doc = Jsoup.connect(this.url).get();
                 String htmlText = doc.toString();
                 
-                /*URL puzzle = new URL(this.url);
-                BufferedReader in = new BufferedReader(new InputStreamReader(puzzle.openStream()));
-
-                String inputLine;
-                String htmlText = "";
-                while((inputLine = in.readLine()) != null){
-                    //System.out.println(inputLine);
-                    htmlText += inputLine;
-                }
-                in.close();*/
 
                 
                 File newDir = new File("ai-puzzles\\" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
@@ -91,10 +76,10 @@ public class PuzzleQuestions {
                 FileWriter fileWriter = new FileWriter("ai-puzzles/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
                 + "-" + localDate.getYear() + "/puzzle.html");
                 
-                BufferedWriter bufferedWriter  = new BufferedWriter(fileWriter);
-                bufferedWriter.write(htmlText);
-                bufferedWriter.newLine();
-                bufferedWriter.close();
+                try (BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+                    bufferedWriter.write(htmlText);
+                    bufferedWriter.newLine();
+                }
             }
             
             String path = new File("ai-puzzles")
@@ -119,26 +104,17 @@ public class PuzzleQuestions {
     }
     
     private void parseThePuzzleQuestions(File puzzle) throws IOException{
-        
-        System.out.println("aaaa");
-        
-        
+       
         this.document = Jsoup.parse(puzzle, "UTF-8");
             
         Elements questions = this.document.getElementsByClass(CLUE_TEXT_CLASS_2);
-        Elements numbers = this.document.getElementsByClass(CLUE_NUMBER_CLASS);
         
-        
-            
         int numberOfAcrossQuestions = questions.eq(0).select("." + CLUE_TEXT_CLASS).size();
         int numberOfDownQuestions = questions.eq(1).select("." + CLUE_TEXT_CLASS).size();
             
         this.acrossQuestions = new Question[numberOfAcrossQuestions];
         this.downQuestions = new Question[numberOfDownQuestions];
-            
-        String numberOfTheQuestion;
-        String question;
-            
+           
         for(int i = 0; i < numberOfAcrossQuestions; i++){
             this.acrossQuestions[i] = new Question("Across", questions.eq(0)
                     .select("." + CLUE_NUMBER_CLASS).eq(i).text() 

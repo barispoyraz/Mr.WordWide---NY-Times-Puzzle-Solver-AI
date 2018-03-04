@@ -7,9 +7,9 @@ package mr.wordwide;
 
 public class Question {
     
-    private String questionType;
-    private String questionNumber;
-    private String question;
+    private final String questionType;
+    private final String questionNumber;
+    private final String question;
     
     public Question(String questionType, String questionNumber, String question){
         this.questionType = questionType;

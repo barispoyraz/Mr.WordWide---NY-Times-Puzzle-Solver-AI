@@ -7,9 +7,9 @@ package mr.wordwide;
 
 public class Grid {
     
-    private int gridNo;
-    private String number;
-    private String active;
+    private final int gridNo;
+    private final String number;
+    private final String active;
     
     public Grid(int gridNo, String number, String active){
         this.gridNo = gridNo;
@@ -17,6 +17,7 @@ public class Grid {
         this.active = active;
     }
     
+    @Override
     public String toString(){
         return "Grid no: " + this.gridNo + ", number: " 
                 + this.number + ", active: " + this.active;
