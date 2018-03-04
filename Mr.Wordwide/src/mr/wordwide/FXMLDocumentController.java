@@ -486,7 +486,7 @@ public class FXMLDocumentController implements Initializable {
                     + "-" + localDate.getYear() + "/solution.PNG");
             
             if(imagePath.exists()){
-                solutionImage.setImage(new Image(imagePath.getAbsolutePath()));
+                solutionImage.setImage(new Image(imagePath.toURI().toURL().toExternalForm()));
             }
         }catch(Exception e){
             solutionImage.setImage(null);
