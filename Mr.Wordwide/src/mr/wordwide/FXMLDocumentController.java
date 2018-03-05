@@ -21,6 +21,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -655,6 +657,32 @@ public class FXMLDocumentController implements Initializable {
             currentPane = null;
         }
         
+        puzzleGrid0.setText("");
+        puzzleGrid1.setText("");
+        puzzleGrid2.setText("");
+        puzzleGrid3.setText("");
+        puzzleGrid4.setText("");
+        puzzleGrid5.setText("");
+        puzzleGrid6.setText("");
+        puzzleGrid7.setText("");
+        puzzleGrid8.setText("");
+        puzzleGrid9.setText("");
+        puzzleGrid10.setText("");
+        puzzleGrid11.setText("");
+        puzzleGrid12.setText("");
+        puzzleGrid13.setText("");
+        puzzleGrid14.setText("");
+        puzzleGrid15.setText("");
+        puzzleGrid16.setText("");
+        puzzleGrid17.setText("");
+        puzzleGrid18.setText("");
+        puzzleGrid19.setText("");
+        puzzleGrid20.setText("");
+        puzzleGrid21.setText("");
+        puzzleGrid22.setText("");
+        puzzleGrid23.setText("");
+        puzzleGrid24.setText("");
+        
         File image =
                 new File(directoryChoosen.getAbsolutePath() + "/solution.PNG");
         
@@ -686,6 +714,20 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
+    @FXML
+    private void handleKeyPressed(KeyEvent keyEvent){
+        KeyCode keyCode = keyEvent.getCode();
+
+        if(keyCode != KeyCode.DELETE && keyCode != KeyCode.BACK_SPACE){  
+            if(keyCode.isLetterKey() || keyCode.isDigitKey()){
+                ((Label)currentPane.getChildren().get(0)).setText(keyCode.getName());
+            }
+        }
+        else{
+            ((Label)currentPane.getChildren().get(0)).setText("");
+        }
+    }
+
     @FXML
     private void handleMouseEntered(){
         solveButton.setStyle("-fx-background-color: blue;");
