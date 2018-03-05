@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.ResourceBundle.Control;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -693,8 +692,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleMouseClickOnGrids(Event event){
         StackPane stackPane = (StackPane)event.getSource();
-        System.out.println(stackPane.getId());
-        
         int index = Integer.parseInt(stackPane.getId().substring(4));
         
         if(!theGrids[index].getActive().equals("BLOCKED")){
@@ -719,7 +716,7 @@ public class FXMLDocumentController implements Initializable {
         KeyCode keyCode = keyEvent.getCode();
 
         if(keyCode != KeyCode.DELETE && keyCode != KeyCode.BACK_SPACE){  
-            if(keyCode.isLetterKey() || keyCode.isDigitKey()){
+            if(keyCode.isLetterKey()){
                 ((Label)currentPane.getChildren().get(0)).setText(keyCode.getName());
             }
         }
@@ -754,5 +751,4 @@ public class FXMLDocumentController implements Initializable {
         }
         
     }    
-    
 }
