@@ -11,13 +11,21 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.ResourceBundle.Control;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
 
@@ -158,9 +166,26 @@ public class FXMLDocumentController implements Initializable {
     private ImageView solutionImage = new ImageView();
     
     @FXML
+    private StackPane currentPane = null;
+    
+    @FXML
+    private final Color color = Color.rgb(79, 242, 155, 0.75);
+    
+    @FXML
+    private final BackgroundFill fill = new BackgroundFill(color, CornerRadii.EMPTY,
+            Insets.EMPTY);
+    
+    @FXML
+    private final Background background = new Background(fill);
+    
+    @FXML
+    private Grid[] theGrids;
+    
+    @FXML
     public void setPuzzleGrid(PuzzleStructure structure)
     {
         Grid[] grids = structure.getGrids();
+        theGrids = grids;
         
         if(grids[0].getActive().equals("BLOCKED"))
         {
@@ -625,11 +650,40 @@ public class FXMLDocumentController implements Initializable {
         this.setDownQuestions(puzzleQuestionsChoosen);
         this.setPuzzleGrid(puzzleStructure);
         
+        if(currentPane != null){
+            currentPane.setBackground(null);
+            currentPane = null;
+        }
+        
         File image =
                 new File(directoryChoosen.getAbsolutePath() + "/solution.PNG");
         
         solutionImage.setImage(null);
         solutionImage.setImage(new Image(image.toURI().toURL().toExternalForm()));
+    }
+    
+    @FXML
+    private void handleMouseClickOnGrids(Event event){
+        StackPane stackPane = (StackPane)event.getSource();
+        System.out.println(stackPane.getId());
+        
+        int index = Integer.parseInt(stackPane.getId().substring(4));
+        
+        if(!theGrids[index].getActive().equals("BLOCKED")){
+            if(currentPane == null){
+                currentPane = stackPane;
+                stackPane.setBackground(background);
+                stackPane.requestFocus();
+            }
+            else{
+                if(!stackPane.getId().equals(currentPane.getId())){
+                    currentPane.setBackground(null);
+                    currentPane = stackPane;
+                    stackPane.setBackground(background);
+                    stackPane.requestFocus();
+                }
+            }
+        }
     }
     
     @FXML

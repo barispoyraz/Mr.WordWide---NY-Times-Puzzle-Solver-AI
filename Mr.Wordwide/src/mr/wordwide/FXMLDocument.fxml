@@ -39,7 +39,7 @@
           <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="NEVER" />
         </rowConstraints>
          <children>
-            <StackPane prefHeight="100.0" prefWidth="100.0">
+            <StackPane fx:id="grid0" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0">
                <children>
                   <Label fx:id="puzzleGrid0" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -50,7 +50,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1">
+            <StackPane fx:id="grid1" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1">
                <children>
                   <Label fx:id="puzzleGrid1" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -61,7 +61,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2">
+            <StackPane fx:id="grid2" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2">
                <children>
                   <Label fx:id="puzzleGrid2" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -72,7 +72,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3">
+            <StackPane fx:id="grid3" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3">
                <children>
                   <Label fx:id="puzzleGrid3" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -83,7 +83,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4">
+            <StackPane fx:id="grid4" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4">
                <children>
                   <Label fx:id="puzzleGrid4" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -94,7 +94,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="1">
+            <StackPane fx:id="grid5" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="puzzleGrid5" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -105,7 +105,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <StackPane fx:id="grid6" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="puzzleGrid6" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -116,7 +116,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <StackPane fx:id="grid7" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="puzzleGrid7" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -127,7 +127,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <StackPane fx:id="grid8" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="puzzleGrid8" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -138,7 +138,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+            <StackPane fx:id="grid9" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="puzzleGrid9" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -149,7 +149,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="2">
+            <StackPane fx:id="grid10" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="puzzleGrid10" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -160,7 +160,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <StackPane fx:id="grid11" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="puzzleGrid11" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -171,7 +171,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <StackPane fx:id="grid12" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="puzzleGrid12" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -182,7 +182,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <StackPane fx:id="grid13" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="puzzleGrid13" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -193,7 +193,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <StackPane fx:id="grid14" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="puzzleGrid14" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -204,7 +204,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="3">
+            <StackPane fx:id="grid15" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="puzzleGrid15" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -215,7 +215,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <StackPane fx:id="grid16" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="puzzleGrid16" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -226,7 +226,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <StackPane fx:id="grid17" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="puzzleGrid17" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -237,7 +237,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <StackPane fx:id="grid18" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="puzzleGrid18" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -248,7 +248,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+            <StackPane fx:id="grid19" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="puzzleGrid19" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -259,7 +259,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="4">
+            <StackPane fx:id="grid20" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="puzzleGrid20" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -270,7 +270,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <StackPane fx:id="grid21" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="puzzleGrid21" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -281,7 +281,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <StackPane fx:id="grid22" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="puzzleGrid22" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -292,7 +292,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <StackPane fx:id="grid23" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="puzzleGrid23" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
@@ -303,7 +303,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
                </children></StackPane>
-            <StackPane prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+            <StackPane fx:id="grid24" onMouseClicked="#handleMouseClickOnGrids" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="puzzleGrid24" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#ff5900">
                      <font>
