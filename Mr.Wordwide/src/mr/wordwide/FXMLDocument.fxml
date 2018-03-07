@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -13,14 +12,14 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="854.0" prefWidth="1190.0" style="-fx-background-color: #353434;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mr.wordwide.FXMLDocumentController">
     <children>
-      <ImageView fx:id="solutionImage" fitHeight="150.0" fitWidth="200.0" layoutX="984.0" layoutY="704.0" pickOnBounds="true" preserveRatio="true" />
       <AnchorPane prefHeight="99.0" prefWidth="1190.0" style="-fx-background-color: #000000;" stylesheets="@../../guiElements/guiCSS.css">
          <children>
             <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_LEFT" layoutX="216.0" layoutY="60.0" size="30" />
             <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_RIGHT" layoutX="289.0" layoutY="60.0" size="30" />
             <FontAwesomeIconView fill="#ff5900" glyphName="QUESTION_CIRCLE" layoutX="1092.0" layoutY="60.0" size="30" />
             <JFXButton fx:id="solveButton" layoutX="963.0" layoutY="34.0" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" text="Solve" textFill="#16d70c" />
-            <JFXButton fx:id="puzzleSelectFolder" layoutX="112.0" layoutY="34.0" onAction="#openDirectoryChooser" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" text="Folder" textFill="WHITE" />
+            <JFXButton fx:id="puzzleSelectFolder" layoutX="112.0" layoutY="34.0" onAction="#openDirectoryChooser" style="-fx-background-image: guiElements\icons8-folder-30.png;" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" text="Folder" textFill="WHITE" />
+            <JFXButton layoutX="840.0" layoutY="35.0" onAction="#presentSolution" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" text="See Solution" textFill="#16d70c" />
          </children>
       </AnchorPane>
       <GridPane layoutX="14.0" layoutY="110.0" style="-fx-grid-lines-visible: true; -fx-border-color: ff5900; -fx-border-width: 10;">
@@ -402,6 +401,49 @@
                <children>
                   <Label fx:id="down5" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900" />
                </children></StackPane>
+         </children>
+      </GridPane>
+      <GridPane fx:id="solGrid" gridLinesVisible="true" layoutX="1028.0" layoutY="690.0" prefHeight="150.0" prefWidth="150.0" style="-fx-border-color: ff5900; -fx-border-width: 5;" visible="false">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="solGrid0" alignment="CENTER" prefHeight="60.0" prefWidth="72.0" textFill="#ff5900" />
+            <Label fx:id="solGrid1" alignment="CENTER" prefHeight="53.0" prefWidth="72.0" textFill="#ff5900" GridPane.columnIndex="1" />
+            <Label fx:id="solGrid2" alignment="CENTER" prefHeight="86.0" prefWidth="91.0" textFill="#ff5900" GridPane.columnIndex="2" />
+            <Label fx:id="solGrid3" alignment="CENTER" prefHeight="69.0" prefWidth="87.0" textFill="#ff5900" GridPane.columnIndex="3" />
+            <Label fx:id="solGrid4" alignment="CENTER" prefHeight="64.0" prefWidth="77.0" textFill="#ff5900" GridPane.columnIndex="4" />
+            <Label fx:id="solGrid5" alignment="CENTER" prefHeight="62.0" prefWidth="78.0" textFill="#ff5900" GridPane.rowIndex="1" />
+            <Label fx:id="solGrid6" alignment="CENTER" prefHeight="80.0" prefWidth="82.0" textFill="#ff5900" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="solGrid7" alignment="CENTER" prefHeight="65.0" prefWidth="87.0" textFill="#ff5900" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="solGrid8" alignment="CENTER" prefHeight="64.0" prefWidth="58.0" textFill="#ff5900" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label fx:id="solGrid9" alignment="CENTER" prefHeight="64.0" prefWidth="71.0" textFill="#ff5900" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Label fx:id="solGrid10" alignment="CENTER" prefHeight="71.0" prefWidth="84.0" textFill="#ff5900" GridPane.rowIndex="2" />
+            <Label fx:id="solGrid11" alignment="CENTER" prefHeight="62.0" prefWidth="74.0" textFill="#ff5900" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="solGrid12" alignment="CENTER" prefHeight="77.0" prefWidth="106.0" textFill="#ff5900" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="solGrid13" alignment="CENTER" prefHeight="62.0" prefWidth="84.0" textFill="#ff5900" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label fx:id="solGrid14" alignment="CENTER" prefHeight="67.0" prefWidth="74.0" textFill="#ff5900" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Label fx:id="solGrid15" alignment="CENTER" prefHeight="118.0" prefWidth="113.0" textFill="#ff5900" GridPane.rowIndex="3" />
+            <Label fx:id="solGrid16" alignment="CENTER" prefHeight="86.0" prefWidth="90.0" textFill="#ff5900" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="solGrid17" alignment="CENTER" prefHeight="82.0" prefWidth="94.0" textFill="#ff5900" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label fx:id="solGrid18" alignment="CENTER" prefHeight="79.0" prefWidth="91.0" textFill="#ff5900" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label fx:id="solGrid19" alignment="CENTER" prefHeight="66.0" prefWidth="90.0" textFill="#ff5900" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Label fx:id="solGrid20" alignment="CENTER" prefHeight="86.0" prefWidth="90.0" textFill="#ff5900" GridPane.rowIndex="4" />
+            <Label fx:id="solGrid21" alignment="CENTER" prefHeight="80.0" prefWidth="92.0" textFill="#ff5900" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="solGrid22" alignment="CENTER" prefHeight="87.0" prefWidth="99.0" textFill="#ff5900" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label fx:id="solGrid23" alignment="CENTER" prefHeight="83.0" prefWidth="106.0" textFill="#ff5900" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Label fx:id="solGrid24" alignment="CENTER" prefHeight="75.0" prefWidth="94.0" textFill="#ff5900" GridPane.columnIndex="4" GridPane.rowIndex="4" />
          </children>
       </GridPane>
     </children>
