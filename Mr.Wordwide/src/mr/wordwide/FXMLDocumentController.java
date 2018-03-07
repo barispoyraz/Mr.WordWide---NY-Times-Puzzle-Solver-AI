@@ -33,6 +33,7 @@ import javafx.stage.Window;
 
 public class FXMLDocumentController implements Initializable {
   
+    private boolean isDown;
     @FXML
     private Label puzzleGrid0;
     @FXML
@@ -718,10 +719,94 @@ public class FXMLDocumentController implements Initializable {
         if(keyCode != KeyCode.DELETE && keyCode != KeyCode.BACK_SPACE){  
             if(keyCode.isLetterKey()){
                 ((Label)currentPane.getChildren().get(0)).setText(keyCode.getName());
+                
+                currentPane.setBackground(null);
+                do
+                {
+                    if(!isDown)
+                    {
+
+                        if(Integer.parseInt(currentPane.getId().substring(4)) != 24)
+                        {
+                            currentPane = (StackPane)currentPane.getParent().getChildrenUnmodifiable().get(Integer.parseInt(currentPane.getId().substring(4)) + 1);
+
+                        }
+                        else
+                        {
+                            currentPane = (StackPane)currentPane.getParent().getChildrenUnmodifiable().get(0);
+                            isDown = true;
+                        }
+                    }
+                    else
+                    {
+
+                        if(Integer.parseInt(currentPane.getId().substring(4)) != 24)
+                        {
+                            if(Integer.parseInt(currentPane.getId().substring(4)) >= 20)
+                            {
+                                currentPane = (StackPane)currentPane.getParent().getChildrenUnmodifiable().get(Integer.parseInt(currentPane.getId().substring(4)) % 5 + 1);
+                            }
+                            else
+                            {
+                                currentPane = (StackPane)currentPane.getParent().getChildrenUnmodifiable().get(Integer.parseInt(currentPane.getId().substring(4)) + 5);
+                            }
+                        }
+                        else
+                        {
+                            currentPane = (StackPane)currentPane.getParent().getChildrenUnmodifiable().get(0);
+                            isDown = false;
+                        }
+                    }
+                }while(currentPane.getChildren().get(0).isDisabled());
+                
+                currentPane.setBackground(background);
+                currentPane.requestFocus();
             }
         }
         else{
             ((Label)currentPane.getChildren().get(0)).setText("");
+            
+            currentPane.setBackground(null);
+            
+            do
+            {
+                if(!isDown)
+                {
+
+                    if(Integer.parseInt(currentPane.getId().substring(4)) != 0)
+                    {
+                        currentPane = (StackPane)currentPane.getParent().getChildrenUnmodifiable().get(Integer.parseInt(currentPane.getId().substring(4)) - 1);
+
+                    }
+                    else
+                    {
+                        currentPane = (StackPane)currentPane.getParent().getChildrenUnmodifiable().get(24);
+                        isDown = true;
+                    }
+                }
+                else
+                {
+                    if(Integer.parseInt(currentPane.getId().substring(4)) != 0)
+                    {
+                        if(Integer.parseInt(currentPane.getId().substring(4)) <= 4)
+                        {
+                            currentPane = (StackPane)currentPane.getParent().getChildrenUnmodifiable().get(Integer.parseInt(currentPane.getId().substring(4)) - 1 + 20);
+                        }
+                        else
+                        {
+                            currentPane = (StackPane)currentPane.getParent().getChildrenUnmodifiable().get(Integer.parseInt(currentPane.getId().substring(4)) - 5);
+                        }
+                    }
+                    else
+                    {
+                        currentPane = (StackPane)currentPane.getParent().getChildrenUnmodifiable().get(24);
+                        isDown = false;
+                    }
+                }
+            }while(currentPane.getChildren().get(0).isDisabled());
+
+            currentPane.setBackground(background);
+            currentPane.requestFocus();
         }
     }
 
@@ -738,7 +823,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         LocalDate localDate = LocalDate.now();
-        
+        isDown = false;
         try{
             File imagePath = new File("ai-puzzles\\" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
                     + "-" + localDate.getYear() + "/solution.PNG");
