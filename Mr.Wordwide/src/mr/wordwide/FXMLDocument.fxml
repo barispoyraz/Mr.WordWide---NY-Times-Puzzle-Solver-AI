@@ -330,30 +330,45 @@
                <children>
                   <Label prefHeight="60.0" prefWidth="450.0" text="ACROSS" textFill="#ff5900" underline="true">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
                </children>
             </StackPane>
             <StackPane fx:id="acrossSP0" prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="across1" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900" />
+                  <Label fx:id="across1" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="across2" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900" />
+                  <Label fx:id="across2" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="3">
                <children>
-                  <Label fx:id="across3" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900" />
+                  <Label fx:id="across3" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="4">
                <children>
-                  <Label fx:id="across4" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900" />
+                  <Label fx:id="across4" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="5">
                <children>
-                  <Label fx:id="across5" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900" />
+                  <Label fx:id="across5" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                </children></StackPane>
          </children>
       </GridPane>
@@ -374,30 +389,45 @@
                <children>
                   <Label prefHeight="60.0" prefWidth="450.0" text="DOWN" textFill="#ff5900" underline="true">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
                </children>
             </StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="down1" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900" />
+                  <Label fx:id="down1" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="down2" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900" />
+                  <Label fx:id="down2" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="3">
                <children>
-                  <Label fx:id="down3" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900" />
+                  <Label fx:id="down3" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="4">
                <children>
-                  <Label fx:id="down4" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900" />
+                  <Label fx:id="down4" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                </children></StackPane>
             <StackPane prefHeight="60.0" prefWidth="450.0" GridPane.rowIndex="5">
                <children>
-                  <Label fx:id="down5" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900" />
+                  <Label fx:id="down5" prefHeight="60.0" prefWidth="450.0" textFill="#ff5900">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                </children></StackPane>
          </children>
       </GridPane>

@@ -738,7 +738,7 @@ public class FXMLDocumentController implements Initializable {
     {
         File f;
         LocalDate localDate = LocalDate.now();
-        if(solPath.length() == 1)
+        if(solPath.length() == 0)
         {
             f = new File("ai-puzzles\\" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
                 + "-" + localDate.getYear() + "\\solution.txt");
@@ -748,7 +748,7 @@ public class FXMLDocumentController implements Initializable {
         if(f.exists() && !f.isDirectory()) 
         { 
             BufferedReader br;
-            if(solPath.length() == 1)
+            if(solPath.length() == 0)
             {   
                 br = new BufferedReader(new FileReader("ai-puzzles/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
                 + "-" + localDate.getYear() + "/solution.txt"));
