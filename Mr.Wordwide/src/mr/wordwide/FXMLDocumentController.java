@@ -243,6 +243,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private GridPane solGrid;
     
+    private String solPath = "";
+    
     @FXML
     public void setPuzzleGrid(PuzzleStructure structure)
     {
@@ -734,13 +736,25 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void presentSolution(ActionEvent event) throws IOException
     {
+        File f;
         LocalDate localDate = LocalDate.now();
-        File f = new File("ai-puzzles\\" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
+        if(solPath.length() == 1)
+        {
+            f = new File("ai-puzzles\\" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
                 + "-" + localDate.getYear() + "\\solution.txt");
+        }
+        else
+            f = new File(solPath);
         if(f.exists() && !f.isDirectory()) 
         { 
-            BufferedReader br = new BufferedReader(new FileReader("ai-puzzles/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
+            BufferedReader br;
+            if(solPath.length() == 1)
+            {   
+                br = new BufferedReader(new FileReader("ai-puzzles/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
                 + "-" + localDate.getYear() + "/solution.txt"));
+            }
+            else
+                br = new BufferedReader(new FileReader(solPath));
             try {
                 StringBuilder sb = new StringBuilder();
                 String line = br.readLine();
@@ -1104,7 +1118,7 @@ public class FXMLDocumentController implements Initializable {
         
         File directoryChoosen = directoryChooser.showDialog(stage);
         
-        
+        solPath = directoryChoosen.getAbsolutePath() + "/solution.txt";
         File puzzle = 
                 new File(directoryChoosen.getAbsolutePath() + "/puzzle.html");
         

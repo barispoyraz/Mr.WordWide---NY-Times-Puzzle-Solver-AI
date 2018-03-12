@@ -14,11 +14,9 @@
     <children>
       <AnchorPane prefHeight="99.0" prefWidth="1190.0" style="-fx-background-color: #000000;" stylesheets="@../../guiElements/guiCSS.css">
          <children>
-            <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_LEFT" layoutX="216.0" layoutY="60.0" size="30" />
-            <FontAwesomeIconView fill="#ff5900" glyphName="ARROW_RIGHT" layoutX="289.0" layoutY="60.0" size="30" />
             <FontAwesomeIconView fill="#ff5900" glyphName="QUESTION_CIRCLE" layoutX="1092.0" layoutY="60.0" size="30" />
             <JFXButton fx:id="solveButton" layoutX="963.0" layoutY="34.0" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" text="Solve" textFill="#16d70c" />
-            <JFXButton fx:id="puzzleSelectFolder" layoutX="112.0" layoutY="34.0" onAction="#openDirectoryChooser" style="-fx-background-image: guiElements\icons8-folder-30.png;" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" text="Folder" textFill="WHITE" />
+            <JFXButton fx:id="puzzleSelectFolder" layoutX="14.0" layoutY="34.0" onAction="#openDirectoryChooser" style="-fx-background-image: guiElements\icons8-folder-30.png;" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" text="Folder" textFill="WHITE" />
             <JFXButton layoutX="840.0" layoutY="35.0" onAction="#presentSolution" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" text="See Solution" textFill="#16d70c" />
          </children>
       </AnchorPane>
