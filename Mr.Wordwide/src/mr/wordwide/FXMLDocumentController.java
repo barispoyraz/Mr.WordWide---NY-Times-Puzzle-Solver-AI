@@ -1214,6 +1214,8 @@ public class FXMLDocumentController implements Initializable {
                     stackPane.setBackground(background);
                     stackPane.requestFocus();
                 }
+                else
+                    isDown = !isDown;
             }
         }
     }
