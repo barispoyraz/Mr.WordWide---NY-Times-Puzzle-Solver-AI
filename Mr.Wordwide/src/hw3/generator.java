@@ -5,10 +5,6 @@
  */
 package hw3;
 
-/**
- *
- * @author cagdas
- */
 public class generator {
     
 }
