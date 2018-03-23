@@ -1,4 +1,8 @@
+package hw3;
 
+
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 /*
@@ -12,26 +16,29 @@ import java.util.Random;
  * @author Can
  */
 public class puzzleGenerator {
-
-    public static void shuffle(int[] array){
-        int arrayLength = array.length;
+    static ArrayList<ArrayList<Integer>> existingPuzzles = new ArrayList<ArrayList<Integer>>();
+    
+    public static void shuffle(ArrayList<Integer> puzzle){
+        int puzzleLength = puzzle.size();
+        int change;
+        int helper;
         Random random = new Random();
         random.nextInt();
-        for(int i = 0; i < arrayLength; i++){
-            int change = i + random.nextInt(arrayLength - i);
-            int helper = array[i];
-            array[i] = array[change];
-            array[change] = helper;
+        for(int i = 0; i < puzzleLength; i++){
+            change = i + random.nextInt(puzzleLength - i);
+            helper = puzzle.get(i);
+            puzzle.set(i, puzzle.get(change));
+            puzzle.set(change, helper);
         }
     }
     
-    public static boolean inversionChecker(int[] array){
+    public static boolean inversionChecker(ArrayList<Integer> puzzle){
         int numberOfInversions = 0;
-        int[] arrayWithoutZero  = new int[array.length-1];
+        int[] arrayWithoutZero  = new int[puzzle.size() - 1];
         int loc = 0;
-        for(int i = 0; i < array.length; i++){
-            if(array[i] != 0){
-                arrayWithoutZero[loc] = array[i];
+        for(int i = 0; i < puzzle.size(); i++){
+            if(puzzle.get(i) != 0){
+                arrayWithoutZero[loc] = puzzle.get(i);
                 loc++;
             }
         }
@@ -49,24 +56,37 @@ public class puzzleGenerator {
     }
     
     
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        int[] array = {7,0,2,8,5,3,6,4,1};
+        ArrayList<Integer> puzzle = new ArrayList<>();
+        puzzle.add(0);
+        puzzle.add(1);
+        puzzle.add(2);
+        puzzle.add(3);
+        puzzle.add(4);
+        puzzle.add(5);
+        puzzle.add(6);
+        puzzle.add(7);
+        puzzle.add(8);
+        
         boolean check = false;
         int i= 0;
         
         while(i < 25){
             while(!check ){
-            shuffle(array);
-            check = inversionChecker(array);
-        }
+                shuffle(puzzle);
+                check = inversionChecker(puzzle);
+            }
+            existingPuzzles.add(puzzle);
             check = false;
             i++;
-            for(int j: array)
+            puzzle.forEach((j) -> {
                 System.out.println(j);
+            });
         }
         
         
