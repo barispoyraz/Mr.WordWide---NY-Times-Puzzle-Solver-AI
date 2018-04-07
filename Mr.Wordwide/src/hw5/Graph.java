@@ -9,6 +9,6 @@ package hw5;
  *
  * @author cagdas
  */
-public class Node {
+public class Graph {
     
 }
