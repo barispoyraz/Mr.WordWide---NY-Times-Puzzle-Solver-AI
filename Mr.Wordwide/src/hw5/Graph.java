@@ -91,15 +91,50 @@ class Graph
         g1_a.addEdge(4, 6);
         g1_a.addEdge(5, 6);
         g1_a.addEdge(6, 7);
-//        g1.addEdge(13, 9);
-//        g1.addEdge(13, 11);
-//        g1.addEdge(13, 12);
-//        g1.addEdge(11, 9);
-//        g1.addEdge(11, 10);
-//        g1.addEdge(12, 9);
-//        g1.addEdge(12, 10);
-//        g1.addEdge(9, 7);
-//        g1.addEdge(10, 7);
+        
+        Graph g1_b = new Graph(7);
+        Map m1_b = new HashMap();
+        Stack s1_b;
+        m1_b.put(0, "Jacque");
+        m1_b.put(1, "Weightlifters");
+        m1_b.put(2, "Shotputters");
+        m1_b.put(3, "Athletes");
+        m1_b.put(4, "Endomorphs");
+        m1_b.put(5, "Dwarfs");
+        m1_b.put(6, "Everything");
+
+        g1_b.addEdge(0, 1);
+        g1_b.addEdge(0, 2);
+        g1_b.addEdge(0, 3);
+        g1_b.addEdge(1, 3);
+        g1_b.addEdge(1, 4);
+        g1_b.addEdge(2, 3);
+        g1_b.addEdge(2, 4);
+        g1_b.addEdge(3, 5);
+        g1_b.addEdge(4, 5);
+        g1_b.addEdge(5, 6);
+        
+        Graph g2_a = new Graph(7);
+        Map m2_a = new HashMap();
+        Stack s2_a;
+        m2_a.put(0, "Num");
+        m2_a.put(1, "Fractional");
+        m2_a.put(2, "Real");
+        //m2_a.put(3, "Enum");
+        m2_a.put(4, "Floating");
+        m2_a.put(5, "RealFrac");
+        m2_a.put(6, "Integral");
+        m2_a.put(7, "RealFloat");
+        
+        g2_a.addEdge(0, 1);
+        g2_a.addEdge(0, 2);
+        g2_a.addEdge(1, 4);
+        g2_a.addEdge(1, 5);
+        g2_a.addEdge(2, 5);
+        g2_a.addEdge(2, 6);
+        //g2_a.addEdge(3, 6);
+        g2_a.addEdge(4, 7);
+        g2_a.addEdge(5, 7);
         
         System.out.println("-------------------------------------------------");
         System.out.println("Following is a Topological " +
@@ -112,12 +147,16 @@ class Graph
         System.out.println("-------------------------------------------------");
         System.out.println("Following is a Topological " +
                            "sort of the test data one - Jacque:");
-        
+        s1_b = g1_b.topologicalSort();
+        while (s1_b.empty() == false)
+            System.out.println(m1_b.get(s1_b.pop()));
         
         System.out.println("-------------------------------------------------");
         System.out.println("Following is a Topological " +
                            "sort of the test data two - Num:");
-        
+        s2_a = g2_a.topologicalSort();
+        while (s2_a.empty() == false)
+            System.out.println(m2_a.get(s2_a.pop()));
         
         System.out.println("-------------------------------------------------");
         System.out.println("Following is a Topological " +
