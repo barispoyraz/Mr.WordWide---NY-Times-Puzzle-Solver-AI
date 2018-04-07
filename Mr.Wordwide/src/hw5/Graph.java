@@ -136,6 +136,32 @@ class Graph
         g2_a.addEdge(3, 6);
         g2_a.addEdge(4, 6);
         
+        
+        
+        Graph g3 = new Graph(7);
+        Map m3 = new HashMap();
+        Stack s3;
+        m3.put(0, "Blimpy");
+        m3.put(1, "Managers");
+        m3.put(2, "Gourmands");
+        m3.put(3, "Diarists");
+        m3.put(4, "Competitors");
+        m3.put(5, "Dwarfs");
+        m3.put(6, "Everything");
+        
+        g3.addEdge(0, 1);
+        g3.addEdge(0, 2);
+        g3.addEdge(0, 3);
+        g3.addEdge(1, 4);
+        g3.addEdge(4, 5);
+        g3.addEdge(2, 5);
+        g3.addEdge(3, 5);
+        g3.addEdge(5, 6);
+        
+        
+        
+        
+        
         System.out.println("-------------------------------------------------");
         System.out.println("Following is a Topological " +
                            "sort of the test data one - Crazy:");
@@ -165,5 +191,9 @@ class Graph
         System.out.println("-------------------------------------------------");
         System.out.println("Following is a Topological " +
                            "sort of the test data three - Blimpy:");
+        
+        s3 = g3.topologicalSort();
+        while(s3.empty() == false)
+            System.out.println(m3.get(s3.pop()));
     }
 }
