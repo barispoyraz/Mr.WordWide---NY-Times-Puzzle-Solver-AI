@@ -121,20 +121,20 @@ class Graph
         m2_a.put(1, "Fractional");
         m2_a.put(2, "Real");
         //m2_a.put(3, "Enum");
-        m2_a.put(4, "Floating");
-        m2_a.put(5, "RealFrac");
-        m2_a.put(6, "Integral");
-        m2_a.put(7, "RealFloat");
+        m2_a.put(3, "Floating");
+        m2_a.put(4, "RealFrac");
+        m2_a.put(5, "Integral");
+        m2_a.put(6, "RealFloat");
         
         g2_a.addEdge(0, 1);
         g2_a.addEdge(0, 2);
+        g2_a.addEdge(1, 3);
         g2_a.addEdge(1, 4);
-        g2_a.addEdge(1, 5);
+        g2_a.addEdge(2, 4);
         g2_a.addEdge(2, 5);
-        g2_a.addEdge(2, 6);
         //g2_a.addEdge(3, 6);
-        g2_a.addEdge(4, 7);
-        g2_a.addEdge(5, 7);
+        g2_a.addEdge(3, 6);
+        g2_a.addEdge(4, 6);
         
         System.out.println("-------------------------------------------------");
         System.out.println("Following is a Topological " +
