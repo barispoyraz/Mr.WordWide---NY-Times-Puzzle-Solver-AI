@@ -136,7 +136,19 @@ class Graph
         g2_a.addEdge(3, 6);
         g2_a.addEdge(4, 6);
         
+        Graph g2_b = new Graph(5);
+        Map m2_b = new HashMap();
+        Stack s2_b;
+        m2_b.put(0, "Ord");
+        m2_b.put(1, "Real");
+        m2_b.put(2, "RealFrac");
+        m2_b.put(3, "Integral");
+        m2_b.put(4, "RealFloat");
         
+        g2_b.addEdge(0, 1);
+        g2_b.addEdge(1, 2);
+        g2_b.addEdge(1, 3);
+        g2_b.addEdge(2, 4);
         
         Graph g3 = new Graph(7);
         Map m3 = new HashMap();
@@ -148,7 +160,7 @@ class Graph
         m3.put(4, "Competitors");
         m3.put(5, "Dwarfs");
         m3.put(6, "Everything");
-        
+ 
         g3.addEdge(0, 1);
         g3.addEdge(0, 2);
         g3.addEdge(0, 3);
@@ -156,11 +168,7 @@ class Graph
         g3.addEdge(4, 5);
         g3.addEdge(2, 5);
         g3.addEdge(3, 5);
-        g3.addEdge(5, 6);
-        
-        
-        
-        
+        g3.addEdge(5, 6); 
         
         System.out.println("-------------------------------------------------");
         System.out.println("Following is a Topological " +
@@ -187,6 +195,10 @@ class Graph
         System.out.println("-------------------------------------------------");
         System.out.println("Following is a Topological " +
                            "sort of the test data two - Ord:");
+        
+        s2_b = g2_b.topologicalSort();
+        while (s2_b.empty() == false)
+            System.out.println(m2_b.get(s2_b.pop()));
         
         System.out.println("-------------------------------------------------");
         System.out.println("Following is a Topological " +
