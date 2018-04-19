@@ -1328,6 +1328,11 @@ public class FXMLDocumentController implements Initializable {
         solveButton.setStyle("-fx-background-color: black;");
     }
     
+    @FXML
+    private void solve(ActionEvent event){
+        
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //LocalDate localDate = LocalDate.now();
