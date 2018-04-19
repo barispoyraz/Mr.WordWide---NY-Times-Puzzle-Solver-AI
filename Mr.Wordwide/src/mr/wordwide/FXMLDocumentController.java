@@ -35,7 +35,6 @@ import javafx.stage.Window;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 public class FXMLDocumentController implements Initializable {
@@ -827,10 +826,9 @@ public class FXMLDocumentController implements Initializable {
             String solutionText = "";
             
             System.setProperty("webdriver.chrome.driver", 
-                    "C:\\Users\\brspo\\Downloads\\chromedriver_win32\\chromedriver.exe");
+                    "" + System.getProperty("user.dir") + "\\chromedriver\\chromedriver.exe");
                   
             WebDriver browser = new ChromeDriver();
-            //WebDriver browser = new FirefoxDriver();
             browser.get("https://www.nytimes.com/crosswords/game/mini");
             browser.findElement(By.className("buttons-modalButton--1REsR")).click();
             browser.findElement(By.xpath("//button[contains(text(),'reveal')]")).click();
