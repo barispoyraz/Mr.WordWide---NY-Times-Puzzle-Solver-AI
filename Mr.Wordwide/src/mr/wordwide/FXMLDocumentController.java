@@ -5,7 +5,7 @@
  */
 package mr.wordwide;
 
-import com.google.api.services.customsearch;
+import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -1341,7 +1341,7 @@ public class FXMLDocumentController implements Initializable {
         String cx = "002788185550341638251:drb89hhatq8";
 
         //Queries constructed here
-        String q ="";
+        String q ="david+davenport";
         
         try
         {
@@ -1354,25 +1354,22 @@ public class FXMLDocumentController implements Initializable {
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     (conn.getInputStream())));
 
-            String output;
+            String output = "";
+            String line = "";
             System.out.println("Output from Server .... \n");
             
             //Might need to change what we receive from output with jSON.
             
-            //Data data = new Gson().fromJson(json, Data.class);
-            while ((output = br.readLine()) != null) {
-                if(output.contains("\"link\": \"")){                
-                    String link=output.substring(output.indexOf("\"link\": \"")+("\"link\": \"").length(), output.indexOf("\","));
-                    System.out.println(link);       //Will print the google search links
-        }     
-    }
-    conn.disconnect();
+            while ((line = br.readLine()) != null) {
+                output = line + "\n";
+            }
+            Data data = new Gson().fromJson(output, Data.class);  
+            conn.disconnect();
         }
         catch(Exception ex)
         {
             ex.printStackTrace();
         }
-        
     }
     
     @Override
