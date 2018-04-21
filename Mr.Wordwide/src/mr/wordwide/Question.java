@@ -12,10 +12,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 public class Question {
     
@@ -74,6 +78,15 @@ public class Question {
         JSONObject result;
         JSONParser jsonParser = new JSONParser();
         JSONArray items = null;
+        ArrayList<String> htmlLinks = new ArrayList<>();
+        
+        JSONObject objProp = new JSONObject();
+        
+        JSONArray arr;
+        JSONObject linkObj;
+        String link;
+        
+        Iterator iterator;
         
         String urlBind = "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+ cx + "&" + "q=" + this.questionUpdated + "&alt=json";
         
@@ -114,7 +127,7 @@ public class Question {
             this.addQueryResults(items);
             
             //Bunu file a yazabiliriz
-            this.resultJSON.put(this.questionType + " " + this.questionNumber, items);
+            this.resultJSON.put(this.questionType + " " + this.questionNumber, objProp);  
         }
         catch(IOException | ParseException ex)
         {
@@ -122,13 +135,8 @@ public class Question {
             ex.printStackTrace();
         }
         
-        ArrayList<String> htmlLinks = new ArrayList<>();
-        JSONArray arr;
-        JSONObject linkObj;
-        String link;
-        
-        Iterator iterator = items.iterator();
-        
+        iterator = items.iterator();
+            
         while(iterator.hasNext()){
             Object obj = iterator.next();
             linkObj = (JSONObject) obj;
@@ -137,6 +145,43 @@ public class Question {
         }
         
         System.out.println(htmlLinks);
+        
+        try {
+            retrieveWordsInTheHTMLs(htmlLinks);
+        } catch (IOException ex) {
+            Logger.getLogger(Question.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void retrieveWordsInTheHTMLs(ArrayList<String> htmlLinks) throws IOException {
+        
+        int size = htmlLinks.size();
+        
+        Document[] htmlDocs = new Document[size];
+        String[] htmlTexts = new String[size];
+        
+        for(int i = 0; i < size; i++){
+            if(!htmlLinks.get(i).contains("wikipedia")){
+                htmlDocs[i] = Jsoup.connect(htmlLinks.get(i)).get();
+                
+                //it may or may not work with this (Probably works)
+                htmlTexts[i] = Jsoup.parse(htmlDocs[i].toString()).text();
+                //htmlTexts[i] = htmlDocs[i].toString().replaceAll("<>", question);
+                
+                //Reference: https://stackoverflow.com/questions/7899525/how-to-split-a-string-by-space
+                String[] parts = htmlTexts[i].split("\\s+");
+                
+                for(int j = 0; j < parts.length; j++){
+                    this.domain.add(parts[j]);
+                }
+            }
+        }
+        
+        /*
+        System.out.println("----------------------");
+        System.out.println(htmlTexts[0]);
+        System.out.println("----------------------");
+        */
     }
     
 }
