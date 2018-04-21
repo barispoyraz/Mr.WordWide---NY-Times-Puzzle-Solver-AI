@@ -6,10 +6,6 @@
 package mr.wordwide;
 
 import org.json.simple.JSONObject;
-import com.google.api.client.json.Json;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.stream.JsonReader;
 import com.jfoenix.controls.JFXButton;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,7 +13,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -42,6 +37,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -1365,9 +1361,10 @@ public class FXMLDocumentController implements Initializable {
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     (conn.getInputStream())));
 
-            String output = "\n" + "";
-            String line = "";
-            System.out.println("Output from Server .... \n");
+            String output;
+            output = "";
+            
+            String line;
             
             //Might need to change what we receive from output with jSON.
             
@@ -1382,9 +1379,8 @@ public class FXMLDocumentController implements Initializable {
             
             conn.disconnect();
         }
-        catch(Exception ex)
+        catch(IOException | ParseException ex)
         {
-            ex.printStackTrace();
         }
     }
     
