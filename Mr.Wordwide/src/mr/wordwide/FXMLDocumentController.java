@@ -1361,7 +1361,6 @@ public class FXMLDocumentController implements Initializable {
         Question[] acrossQs = this.puzzleQs.getAcrossQuestions();
         Question[] downQs = this.puzzleQs.getDownQuestions();
         
-        System.out.println(acrossQs[0].toString());
         
         //Çalışınca sizeAcross ile değiştirelim
         for(int i = 0; i < 1; i++){

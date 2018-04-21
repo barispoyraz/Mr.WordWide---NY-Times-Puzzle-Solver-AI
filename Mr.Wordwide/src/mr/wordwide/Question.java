@@ -22,6 +22,8 @@ public class Question {
     private final String questionNumber;
     private final String question;
     
+    private String questionUpdated;
+    
     private ArrayList<String> domain;
     
     private ArrayList<JSONArray> queryResultArr;
@@ -30,6 +32,9 @@ public class Question {
         this.questionType = questionType;
         this.questionNumber = questionNumber;
         this.question = question;
+        
+        this.questionUpdated = question;
+        this.questionUpdated = this.questionUpdated.replaceAll(" ", "%20");
         
         domain = new ArrayList<>();
         queryResultArr = new ArrayList<>();
@@ -61,13 +66,14 @@ public class Question {
         JSONParser jsonParser = new JSONParser();
         JSONArray items;
         
-        System.out.println("aasdsd");
+        String urlBind = "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+ cx + "&" + "q=" + this.questionUpdated + "&alt=json";
+        
+        System.out.println(urlBind);
         
         try
         {
-            URL url = new URL(
-            "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+ cx + "&" + "q=" + this.question + "&alt=json");
-              
+            URL url = new URL(urlBind);
+           
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -83,6 +89,7 @@ public class Question {
             
             while ((line = br.readLine()) != null) {
                 output += line + "\n";
+                System.out.println("abcd");
             }
             
             System.out.println("Output: " + output);
@@ -100,6 +107,8 @@ public class Question {
         }
         catch(IOException | ParseException ex)
         {
+            System.out.println("are you here");
+            ex.printStackTrace();
         }
     }
     
