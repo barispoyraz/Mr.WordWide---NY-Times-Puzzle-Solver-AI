@@ -251,6 +251,8 @@ public class FXMLDocumentController implements Initializable {
     
     private String solPath = "";
     
+    private PuzzleQuestions puzzleQs;
+    
     @FXML
     public void setPuzzleGrid(PuzzleStructure structure)
     {
@@ -1141,6 +1143,8 @@ public class FXMLDocumentController implements Initializable {
         this.setDownQuestions(puzzleQuestionsChoosen);
         this.setPuzzleGrid(puzzleStructure);
         
+        this.puzzleQs = puzzleQuestionsChoosen;
+        
         if(currentPane != null){
             currentPane.setBackground(null);
             currentPane = null;
@@ -1349,8 +1353,26 @@ public class FXMLDocumentController implements Initializable {
         JSONObject result;
         JSONParser jsonParser = new JSONParser();
         JSONArray items;
+        
+        
+        int sizeAcross = this.puzzleQs.getAcrossQuestions().length;
+        int sizeDown = this.puzzleQs.getDownQuestions().length;
+        
+        Question[] acrossQs = this.puzzleQs.getAcrossQuestions();
+        Question[] downQs = this.puzzleQs.getDownQuestions();
+        
+        
+        //Çalışınca sizeAcross ile değiştirelim
+        for(int i = 0; i < 1; i++){
+            acrossQs[i].query(key, cx);
+        }
+        
+        //Çalışınca sizeDown ile değiştirelim
+        for(int i = 0; i < 1; i++){
+            downQs[i].query(key, cx);
+        }
                     
-        try
+        /*try
         {
             URL url = new URL(
             "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+ cx + "&" + "q=" + q + "&alt=json");
@@ -1381,7 +1403,7 @@ public class FXMLDocumentController implements Initializable {
         }
         catch(IOException | ParseException ex)
         {
-        }
+        }*/
     }
     
     @Override

@@ -16,7 +16,7 @@ public class Question {
     
     private ArrayList<String> domain;
     
-    private ArrayList<JSONArray> resultArr;
+    private ArrayList<JSONArray> queryResultArr;
     
     public Question(String questionType, String questionNumber, String question){
         this.questionType = questionType;
@@ -24,6 +24,7 @@ public class Question {
         this.question = question;
         
         domain = new ArrayList<>();
+        queryResultArr = new ArrayList<>();
     }
     
     @Override
@@ -35,8 +36,16 @@ public class Question {
         return this.domain;
     }
     
+    public ArrayList<JSONArray> getQueryResultsArray(){
+        return this.queryResultArr;
+    }
+    
     public void addPossibleAnswer(String keyword){
         this.domain.add(keyword);
+    }
+    
+    public void addQueryResults(JSONArray res){
+        this.queryResultArr.add(res);
     }
     
 }
