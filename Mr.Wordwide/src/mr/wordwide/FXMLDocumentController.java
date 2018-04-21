@@ -1346,7 +1346,7 @@ public class FXMLDocumentController implements Initializable {
         try
         {
             URL url = new URL(
-            "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+cx+"="+ q + "&alt=json");
+            "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+ cx + "&" + "q=" + q + "&alt=json");
          
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -1362,6 +1362,7 @@ public class FXMLDocumentController implements Initializable {
             
             while ((line = br.readLine()) != null) {
                 output = line + "\n";
+                System.out.println(line);
             }
             Data data = new Gson().fromJson(output, Data.class);  
             conn.disconnect();
