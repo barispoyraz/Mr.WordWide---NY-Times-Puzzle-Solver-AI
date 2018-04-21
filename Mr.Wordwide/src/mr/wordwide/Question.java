@@ -163,15 +163,25 @@ public class Question {
         for(int i = 0; i < size; i++){
             if(!htmlLinks.get(i).contains("wikipedia")){
                 htmlDocs[i] = Jsoup.connect(htmlLinks.get(i)).get();
+                
+                //it may or may not work with this (Probably works)
                 htmlTexts[i] = Jsoup.parse(htmlDocs[i].toString()).text();
                 //htmlTexts[i] = htmlDocs[i].toString().replaceAll("<>", question);
+                
+                //Reference: https://stackoverflow.com/questions/7899525/how-to-split-a-string-by-space
+                String[] parts = htmlTexts[i].split("\\s+");
+                
+                for(int j = 0; j < parts.length; j++){
+                    this.domain.add(parts[j]);
+                }
             }
         }
         
+        /*
         System.out.println("----------------------");
         System.out.println(htmlTexts[0]);
         System.out.println("----------------------");
-        
+        */
     }
     
 }
