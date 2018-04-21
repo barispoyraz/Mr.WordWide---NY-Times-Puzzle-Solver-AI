@@ -28,6 +28,8 @@ public class Question {
     
     private ArrayList<JSONArray> queryResultArr;
     
+    private JSONObject resultJSON;
+    
     public Question(String questionType, String questionNumber, String question){
         this.questionType = questionType;
         this.questionNumber = questionNumber;
@@ -38,6 +40,8 @@ public class Question {
         
         domain = new ArrayList<>();
         queryResultArr = new ArrayList<>();
+        
+        resultJSON = new JSONObject();
     }
     
     @Override
@@ -53,6 +57,10 @@ public class Question {
         return this.queryResultArr;
     }
     
+    public JSONObject getResultJSON(){
+        return this.resultJSON;
+    }
+    
     public void addPossibleAnswer(String keyword){
         this.domain.add(keyword);
     }
@@ -60,7 +68,7 @@ public class Question {
     public void addQueryResults(JSONArray res){
         this.queryResultArr.add(res);
     }
-    
+     
     public void query(String key, String cx){
         JSONObject result;
         JSONParser jsonParser = new JSONParser();
@@ -104,6 +112,9 @@ public class Question {
             conn.disconnect();
             
             this.addQueryResults(items);
+            
+            //Bunu file a yazabiliriz
+            this.resultJSON.put(this.questionType + " " + this.questionNumber, items);
         }
         catch(IOException | ParseException ex)
         {
