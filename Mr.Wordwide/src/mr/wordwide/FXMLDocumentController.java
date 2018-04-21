@@ -5,6 +5,7 @@
  */
 package mr.wordwide;
 
+import com.google.api.services.customsearch;
 import com.jfoenix.controls.JFXButton;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,6 +13,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -1333,6 +1336,42 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void solve(ActionEvent event){
+        
+        String key ="AIzaSyCiVLcICXumdXQNxD22D6iuYC-DwN-va7Q";
+        String cx = "002788185550341638251:drb89hhatq8";
+
+        //Queries constructed here
+        String q ="";
+        
+        try
+        {
+            URL url = new URL(
+            "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+cx+"="+ q + "&alt=json");
+         
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    (conn.getInputStream())));
+
+            String output;
+            System.out.println("Output from Server .... \n");
+            
+            //Might need to change what we receive from output with jSON.
+            
+            //Data data = new Gson().fromJson(json, Data.class);
+            while ((output = br.readLine()) != null) {
+                if(output.contains("\"link\": \"")){                
+                    String link=output.substring(output.indexOf("\"link\": \"")+("\"link\": \"").length(), output.indexOf("\","));
+                    System.out.println(link);       //Will print the google search links
+        }     
+    }
+    conn.disconnect();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
         
     }
     
