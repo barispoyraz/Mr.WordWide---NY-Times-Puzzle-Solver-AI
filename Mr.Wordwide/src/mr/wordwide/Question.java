@@ -6,6 +6,7 @@
 package mr.wordwide;
 
 import java.util.ArrayList;
+import org.json.simple.JSONArray;
 
 public class Question {
     
@@ -14,6 +15,8 @@ public class Question {
     private final String question;
     
     private ArrayList<String> domain;
+    
+    private ArrayList<JSONArray> resultArr;
     
     public Question(String questionType, String questionNumber, String question){
         this.questionType = questionType;

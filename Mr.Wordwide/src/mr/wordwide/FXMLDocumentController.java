@@ -1373,23 +1373,13 @@ public class FXMLDocumentController implements Initializable {
             
             while ((line = br.readLine()) != null) {
                 output += line + "\n";
-                //System.out.println(line);
             }
             
             Object res = jsonParser.parse(output);
             result = (JSONObject) res;
-            
-            //System.out.println("JSON: " + result);
-            
+                       
             items = (JSONArray) result.get("items");
             
-            System.out.println(items);
-         
-            //System.out.println("output: " + output);
-
-            //Data data = new Gson().fromJson(output, Data.class);  
-            
-            //System.out.println(data.toString());
             conn.disconnect();
         }
         catch(Exception ex)
