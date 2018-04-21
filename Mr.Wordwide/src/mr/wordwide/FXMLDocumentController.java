@@ -5,7 +5,11 @@
  */
 package mr.wordwide;
 
+import org.json.simple.JSONObject;
+import com.google.api.client.json.Json;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonReader;
 import com.jfoenix.controls.JFXButton;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,6 +17,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -35,6 +40,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -1343,28 +1350,46 @@ public class FXMLDocumentController implements Initializable {
         //Queries constructed here
         String q ="david+davenport";
         
+        JSONObject result;
+        JSONParser jsonParser = new JSONParser();
+        JSONArray items;
+                    
         try
         {
             URL url = new URL(
             "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+ cx + "&" + "q=" + q + "&alt=json");
-         
+              
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     (conn.getInputStream())));
 
-            String output = "";
+            String output = "\n" + "";
             String line = "";
             System.out.println("Output from Server .... \n");
             
             //Might need to change what we receive from output with jSON.
             
             while ((line = br.readLine()) != null) {
-                output = line + "\n";
-                System.out.println(line);
+                output += line + "\n";
+                //System.out.println(line);
             }
-            Data data = new Gson().fromJson(output, Data.class);  
+            
+            Object res = jsonParser.parse(output);
+            result = (JSONObject) res;
+            
+            //System.out.println("JSON: " + result);
+            
+            items = (JSONArray) result.get("items");
+            
+            System.out.println(items);
+         
+            //System.out.println("output: " + output);
+
+            //Data data = new Gson().fromJson(output, Data.class);  
+            
+            //System.out.println(data.toString());
             conn.disconnect();
         }
         catch(Exception ex)
