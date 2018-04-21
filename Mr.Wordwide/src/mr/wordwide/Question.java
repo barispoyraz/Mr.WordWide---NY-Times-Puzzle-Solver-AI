@@ -163,7 +163,8 @@ public class Question {
         for(int i = 0; i < size; i++){
             if(!htmlLinks.get(i).contains("wikipedia")){
                 htmlDocs[i] = Jsoup.connect(htmlLinks.get(i)).get();
-                htmlTexts[i] = htmlDocs[i].toString();
+                htmlTexts[i] = Jsoup.parse(htmlDocs[i].toString()).text();
+                //htmlTexts[i] = htmlDocs[i].toString().replaceAll("<>", question);
             }
         }
         
