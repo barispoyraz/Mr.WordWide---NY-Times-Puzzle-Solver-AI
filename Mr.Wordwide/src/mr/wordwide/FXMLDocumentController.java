@@ -13,11 +13,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -37,7 +34,6 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -45,6 +41,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class FXMLDocumentController implements Initializable {
   
+    LocalDate localDate = LocalDate.now();
+    
     private boolean isDown;
     @FXML
     private Label puzzleGrid0;
@@ -250,7 +248,7 @@ public class FXMLDocumentController implements Initializable {
     private GridPane solGrid;
     
     private String solPath = "";
-    
+    private String queryResultPath = "";
     private PuzzleQuestions puzzleQs;
     
     @FXML
@@ -745,7 +743,7 @@ public class FXMLDocumentController implements Initializable {
     private void presentSolution(ActionEvent event) throws IOException
     {
         File f;
-        LocalDate localDate = LocalDate.now();
+        
         if(solPath.length() == 0)
         {
             f = new File("ai-puzzles\\" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
@@ -1130,6 +1128,7 @@ public class FXMLDocumentController implements Initializable {
         File directoryChoosen = directoryChooser.showDialog(stage);
         
         solPath = directoryChoosen.getAbsolutePath() + "/solution.txt";
+        queryResultPath = directoryChoosen.getAbsolutePath() + "/queryResult.txt";
         File puzzle = 
                 new File(directoryChoosen.getAbsolutePath() + "/puzzle.html");
         
@@ -1342,8 +1341,48 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    private void solve(ActionEvent event){
+    private void solve(ActionEvent event) throws IOException{
+        File f;
         
+        if(queryResultPath.length() == 0)
+        {
+            f = new File("ai-puzzles\\" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
+                + "-" + localDate.getYear() + "\\queryResult.txt");
+        }
+        else
+            f = new File(queryResultPath);
+        if(f.exists() && !f.isDirectory()) //Query Result Available!
+        { 
+            BufferedReader br;
+            if(queryResultPath.length() == 0)
+            {   
+                br = new BufferedReader(new FileReader("ai-puzzles/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
+                + "-" + localDate.getYear() + "/queryResult.txt"));
+            }
+            else
+                br = new BufferedReader(new FileReader(queryResultPath));
+            try {
+                StringBuilder sb = new StringBuilder();
+                String line = br.readLine();
+
+                while (line != null) {
+                    sb.append(line);
+                    sb.append(System.lineSeparator());
+                    line = br.readLine();
+                }
+                String queryResult = sb.toString();
+                    
+                    
+            }
+            finally {
+                br.close();
+            }
+        }
+        else //Query Result not Available!
+        {
+                    
+        }
+            
         String key ="AIzaSyCiVLcICXumdXQNxD22D6iuYC-DwN-va7Q";
         String cx = "002788185550341638251:drb89hhatq8";
 
