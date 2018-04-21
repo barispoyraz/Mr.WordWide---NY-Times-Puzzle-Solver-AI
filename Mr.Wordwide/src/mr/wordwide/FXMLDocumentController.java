@@ -1406,14 +1406,7 @@ public class FXMLDocumentController implements Initializable {
             
             
         }
-            
-        
-
-        //Queries constructed here
-        String q ="david+davenport";
-        
-        
-                    
+                                
         /*try
         {
             URL url = new URL(

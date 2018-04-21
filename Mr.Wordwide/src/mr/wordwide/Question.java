@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -72,7 +73,7 @@ public class Question {
     public void query(String key, String cx){
         JSONObject result;
         JSONParser jsonParser = new JSONParser();
-        JSONArray items;
+        JSONArray items = null;
         
         String urlBind = "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+ cx + "&" + "q=" + this.questionUpdated + "&alt=json";
         
@@ -97,17 +98,16 @@ public class Question {
             
             while ((line = br.readLine()) != null) {
                 output += line + "\n";
-                System.out.println("abcd");
             }
             
-            System.out.println("Output: " + output);
+            //System.out.println("Output: " + output);
             
             Object res = jsonParser.parse(output);
             result = (JSONObject) res;
                        
             items = (JSONArray) result.get("items");
             
-            System.out.println(items);
+            //System.out.println(items);
             
             conn.disconnect();
             
@@ -121,6 +121,22 @@ public class Question {
             System.out.println("are you here");
             ex.printStackTrace();
         }
+        
+        ArrayList<String> htmlLinks = new ArrayList<>();
+        JSONArray arr;
+        JSONObject linkObj;
+        String link;
+        
+        Iterator iterator = items.iterator();
+        
+        while(iterator.hasNext()){
+            Object obj = iterator.next();
+            linkObj = (JSONObject) obj;
+            link = (String) linkObj.get("link");
+            htmlLinks.add(link);
+        }
+        
+        System.out.println(htmlLinks);
     }
     
 }
