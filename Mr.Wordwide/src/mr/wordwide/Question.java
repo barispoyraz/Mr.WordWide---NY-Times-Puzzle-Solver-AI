@@ -5,8 +5,16 @@
  */
 package mr.wordwide;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Question {
     
@@ -46,6 +54,53 @@ public class Question {
     
     public void addQueryResults(JSONArray res){
         this.queryResultArr.add(res);
+    }
+    
+    public void query(String key, String cx){
+        JSONObject result;
+        JSONParser jsonParser = new JSONParser();
+        JSONArray items;
+        
+        System.out.println("aasdsd");
+        
+        try
+        {
+            URL url = new URL(
+            "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+ cx + "&" + "q=" + this.question + "&alt=json");
+              
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    (conn.getInputStream())));
+
+            String output;
+            output = "";
+            
+            String line;
+            
+            //Might need to change what we receive from output with jSON.
+            
+            while ((line = br.readLine()) != null) {
+                output += line + "\n";
+            }
+            
+            System.out.println("Output: " + output);
+            
+            Object res = jsonParser.parse(output);
+            result = (JSONObject) res;
+                       
+            items = (JSONArray) result.get("items");
+            
+            System.out.println(items);
+            
+            conn.disconnect();
+            
+            this.addQueryResults(items);
+        }
+        catch(IOException | ParseException ex)
+        {
+        }
     }
     
 }
