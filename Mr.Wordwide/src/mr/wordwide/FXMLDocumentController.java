@@ -1344,6 +1344,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void solve(ActionEvent event) throws IOException{
         File f;
+        String key ="AIzaSyCiVLcICXumdXQNxD22D6iuYC-DwN-va7Q";
+        String cx = "002788185550341638251:drb89hhatq8";
+        
         
         if(queryResultPath.length() == 0)
         {
@@ -1381,36 +1384,35 @@ public class FXMLDocumentController implements Initializable {
         }
         else //Query Result not Available!
         {
-                    
+            JSONObject result;
+            JSONParser jsonParser = new JSONParser();
+            JSONArray items;
+        
+            int sizeAcross = this.puzzleQs.getAcrossQuestions().length;
+            int sizeDown = this.puzzleQs.getDownQuestions().length;
+        
+            Question[] acrossQs = this.puzzleQs.getAcrossQuestions();
+            Question[] downQs = this.puzzleQs.getDownQuestions();
+             
+            //Çalışınca sizeAcross ile değiştirelim
+            for(int i = 0; i < 1; i++){
+                acrossQs[i].query(key, cx);
+            }
+        
+            //Çalışınca sizeDown ile değiştirelim
+            for(int i = 0; i < 1; i++){
+                downQs[i].query(key, cx);
+            }
+            
+            
         }
             
-        String key ="AIzaSyCiVLcICXumdXQNxD22D6iuYC-DwN-va7Q";
-        String cx = "002788185550341638251:drb89hhatq8";
+        
 
         //Queries constructed here
         String q ="david+davenport";
         
-        JSONObject result;
-        JSONParser jsonParser = new JSONParser();
-        JSONArray items;
         
-        
-        int sizeAcross = this.puzzleQs.getAcrossQuestions().length;
-        int sizeDown = this.puzzleQs.getDownQuestions().length;
-        
-        Question[] acrossQs = this.puzzleQs.getAcrossQuestions();
-        Question[] downQs = this.puzzleQs.getDownQuestions();
-        
-        
-        //Çalışınca sizeAcross ile değiştirelim
-        for(int i = 0; i < 1; i++){
-            acrossQs[i].query(key, cx);
-        }
-        
-        //Çalışınca sizeDown ile değiştirelim
-        for(int i = 0; i < 1; i++){
-            downQs[i].query(key, cx);
-        }
                     
         /*try
         {
