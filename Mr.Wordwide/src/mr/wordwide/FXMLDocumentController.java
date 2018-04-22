@@ -714,6 +714,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void setAcrossQuestions(PuzzleQuestions puzzleQuestions)
     {
+        this.puzzleQs = puzzleQuestions;
         Question[] acrossQuestions = puzzleQuestions.getAcrossQuestions();
         if(acrossQuestions.length == 5)
         {
@@ -729,6 +730,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void setDownQuestions(PuzzleQuestions puzzleQuestions)
     {
+        this.puzzleQs = puzzleQuestions;
         Question[] downQuestions = puzzleQuestions.getDownQuestions();
         if(downQuestions.length == 5)
         {
@@ -834,7 +836,7 @@ public class FXMLDocumentController implements Initializable {
             
             System.setProperty("webdriver.chrome.driver", 
                     "" + System.getProperty("user.dir") + "\\chromedriver\\chromedriver.exe");
-                  
+                     
             WebDriver browser = new ChromeDriver();
             browser.get("https://www.nytimes.com/crosswords/game/mini");
             browser.findElement(By.className("buttons-modalButton--1REsR")).click();

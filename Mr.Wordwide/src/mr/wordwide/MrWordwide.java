@@ -34,10 +34,15 @@ public class MrWordwide extends Application {
         stage.setTitle("Mr.Wordwide");
         stage.show();
         
+        puzzleQuestions.setPuzzleStructure(puzzleStructure);
+        puzzleQuestions.findClueLengths();
+        
         FXMLDocumentController controller = loader.getController();
         controller.setPuzzleGrid(puzzleStructure);
         controller.setAcrossQuestions(puzzleQuestions);
         controller.setDownQuestions(puzzleQuestions);
+        
+       
     }
 
     /**
