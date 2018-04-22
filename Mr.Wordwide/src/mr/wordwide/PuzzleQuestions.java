@@ -181,6 +181,8 @@ public class PuzzleQuestions {
             if(!gridNumber.equals("")){
                 System.out.println("1111");
                 int length = 1;
+                ArrayList<Integer> gridIds = new ArrayList<>();
+                gridIds.add(i);
                 //Look across Questions
                 for(int j = 0; j < sizeAcross; j++){
                     Question temp = acrossQ[j];
@@ -194,41 +196,54 @@ public class PuzzleQuestions {
                         if(i <= 4){
                             for(int k = i + 1; k <= 4 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
                                 length++;
+                                gridIds.add(k);
                             }
+                            System.out.println(gridIds);
                             acrossQ[j].setQuestionClueLength(length);
+                            acrossQ[j].setQuestionGridIDs(gridIds);
                         }
                         else if(i > 4 && i <= 9){
                             length = 1;
                             for(int k = i + 1; k <= 9 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
                                 length++;
+                                gridIds.add(k);
                             }
                             acrossQ[j].setQuestionClueLength(length);
+                            acrossQ[j].setQuestionGridIDs(gridIds);
                         }
                         else if(i > 9 && i <= 14){
                             length = 1;
                             for(int k = i + 1; k <= 14 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
                                 length++;
+                                gridIds.add(k);
                             }
                             acrossQ[j].setQuestionClueLength(length);
+                            acrossQ[j].setQuestionGridIDs(gridIds);
                         }
                         else if(i > 14 && i <= 19){
                             length = 1;
                             for(int k = i + 1; k <= 19 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
                                 length++;
+                                gridIds.add(k);
                             }
                             acrossQ[j].setQuestionClueLength(length);
+                            acrossQ[j].setQuestionGridIDs(gridIds);
                         }
                         else{
                             length = 1;
                             for(int k = i + 1; k <= 24 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
                                 length++;
+                                gridIds.add(k);
                             }
                             acrossQ[j].setQuestionClueLength(length);
+                            acrossQ[j].setQuestionGridIDs(gridIds);
                         }
                     }
                 }
                 //Look down Questions
                 length = 1;
+                gridIds = new ArrayList<>();
+                gridIds.add(i);
                 for(int j = 0; j < sizeDown; j++){
                     Question temp = downQ[j];
                     
@@ -240,41 +255,46 @@ public class PuzzleQuestions {
                         if(i % 5 == 20 % 5){
                             for(int k = i + 5; k <= 20 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
                                 length++;
-                            }
-                            System.out.println(length);
+                                gridIds.add(k);
+                            }               
                             downQ[j].setQuestionClueLength(length);
+                            downQ[j].setQuestionGridIDs(gridIds);
                         }
                         else if(i % 5 == 21 % 5){
                             length = 1;
                             for(int k = i + 5; k <= 21 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
                                 length++;
+                                gridIds.add(k);
                             }
-                            System.out.println(length);
                             downQ[j].setQuestionClueLength(length);
+                            downQ[j].setQuestionGridIDs(gridIds);
                         }
                         else if(i % 5 == 22 % 5){
                             length = 1;
                             for(int k = i + 5; k <= 22 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
                                 length++;
+                                gridIds.add(k);
                             }
-                            System.out.println(length);
                             downQ[j].setQuestionClueLength(length);
+                            downQ[j].setQuestionGridIDs(gridIds);
                         }
                         else if(i % 5 == 23 % 5){
                             length = 1;
                             for(int k = i + 5; k <= 23 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
                                 length++;
+                                gridIds.add(k);
                             }
-                            System.out.println(length);
                             downQ[j].setQuestionClueLength(length);
+                            downQ[j].setQuestionGridIDs(gridIds);
                         }
                         else{
                             length = 1;
                             for(int k = i + 5; k <= 24 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
                                 length++;
+                                gridIds.add(k);
                             }
-                            System.out.println(length);
                             downQ[j].setQuestionClueLength(length);
+                            downQ[j].setQuestionGridIDs(gridIds);
                         }
                     }
                 }        
@@ -287,6 +307,18 @@ public class PuzzleQuestions {
         
         for(int i = 0; i < sizeDown; i++){
             System.out.println(downQ[i].toString() + " length: " + downQ[i].getQuestionClueLength());
+        }
+        
+        System.out.println("\n");
+        System.out.println("----------------");
+        System.out.println("\n");        
+        
+        for(int i = 0; i < sizeAcross; i++){
+            System.out.println(acrossQ[i].toString() + " ids: " + acrossQ[i].getQuestionGridIds());
+        }
+        
+        for(int i = 0; i < sizeDown; i++){
+            System.out.println(downQ[i].toString() + " ids: " + downQ[i].getQuestionGridIds());
         }
     }
 }

@@ -38,7 +38,7 @@ public class Question {
     private ArrayList<JSONArray> queryResultArr;
     
     private JSONObject resultJSON;
-    
+      
     private int clueLength;
     
     public Question(String questionType, String questionNumber, String question){
@@ -75,6 +75,14 @@ public class Question {
     
     public int getQuestionClueLength(){
         return this.clueLength;
+    }
+    
+    public void setQuestionGridIDs(ArrayList<Integer> ids){
+        this.gridIDsOfQuestion = ids;
+    }
+    
+    public ArrayList<Integer> getQuestionGridIds(){
+        return this.gridIDsOfQuestion;
     }
     
     @Override
@@ -254,15 +262,6 @@ public class Question {
         
         findFrequencies();
     }   
-    
-    public void setGridIDS(ArrayList<Integer> ids)
-    {
-        for(int i = 0; i < ids.size(); i++ )
-        {
-           this.gridIDsOfQuestion.set(i, ids.get(i));
-        }
-        
-    }
     
     private void findFrequencies() {
         int size = this.domain.size();
