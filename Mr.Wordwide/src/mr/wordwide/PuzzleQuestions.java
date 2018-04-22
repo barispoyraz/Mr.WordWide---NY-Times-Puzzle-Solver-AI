@@ -361,6 +361,25 @@ public class PuzzleQuestions {
                 acrossQ[i].setGoogleFriendly(googleFriendly);
             }
             //last two remaining
+            else if(tempQuestion.contains("or"))
+            {
+                googleFriendly.add(tempQuestion);
+                String[] splitted = tempQuestion.split(" or ");
+                for(int j = 0; j < splitted.length; j++)
+                {
+                    googleFriendly.add(splitted[j]);
+                }
+            }
+            else if(tempQuestion.contains("sounds like") || tempQuestion.contains("sound like"))
+            {
+                tempQuestion = tempQuestion.replaceAll("(", "").replaceAll(")", "");
+                googleFriendly.add(tempQuestion);
+                tempQuestion = tempQuestion.replaceAll("sounds like", "rhymes with");
+                tempQuestion = tempQuestion.replaceAll("sound like", "rhymes with");
+                googleFriendly.add(tempQuestion);
+                tempQuestion = "synonyms of" + tempQuestion;
+                googleFriendly.add(tempQuestion);
+            }
         }
     }
 }
