@@ -253,6 +253,8 @@ public class Question {
     }   
 
     private void findFrequencies() {
+        int size = this.domain.size();
+        
         
     }
 }
