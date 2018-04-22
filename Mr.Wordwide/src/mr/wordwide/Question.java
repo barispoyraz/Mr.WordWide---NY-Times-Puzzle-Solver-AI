@@ -33,6 +33,8 @@ public class Question {
     
     private ArrayList<String> frequencyDomain;
     
+    public ArrayList<Integer> gridIDsOfQuestion;
+    
     private ArrayList<JSONArray> queryResultArr;
     
     private JSONObject resultJSON;
@@ -49,6 +51,7 @@ public class Question {
         
         domain = new ArrayList<>();
         queryResultArr = new ArrayList<>();
+        gridIDsOfQuestion = new ArrayList<>();
         frequencyDomain = new ArrayList<>();
         
         resultJSON = new JSONObject();
@@ -251,7 +254,16 @@ public class Question {
         
         findFrequencies();
     }   
-
+    
+    public void setGridIDS(ArrayList<Integer> ids)
+    {
+        for(int i = 0; i < ids.size(); i++ )
+        {
+           this.gridIDsOfQuestion.set(i, ids.get(i));
+        }
+        
+    }
+    
     private void findFrequencies() {
         int size = this.domain.size();
         
