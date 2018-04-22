@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -32,6 +33,8 @@ public class PuzzleQuestions {
     private Question[] downQuestions;
     
     private Document document;
+    
+    private PuzzleStructure puzzleStructure;
 
     public PuzzleQuestions(String url, boolean today) throws IOException{
         this.url = url;
@@ -153,5 +156,137 @@ public class PuzzleQuestions {
     
     public Question[] getDownQuestions(){
         return this.downQuestions;
+    }
+    
+    public void setPuzzleStructure(PuzzleStructure puzzleStructure){
+        this.puzzleStructure = puzzleStructure;
+    }
+    
+    public void findClueLengths(){
+        Grid[] puzzleGrid = this.puzzleStructure.getGrids();
+        Question[] acrossQ = this.getAcrossQuestions();
+        Question[] downQ = this.getDownQuestions();
+        
+        int[] acrossLimits = {4, 9, 14, 19, 24};
+        int[] downLimits = {20, 21, 22, 23, 24};
+        
+        int sizeAcross = acrossQ.length;
+        int sizeDown = downQ.length;  
+        int size = puzzleGrid.length;
+        
+        for(int i = 0; i < size; i++){
+            String gridNumber = puzzleGrid[i].getQNumber(); 
+            
+            //If it has a question number
+            if(!gridNumber.equals("")){
+                System.out.println("1111");
+                int length = 1;
+                //Look across Questions
+                for(int j = 0; j < sizeAcross; j++){
+                    Question temp = acrossQ[j];
+                    
+                    String qN = temp.getQuestionNumber().replaceAll("\\s+", "");
+                    String qGN = gridNumber.replaceAll("\\s+", "");
+                    
+                    if(qN.equals(qGN)){
+                        System.out.println("2222");
+                        //Look to the right of the grid
+                        if(i <= 4){
+                            for(int k = i + 1; k <= 4 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
+                                length++;
+                            }
+                            acrossQ[j].setQuestionClueLength(length);
+                        }
+                        else if(i > 4 && i <= 9){
+                            length = 1;
+                            for(int k = i + 1; k <= 9 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
+                                length++;
+                            }
+                            acrossQ[j].setQuestionClueLength(length);
+                        }
+                        else if(i > 9 && i <= 14){
+                            length = 1;
+                            for(int k = i + 1; k <= 14 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
+                                length++;
+                            }
+                            acrossQ[j].setQuestionClueLength(length);
+                        }
+                        else if(i > 14 && i <= 19){
+                            length = 1;
+                            for(int k = i + 1; k <= 19 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
+                                length++;
+                            }
+                            acrossQ[j].setQuestionClueLength(length);
+                        }
+                        else{
+                            length = 1;
+                            for(int k = i + 1; k <= 24 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
+                                length++;
+                            }
+                            acrossQ[j].setQuestionClueLength(length);
+                        }
+                    }
+                }
+                //Look down Questions
+                length = 1;
+                for(int j = 0; j < sizeDown; j++){
+                    Question temp = downQ[j];
+                    
+                    String qN = temp.getQuestionNumber().replaceAll("\\s+", "");
+                    String qGN = gridNumber.replaceAll("\\s+", "");
+                    
+                    if(qN.equals(qGN)){
+                        //Look to the right of the grid
+                        if(i % 5 == 20 % 5){
+                            for(int k = i + 5; k <= 20 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
+                                length++;
+                            }
+                            System.out.println(length);
+                            downQ[j].setQuestionClueLength(length);
+                        }
+                        else if(i % 5 == 21 % 5){
+                            length = 1;
+                            for(int k = i + 5; k <= 21 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
+                                length++;
+                            }
+                            System.out.println(length);
+                            downQ[j].setQuestionClueLength(length);
+                        }
+                        else if(i % 5 == 22 % 5){
+                            length = 1;
+                            for(int k = i + 5; k <= 22 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
+                                length++;
+                            }
+                            System.out.println(length);
+                            downQ[j].setQuestionClueLength(length);
+                        }
+                        else if(i % 5 == 23 % 5){
+                            length = 1;
+                            for(int k = i + 5; k <= 23 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
+                                length++;
+                            }
+                            System.out.println(length);
+                            downQ[j].setQuestionClueLength(length);
+                        }
+                        else{
+                            length = 1;
+                            for(int k = i + 5; k <= 24 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
+                                length++;
+                            }
+                            System.out.println(length);
+                            downQ[j].setQuestionClueLength(length);
+                        }
+                    }
+                }        
+            }
+        }
+        
+        for(int i = 0; i < sizeAcross; i++){
+            System.out.println(acrossQ[i].toString() + " length: " + acrossQ[i].getQuestionClueLength());
+        }
+        
+        for(int i = 0; i < sizeDown; i++){
+            System.out.println(downQ[i].toString() + " length: " + downQ[i].getQuestionClueLength());
+        }
     }
 }

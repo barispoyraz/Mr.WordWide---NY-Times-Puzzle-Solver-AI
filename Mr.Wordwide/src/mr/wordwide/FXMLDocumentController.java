@@ -1142,8 +1142,12 @@ public class FXMLDocumentController implements Initializable {
         this.setAcrossQuestions(puzzleQuestionsChoosen);
         this.setDownQuestions(puzzleQuestionsChoosen);
         this.setPuzzleGrid(puzzleStructure);
+        puzzleQuestionsChoosen.setPuzzleStructure(puzzleStructure);
         
         this.puzzleQs = puzzleQuestionsChoosen;
+        
+        //Testing
+        this.puzzleQs.findClueLengths();
         
         if(currentPane != null){
             currentPane.setBackground(null);
@@ -1393,16 +1397,19 @@ public class FXMLDocumentController implements Initializable {
         
             Question[] acrossQs = this.puzzleQs.getAcrossQuestions();
             Question[] downQs = this.puzzleQs.getDownQuestions();
+            
+            System.out.println("Across size: " + sizeAcross);
+            System.out.println("Down size: " + sizeDown);
              
             //Çalışınca sizeAcross ile değiştirelim
-            for(int i = 0; i < 1; i++){
+            /*for(int i = 0; i < 1; i++){
                 acrossQs[i].query(key, cx);
             }
         
             //Çalışınca sizeDown ile değiştirelim
             for(int i = 0; i < 1; i++){
                 downQs[i].query(key, cx);
-            }
+            }*/
             
             
         }

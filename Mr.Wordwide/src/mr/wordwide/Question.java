@@ -35,6 +35,8 @@ public class Question {
     
     private JSONObject resultJSON;
     
+    private int clueLength;
+    
     public Question(String questionType, String questionNumber, String question){
         this.questionType = questionType;
         this.questionNumber = questionNumber;
@@ -47,6 +49,26 @@ public class Question {
         queryResultArr = new ArrayList<>();
         
         resultJSON = new JSONObject();
+    }
+    
+    public String getQuestionNumber(){
+        return this.questionNumber;
+    }
+    
+    public String getQuestion(){
+        return this.question;
+    }
+    
+    public String getQuestionType(){
+        return this.questionType;
+    }
+    
+    public void setQuestionClueLength(int clueLength){
+        this.clueLength = clueLength;
+    }
+    
+    public int getQuestionClueLength(){
+        return this.clueLength;
     }
     
     @Override

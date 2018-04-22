@@ -5,6 +5,7 @@
  */
 package mr.wordwide;
 
+import java.util.ArrayList;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
@@ -18,6 +19,7 @@ public class PuzzleStructure {
     private final Document document;
     
     private Grid[] grids;
+    
     
     public PuzzleStructure(Document document){
         this.document = document;
@@ -70,4 +72,5 @@ public class PuzzleStructure {
     public Grid[] getGrids(){
         return this.grids;
     }
+    
 }
