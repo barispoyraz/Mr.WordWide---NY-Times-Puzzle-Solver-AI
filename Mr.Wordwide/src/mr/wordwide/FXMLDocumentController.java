@@ -1355,54 +1355,18 @@ public class FXMLDocumentController implements Initializable {
         String cx = "002788185550341638251:drb89hhatq8";
         
         
-        if(queryResultPath.length() == 0)
-        {
-            f = new File("ai-puzzles\\" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
-                + "-" + localDate.getYear() + "\\queryResult.txt");
-        }
-        else
-            f = new File(queryResultPath);
-        if(f.exists() && !f.isDirectory()) //Query Result Available!
-        { 
-            BufferedReader br;
-            if(queryResultPath.length() == 0)
-            {   
-                br = new BufferedReader(new FileReader("ai-puzzles/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
-                + "-" + localDate.getYear() + "/queryResult.txt"));
-            }
-            else
-                br = new BufferedReader(new FileReader(queryResultPath));
-            try {
-                StringBuilder sb = new StringBuilder();
-                String line = br.readLine();
+        JSONObject result;
+        JSONParser jsonParser = new JSONParser();
+        JSONArray items;
 
-                while (line != null) {
-                    sb.append(line);
-                    sb.append(System.lineSeparator());
-                    line = br.readLine();
-                }
-                String queryResult = sb.toString();
-                    
-                    
-            }
-            finally {
-                br.close();
-            }
-        }
-        else //Query Result not Available!
-        {
-            JSONObject result;
-            JSONParser jsonParser = new JSONParser();
-            JSONArray items;
-        
-            int sizeAcross = this.puzzleQs.getAcrossQuestions().length;
-            int sizeDown = this.puzzleQs.getDownQuestions().length;
-        
-            Question[] acrossQs = this.puzzleQs.getAcrossQuestions();
-            Question[] downQs = this.puzzleQs.getDownQuestions();
-            
-            System.out.println("Across size: " + sizeAcross);
-            System.out.println("Down size: " + sizeDown);
+        int sizeAcross = this.puzzleQs.getAcrossQuestions().length;
+        int sizeDown = this.puzzleQs.getDownQuestions().length;
+
+        Question[] acrossQs = this.puzzleQs.getAcrossQuestions();
+        Question[] downQs = this.puzzleQs.getDownQuestions();
+
+        System.out.println("Across size: " + sizeAcross);
+        System.out.println("Down size: " + sizeDown);
              
 //            acrossQs[0].findFrequencies();
             //Çalışınca sizeAcross ile değiştirelim
@@ -1416,7 +1380,7 @@ public class FXMLDocumentController implements Initializable {
             }*/
             
             
-        }
+        
                                 
         /*try
         {

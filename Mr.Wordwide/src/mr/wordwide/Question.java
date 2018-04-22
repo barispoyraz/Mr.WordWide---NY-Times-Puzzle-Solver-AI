@@ -303,9 +303,9 @@ public class Question {
             }
         }
         sortFrequencyDomain(frequencyDomain);
-        for ( String keyword : frequencyDomain.keySet() ) {
-             System.out.println( keyword + ": " + frequencyDomain.get(keyword) + " times." );
-        }
+//        for ( String keyword : frequencyDomain.keySet() ) {
+//             System.out.println( keyword + ": " + frequencyDomain.get(keyword) + " times." );
+//        }
     }
     
     private void sortFrequencyDomain(HashMap<String, Integer> freqs)
