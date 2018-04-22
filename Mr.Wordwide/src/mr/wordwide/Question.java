@@ -31,6 +31,8 @@ public class Question {
     
     private ArrayList<String> domain;
     
+    private ArrayList<String> frequencyDomain;
+    
     private ArrayList<JSONArray> queryResultArr;
     
     private JSONObject resultJSON;
@@ -47,6 +49,7 @@ public class Question {
         
         domain = new ArrayList<>();
         queryResultArr = new ArrayList<>();
+        frequencyDomain = new ArrayList<>();
         
         resultJSON = new JSONObject();
     }
@@ -199,11 +202,57 @@ public class Question {
             }
         }
         
+        processTheDomain();
+        
         /*
         System.out.println("----------------------");
         System.out.println(htmlTexts[0]);
         System.out.println("----------------------");
         */
     }
-    
+
+    private void processTheDomain() {
+        
+        int clueL = this.getQuestionClueLength();
+        int size = this.domain.size();
+              
+        String word;
+        
+        for(int i = 0; i < size; i++){
+            word = this.domain.get(i);
+            if(word.length() - 1 == clueL){
+                //if the last character is 's', remove it the add it to the domain list
+                if(word.charAt(word.length() -1) == 's'){
+                    this.domain.remove(i);
+                    this.domain.add(word.substring(0, word.length() - 1));
+                }
+                else{
+                    this.domain.remove(i);
+                }
+            }
+            else if(word.length() + 1 == clueL){
+                //if the last character is not 's', put a 's' and add it to the domain list
+                if(word.charAt(word.length()-1) != 's'){
+                    this.domain.remove(i);
+                    String newWord = word + "s";
+                    this.domain.add(newWord);
+                }
+                else{
+                    this.domain.remove(i);
+                }
+            }
+            else if(word.length() > clueL){
+                this.domain.remove(i);
+            }
+            else if(clueL > word.length()){
+                this.domain.remove(i);
+            }
+        }
+        
+        findFrequencies();
+    }   
+
+    private void findFrequencies() {
+        
+    }
 }
