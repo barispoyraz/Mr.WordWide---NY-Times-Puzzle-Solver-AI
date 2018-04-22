@@ -47,6 +47,8 @@ public class Question {
       
     private int clueLength;
     
+    private ArrayList<String> googleFriendly;
+    
     public Question(String questionType, String questionNumber, String question){
         this.questionType = questionType;
         this.questionNumber = questionNumber;
@@ -59,6 +61,8 @@ public class Question {
         queryResultArr = new ArrayList<>();
         gridIDsOfQuestion = new ArrayList<>();
         frequencyDomain = new HashMap<>();
+        
+        this.googleFriendly = new ArrayList<>();
         
         resultJSON = new JSONObject();
     }
@@ -114,6 +118,14 @@ public class Question {
     
     public void addQueryResults(JSONArray res){
         this.queryResultArr.add(res);
+    }
+    
+    public void setGoogleFriendly(ArrayList<String> googleFriendly){
+        this.googleFriendly = googleFriendly;
+    }
+    
+    public ArrayList<String> getGoogleFriendly(){
+        return this.googleFriendly;
     }
      
     public void query(String key, String cx){

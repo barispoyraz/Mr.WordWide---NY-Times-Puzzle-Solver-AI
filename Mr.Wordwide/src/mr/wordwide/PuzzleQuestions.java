@@ -319,4 +319,48 @@ public class PuzzleQuestions {
             System.out.println(downQ[i].toString() + " ids: " + downQ[i].getQuestionGridIds());
         }
     }
+    
+    //Based on A COMPARISON OF KEYWORD-BASED AND SEMANTICS-BASED SEARCHING By David E. Goldschmidt
+    public void findGoogleFriendlyQueries(){
+        Question[] acrossQ = this.getAcrossQuestions();
+        Question[] downQ = this.getDownQuestions();
+        
+        int sizeAcross = acrossQ.length;
+        int sizeDown = downQ.length;
+        
+        ArrayList<String> googleFriendly;
+        
+        for(int i = 0; i < sizeAcross; i++){
+            Question temp = acrossQ[i];
+            String tempQuestion = temp.getQuestion();          
+            googleFriendly = new ArrayList<>();
+            if(tempQuestion.contains("_")){
+                String friendly = tempQuestion.replaceAll("_", "* ");
+                googleFriendly.add(friendly);
+                acrossQ[i].setGoogleFriendly(googleFriendly);
+            }
+            else if(!tempQuestion.contains(" ")){
+                googleFriendly.add(tempQuestion);
+                googleFriendly.add("synonyms of " + tempQuestion);
+                acrossQ[i].setGoogleFriendly(googleFriendly);
+            }
+            else if(tempQuestion.contains("abbr")){
+                googleFriendly.add(tempQuestion);
+                googleFriendly.add("abbrevations " + tempQuestion);
+                acrossQ[i].setGoogleFriendly(googleFriendly);
+            }
+            else if(tempQuestion.startsWith("type of")){
+                googleFriendly.add(tempQuestion);
+                googleFriendly.add(tempQuestion.replaceAll("type of", "*"));
+                acrossQ[i].setGoogleFriendly(googleFriendly);
+            }
+            else if(tempQuestion.contains("not")){
+                googleFriendly.add(tempQuestion);
+                googleFriendly.add(tempQuestion.replaceAll("not", "opposite of"));
+                googleFriendly.add(tempQuestion.replaceAll("not", "antonyms of"));
+                acrossQ[i].setGoogleFriendly(googleFriendly);
+            }
+            //last two remaining
+        }
+    }
 }

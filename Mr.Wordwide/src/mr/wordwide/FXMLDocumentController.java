@@ -1151,6 +1151,7 @@ public class FXMLDocumentController implements Initializable {
         //Testing
         this.puzzleQs.findClueLengths();
         
+        
         if(currentPane != null){
             currentPane.setBackground(null);
             currentPane = null;
