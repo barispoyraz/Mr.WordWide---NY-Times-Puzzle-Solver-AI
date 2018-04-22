@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -174,14 +175,17 @@ public class PuzzleQuestions {
         int sizeDown = downQ.length;  
         int size = puzzleGrid.length;
         
+        int str_index;
         for(int i = 0; i < size; i++){
             String gridNumber = puzzleGrid[i].getQNumber(); 
-            
+            str_index = 0;
             //If it has a question number
             if(!gridNumber.equals("")){
                 int length = 1;
-                ArrayList<Integer> gridIds = new ArrayList<>();
-                gridIds.add(i);
+                HashMap<Integer, Integer> gridIds = new HashMap<>();
+                gridIds.put(str_index, i);
+                str_index++;
+                
                 //Look across Questions
                 for(int j = 0; j < sizeAcross; j++){
                     Question temp = acrossQ[j];
@@ -194,7 +198,8 @@ public class PuzzleQuestions {
                         if(i <= 4){
                             for(int k = i + 1; k <= 4 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
                                 length++;
-                                gridIds.add(k);
+                                gridIds.put(str_index, k);
+                                str_index++;
                             }
                             System.out.println(gridIds);
                             acrossQ[j].setQuestionClueLength(length);
@@ -204,7 +209,8 @@ public class PuzzleQuestions {
                             length = 1;
                             for(int k = i + 1; k <= 9 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
                                 length++;
-                                gridIds.add(k);
+                                gridIds.put(str_index, k);
+                                str_index++;
                             }
                             acrossQ[j].setQuestionClueLength(length);
                             acrossQ[j].setQuestionGridIDs(gridIds);
@@ -213,7 +219,8 @@ public class PuzzleQuestions {
                             length = 1;
                             for(int k = i + 1; k <= 14 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
                                 length++;
-                                gridIds.add(k);
+                                gridIds.put(str_index, k);
+                                str_index++;
                             }
                             acrossQ[j].setQuestionClueLength(length);
                             acrossQ[j].setQuestionGridIDs(gridIds);
@@ -222,7 +229,8 @@ public class PuzzleQuestions {
                             length = 1;
                             for(int k = i + 1; k <= 19 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
                                 length++;
-                                gridIds.add(k);
+                                gridIds.put(str_index, k);
+                                str_index++;
                             }
                             acrossQ[j].setQuestionClueLength(length);
                             acrossQ[j].setQuestionGridIDs(gridIds);
@@ -231,7 +239,8 @@ public class PuzzleQuestions {
                             length = 1;
                             for(int k = i + 1; k <= 24 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
                                 length++;
-                                gridIds.add(k);
+                                gridIds.put(str_index, k);
+                                str_index++;
                             }
                             acrossQ[j].setQuestionClueLength(length);
                             acrossQ[j].setQuestionGridIDs(gridIds);
@@ -239,9 +248,11 @@ public class PuzzleQuestions {
                     }
                 }
                 //Look down Questions
+                str_index = 0;
                 length = 1;
-                gridIds = new ArrayList<>();
-                gridIds.add(i);
+                gridIds = new HashMap<>();
+                gridIds.put(str_index, i);
+                str_index++;
                 for(int j = 0; j < sizeDown; j++){
                     Question temp = downQ[j];
                     
@@ -253,7 +264,8 @@ public class PuzzleQuestions {
                         if(i % 5 == 20 % 5){
                             for(int k = i + 5; k <= 20 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
                                 length++;
-                                gridIds.add(k);
+                                gridIds.put(str_index, k);
+                                str_index++;
                             }               
                             downQ[j].setQuestionClueLength(length);
                             downQ[j].setQuestionGridIDs(gridIds);
@@ -262,7 +274,8 @@ public class PuzzleQuestions {
                             length = 1;
                             for(int k = i + 5; k <= 21 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
                                 length++;
-                                gridIds.add(k);
+                                gridIds.put(str_index, k);
+                                str_index++;
                             }
                             downQ[j].setQuestionClueLength(length);
                             downQ[j].setQuestionGridIDs(gridIds);
@@ -271,7 +284,8 @@ public class PuzzleQuestions {
                             length = 1;
                             for(int k = i + 5; k <= 22 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
                                 length++;
-                                gridIds.add(k);
+                                gridIds.put(str_index, k);
+                                str_index++;
                             }
                             downQ[j].setQuestionClueLength(length);
                             downQ[j].setQuestionGridIDs(gridIds);
@@ -280,7 +294,8 @@ public class PuzzleQuestions {
                             length = 1;
                             for(int k = i + 5; k <= 23 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
                                 length++;
-                                gridIds.add(k);
+                                gridIds.put(str_index, k);
+                                str_index++;
                             }
                             downQ[j].setQuestionClueLength(length);
                             downQ[j].setQuestionGridIDs(gridIds);
@@ -289,7 +304,8 @@ public class PuzzleQuestions {
                             length = 1;
                             for(int k = i + 5; k <= 24 && puzzleGrid[k].getActive().equals("ACTIVE"); k+=5){
                                 length++;
-                                gridIds.add(k);
+                                gridIds.put(str_index, k);
+                                str_index++;
                             }
                             downQ[j].setQuestionClueLength(length);
                             downQ[j].setQuestionGridIDs(gridIds);
@@ -378,6 +394,10 @@ public class PuzzleQuestions {
                 tempQuestion = tempQuestion.replaceAll("sound like", "rhymes with");
                 googleFriendly.add(tempQuestion);
                 tempQuestion = "synonyms of" + tempQuestion;
+                googleFriendly.add(tempQuestion);
+            }
+            else
+            {
                 googleFriendly.add(tempQuestion);
             }
         }

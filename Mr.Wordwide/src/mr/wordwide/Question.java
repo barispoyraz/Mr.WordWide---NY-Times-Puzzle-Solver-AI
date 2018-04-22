@@ -12,7 +12,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -39,7 +38,7 @@ public class Question {
     private ArrayList<String> domain;
     private HashMap<String, Integer> frequencyDomain;
     
-    public ArrayList<Integer> gridIDsOfQuestion;
+    public HashMap<Integer, Integer> gridIDsOfQuestion;
     
     private ArrayList<JSONArray> queryResultArr;
     
@@ -59,7 +58,7 @@ public class Question {
         
         domain = new ArrayList<>();
         queryResultArr = new ArrayList<>();
-        gridIDsOfQuestion = new ArrayList<>();
+        gridIDsOfQuestion = new HashMap<>();
         frequencyDomain = new HashMap<>();
         
         this.googleFriendly = new ArrayList<>();
@@ -78,7 +77,10 @@ public class Question {
     public String getQuestionType(){
         return this.questionType;
     }
-    
+    public HashMap<String, Integer> getFrequencyDomain()
+    {
+        return this.frequencyDomain;
+    }
     public void setQuestionClueLength(int clueLength){
         this.clueLength = clueLength;
     }
@@ -87,11 +89,11 @@ public class Question {
         return this.clueLength;
     }
     
-    public void setQuestionGridIDs(ArrayList<Integer> ids){
+    public void setQuestionGridIDs(HashMap<Integer, Integer> ids){
         this.gridIDsOfQuestion = ids;
     }
     
-    public ArrayList<Integer> getQuestionGridIds(){
+    public HashMap<Integer, Integer> getQuestionGridIds(){
         return this.gridIDsOfQuestion;
     }
     
@@ -221,7 +223,7 @@ public class Question {
                 //it may or may not work with this (Probably works)
                 htmlTexts[i] = Jsoup.parse(htmlDocs[i].toString()).text();
                 //htmlTexts[i] = htmlDocs[i].toString().replaceAll("<>", question);
-                
+                htmlTexts[i] = htmlTexts[i].replaceAll("[^\\=-w\\s]", "");
                 //Reference: https://stackoverflow.com/questions/7899525/how-to-split-a-string-by-space
                 String[] parts = htmlTexts[i].split("\\s+");
                 
