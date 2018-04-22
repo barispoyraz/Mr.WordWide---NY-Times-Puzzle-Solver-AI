@@ -12,8 +12,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONArray;
@@ -285,8 +290,36 @@ public class Question {
                 frequencyDomain.put(keyword, frequency);
             }
         }
-//        for ( String keyword : weightMap.keySet() ) {
-//             System.out.println( keyword + ": " + weightMap.get(keyword) + " times." );
-//        }
+        sortFrequencyDomain(frequencyDomain);
+        for ( String keyword : frequencyDomain.keySet() ) {
+             System.out.println( keyword + ": " + frequencyDomain.get(keyword) + " times." );
+        }
+    }
+    
+    private void sortFrequencyDomain(HashMap<String, Integer> freqs)
+    {
+        List<Entry<String, Integer>> list;
+        list = new LinkedList<>(freqs.entrySet());
+        
+//        Collections.sort(list, new Comparator<Entry<String, Integer>>()
+//        {
+//            @Override
+//            public int compare(Entry<String, Integer> o1,
+//                    Entry<String, Integer> o2)
+//            {
+//                return o2.getValue().compareTo(o1.getValue());
+//            }
+//                
+//        });
+//        Below is the lambda version! DO NOT DELETE THE ABOVE CODE SEGMENT FOR READABILITY!
+        
+        Collections.sort(list, (Entry<String, Integer> o1, Entry<String, Integer> o2) -> o2.getValue().compareTo(o1.getValue()));
+        
+        frequencyDomain = new LinkedHashMap<>();
+        for (Entry<String, Integer> entry : list)
+        {
+            frequencyDomain.put(entry.getKey(), entry.getValue());
+        }
+
     }
 }

@@ -1403,6 +1403,7 @@ public class FXMLDocumentController implements Initializable {
             System.out.println("Across size: " + sizeAcross);
             System.out.println("Down size: " + sizeDown);
              
+//            acrossQs[0].findFrequencies();
             //Çalışınca sizeAcross ile değiştirelim
             /*for(int i = 0; i < 1; i++){
                 acrossQs[i].query(key, cx);
