@@ -11,6 +11,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,8 +32,7 @@ public class Question {
     private String questionUpdated;
     
     private ArrayList<String> domain;
-    
-    private ArrayList<String> frequencyDomain;
+    private HashMap<String, Integer> frequencyDomain;
     
     public ArrayList<Integer> gridIDsOfQuestion;
     
@@ -52,7 +53,7 @@ public class Question {
         domain = new ArrayList<>();
         queryResultArr = new ArrayList<>();
         gridIDsOfQuestion = new ArrayList<>();
-        frequencyDomain = new ArrayList<>();
+        frequencyDomain = new HashMap<>();
         
         resultJSON = new JSONObject();
     }
@@ -263,9 +264,29 @@ public class Question {
         findFrequencies();
     }   
     
-    private void findFrequencies() {
-        int size = this.domain.size();
+    public void findFrequencies() {
+        String added_words = "";
+        int frequency;
+        int domainSize = this.domain.size();
         
+        //Program is case insensitive.
+        for(int i = 0; i < domainSize; i++)
+        {
+            this.domain.set(i,this.domain.get(i).toLowerCase() );
+        }
         
+        for(int i = 0; i < domainSize; i++)
+        {   
+            String keyword = this.domain.get(i);
+            if(!added_words.contains(keyword))
+            {
+                added_words += keyword + " ";
+                frequency = Collections.frequency(this.domain, keyword);
+                frequencyDomain.put(keyword, frequency);
+            }
+        }
+//        for ( String keyword : weightMap.keySet() ) {
+//             System.out.println( keyword + ": " + weightMap.get(keyword) + " times." );
+//        }
     }
 }

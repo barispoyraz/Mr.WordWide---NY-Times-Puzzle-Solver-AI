@@ -179,7 +179,6 @@ public class PuzzleQuestions {
             
             //If it has a question number
             if(!gridNumber.equals("")){
-                System.out.println("1111");
                 int length = 1;
                 ArrayList<Integer> gridIds = new ArrayList<>();
                 gridIds.add(i);
@@ -191,7 +190,6 @@ public class PuzzleQuestions {
                     String qGN = gridNumber.replaceAll("\\s+", "");
                     
                     if(qN.equals(qGN)){
-                        System.out.println("2222");
                         //Look to the right of the grid
                         if(i <= 4){
                             for(int k = i + 1; k <= 4 && puzzleGrid[k].getActive().equals("ACTIVE"); k++){
