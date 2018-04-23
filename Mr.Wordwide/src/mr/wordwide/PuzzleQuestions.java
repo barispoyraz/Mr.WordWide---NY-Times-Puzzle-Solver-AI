@@ -356,35 +356,36 @@ public class PuzzleQuestions {
                 acrossQ[i].setGoogleFriendly(googleFriendly);
             }
             else if(!tempQuestion.contains(" ")){
-                googleFriendly.add(tempQuestion);
                 googleFriendly.add("synonyms of " + tempQuestion);
+                googleFriendly.add(tempQuestion); 
                 acrossQ[i].setGoogleFriendly(googleFriendly);
             }
             else if(tempQuestion.contains("abbr")){
-                googleFriendly.add(tempQuestion);
                 googleFriendly.add("abbrevations " + tempQuestion);
+                googleFriendly.add(tempQuestion); 
                 acrossQ[i].setGoogleFriendly(googleFriendly);
             }
             else if(tempQuestion.startsWith("type of")){
-                googleFriendly.add(tempQuestion);
                 googleFriendly.add(tempQuestion.replaceAll("type of", "*"));
+                googleFriendly.add(tempQuestion);     
                 acrossQ[i].setGoogleFriendly(googleFriendly);
             }
             else if(tempQuestion.contains("not")){
-                googleFriendly.add(tempQuestion);
-                googleFriendly.add(tempQuestion.replaceAll("not", "opposite of"));
                 googleFriendly.add(tempQuestion.replaceAll("not", "antonyms of"));
+                googleFriendly.add(tempQuestion.replaceAll("not", "opposite of"));
+                googleFriendly.add(tempQuestion);
                 acrossQ[i].setGoogleFriendly(googleFriendly);
             }
             //last two remaining
             else if(tempQuestion.contains("or"))
-            {
-                googleFriendly.add(tempQuestion);
+            {     
                 String[] splitted = tempQuestion.split(" or ");
                 for(int j = 0; j < splitted.length; j++)
                 {
                     googleFriendly.add(splitted[j]);
-                }
+                }   
+                googleFriendly.add(tempQuestion);
+                acrossQ[i].setGoogleFriendly(googleFriendly);
             }
             else if(tempQuestion.contains("sounds like") || tempQuestion.contains("sound like"))
             {
@@ -394,11 +395,72 @@ public class PuzzleQuestions {
                 tempQuestion = tempQuestion.replaceAll("sound like", "rhymes with");
                 googleFriendly.add(tempQuestion);
                 tempQuestion = "synonyms of" + tempQuestion;
-                googleFriendly.add(tempQuestion);
+                googleFriendly.add(tempQuestion);      
+                acrossQ[i].setGoogleFriendly(googleFriendly);
             }
             else
             {
                 googleFriendly.add(tempQuestion);
+                acrossQ[i].setGoogleFriendly(googleFriendly);
+            }
+        }
+        
+        for(int i = 0; i < sizeDown; i++){
+            Question temp = downQ[i];
+            String tempQuestion = temp.getQuestion();          
+            googleFriendly = new ArrayList<>();
+            if(tempQuestion.contains("_")){
+                String friendly = tempQuestion.replaceAll("_", "* ");
+                googleFriendly.add(friendly);
+                downQ[i].setGoogleFriendly(googleFriendly);
+            }
+            else if(!tempQuestion.contains(" ")){
+                googleFriendly.add("synonyms of " + tempQuestion);
+                googleFriendly.add(tempQuestion); 
+                downQ[i].setGoogleFriendly(googleFriendly);
+            }
+            else if(tempQuestion.contains("abbr")){
+                googleFriendly.add("abbrevations " + tempQuestion);
+                googleFriendly.add(tempQuestion); 
+                downQ[i].setGoogleFriendly(googleFriendly);
+            }
+            else if(tempQuestion.startsWith("type of")){
+                googleFriendly.add(tempQuestion.replaceAll("type of", "*"));
+                googleFriendly.add(tempQuestion);     
+                downQ[i].setGoogleFriendly(googleFriendly);
+            }
+            else if(tempQuestion.contains("not")){
+                googleFriendly.add(tempQuestion.replaceAll("not", "antonyms of"));
+                googleFriendly.add(tempQuestion.replaceAll("not", "opposite of"));
+                googleFriendly.add(tempQuestion);
+                downQ[i].setGoogleFriendly(googleFriendly);
+            }
+            //last two remaining
+            else if(tempQuestion.contains("or"))
+            {     
+                String[] splitted = tempQuestion.split(" or ");
+                for(int j = 0; j < splitted.length; j++)
+                {
+                    googleFriendly.add(splitted[j]);
+                }   
+                googleFriendly.add(tempQuestion);
+                downQ[i].setGoogleFriendly(googleFriendly);
+            }
+            else if(tempQuestion.contains("sounds like") || tempQuestion.contains("sound like"))
+            {
+                tempQuestion = tempQuestion.replaceAll("(", "").replaceAll(")", "");
+                googleFriendly.add(tempQuestion);
+                tempQuestion = tempQuestion.replaceAll("sounds like", "rhymes with");
+                tempQuestion = tempQuestion.replaceAll("sound like", "rhymes with");
+                googleFriendly.add(tempQuestion);
+                tempQuestion = "synonyms of" + tempQuestion;
+                googleFriendly.add(tempQuestion);      
+                downQ[i].setGoogleFriendly(googleFriendly);
+            }
+            else
+            {
+                googleFriendly.add(tempQuestion);
+                downQ[i].setGoogleFriendly(googleFriendly);
             }
         }
     }

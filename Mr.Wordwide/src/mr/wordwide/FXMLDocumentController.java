@@ -1161,6 +1161,7 @@ public class FXMLDocumentController implements Initializable {
         
         //Testing
         this.puzzleQs.findClueLengths();
+        this.puzzleQs.findGoogleFriendlyQueries();
         
         
         if(currentPane != null){

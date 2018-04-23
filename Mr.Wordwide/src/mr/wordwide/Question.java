@@ -145,7 +145,9 @@ public class Question {
         
         Iterator iterator;
         
-        String urlBind = "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+ cx + "&" + "q=" + this.questionUpdated + "&alt=json&lr=lang_en";
+        String query = this.getGoogleFriendly().get(0).replaceAll(" ", "%20");
+        
+        String urlBind = "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+ cx + "&" + "q=" + query + "&alt=json&lr=lang_en";
         
         System.out.println(urlBind);
         
