@@ -1470,9 +1470,6 @@ public class FXMLDocumentController implements Initializable {
                         }
                     
                         frequencyDomains.add(frequencyDomain);
-                                  
-                        System.out.println("-----");
-                        System.out.println(frequencyDomains.toString());
                     }
                     finally {
                         br.close();

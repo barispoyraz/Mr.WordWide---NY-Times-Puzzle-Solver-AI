@@ -228,7 +228,7 @@ public class Question {
                 //htmlDocs[i] = Jsoup.connect(question)
                 
                 //it may or may not work with this (Probably works)
-                htmlTexts[i] = Jsoup.parse(htmlDocs[i].toString()).text();
+                htmlTexts[i] = Jsoup.parse(htmlDocs[i].toString()).text().toLowerCase();
                 //htmlTexts[i] = htmlDocs[i].toString().replaceAll("<>", question);
                 htmlTexts[i] = htmlTexts[i].replaceAll("[^a-zA-Z\\s]", "");
                 //Reference: https://stackoverflow.com/questions/7899525/how-to-split-a-string-by-space
@@ -311,11 +311,6 @@ public class Question {
         int newDomainSize = this.newDomain.size();
         
         //Program is case insensitive.
-        for(int i = 0; i < newDomainSize; i++)
-        {
-            this.newDomain.set(i,this.newDomain.get(i).toLowerCase() );
-        }
-        
         for(int i = 0; i < newDomainSize; i++)
         {   
             String keyword = this.newDomain.get(i);
