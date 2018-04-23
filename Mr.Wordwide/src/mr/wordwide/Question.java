@@ -217,7 +217,7 @@ public class Question {
         String[] htmlTexts = new String[size];
         
         for(int i = 0; i < size; i++){
-            if(!htmlLinks.get(i).contains("wikipedia")){
+            if(!(htmlLinks.get(i).contains("wikipedia") || htmlLinks.get(i).contains("youtube"))){
                 htmlDocs[i] = Jsoup.connect(htmlLinks.get(i)).get();
                 
                 //it may or may not work with this (Probably works)
