@@ -1491,6 +1491,7 @@ public class FXMLDocumentController implements Initializable {
                 try (BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
                     bufferedWriter.write(freqText);
                 }
+                freqText = "";
             }
             for(int i = 0; i < sizeDown; i++)
             {
@@ -1504,6 +1505,7 @@ public class FXMLDocumentController implements Initializable {
                 try (BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
                     bufferedWriter.write(freqText);
                 }
+                freqText = "";
             }
         }
     }
