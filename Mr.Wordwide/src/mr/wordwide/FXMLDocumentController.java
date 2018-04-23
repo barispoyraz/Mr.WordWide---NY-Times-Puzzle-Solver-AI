@@ -15,6 +15,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,6 +51,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class FXMLDocumentController implements Initializable {
   
     LocalDate localDate = LocalDate.now();
+    File directoryChoosen = null;
     
     private boolean isDown;
     @FXML
@@ -1136,7 +1139,7 @@ public class FXMLDocumentController implements Initializable {
         File firstDirectory = new File(path);
         directoryChooser.setInitialDirectory(firstDirectory);
         
-        File directoryChoosen = directoryChooser.showDialog(stage);
+        directoryChoosen = directoryChooser.showDialog(stage);
         
         solPath = directoryChoosen.getAbsolutePath() + "/solution.txt";
         queryResultPath = directoryChoosen.getAbsolutePath() + "/queryResult.txt";
@@ -1415,51 +1418,45 @@ public class FXMLDocumentController implements Initializable {
         this.solveOutput.appendToOutput("Is it working???\n");*/
         
         
-        File f;
         String key ="AIzaSyCiVLcICXumdXQNxD22D6iuYC-DwN-va7Q";
         String cx = "002788185550341638251:drb89hhatq8";
         
+        ArrayList<HashMap<String, Integer>> frequencyDomains = new ArrayList<>();
         
-        if(queryResultPath.length() == 0)
+        if(directoryChoosen == null)
         {
-            f = new File("ai-puzzles\\" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
-                + "-" + localDate.getYear() + "\\queryResult.txt");
+            directoryChoosen = new File("ai-puzzles\\" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
+                + "-" + localDate.getYear());
         }
-        else
-            f = new File(queryResultPath);
-        if(f.exists() && !f.isDirectory()) //Query Result Available!
+        if(directoryChoosen.listFiles().length > 2) //Query Result Available!
         { 
+            File[] freqFiles = directoryChoosen.listFiles();
             BufferedReader br;
-            if(queryResultPath.length() == 0)
-            {   
-                br = new BufferedReader(new FileReader("ai-puzzles/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
-                + "-" + localDate.getYear() + "/queryResult.txt"));
-            }
-            else
-                br = new BufferedReader(new FileReader(queryResultPath));
-            try {
-                StringBuilder sb = new StringBuilder();
-                String line = br.readLine();
+            
+            for(int i = 0; i < freqFiles.length; i++)
+            {
+                if(!(freqFiles[i].getAbsolutePath().contains("puzzle.html") || freqFiles[i].getAbsolutePath().contains("solution.txt")))
+                {
+                    HashMap<String, Integer> frequencyDomain = new HashMap<>();
+                    br = new BufferedReader(new FileReader(freqFiles[i]));
+                    try {
+                        String line = br.readLine();
 
-                while (line != null) {
-                    sb.append(line);
-                    sb.append(System.lineSeparator());
-                    line = br.readLine();
+                        while (line != null) {
+                            String[] splitted = line.split("=");
+                            frequencyDomain.put(splitted[0], Integer.parseInt(splitted[1]));
+                            line = br.readLine();
+                        }
+                        frequencyDomains.add(frequencyDomain);
+                    }
+                    finally {
+                        br.close();
+                    }
                 }
-                String queryResult = sb.toString();
-                    
-                    
-            }
-            finally {
-                br.close();
             }
         }
         else //Query Result not Available!
         {
-            JSONObject result;
-            JSONParser jsonParser = new JSONParser();
-            JSONArray items;
-        
             int sizeAcross = this.puzzleQs.getAcrossQuestions().length;
             int sizeDown = this.puzzleQs.getDownQuestions().length;
         
@@ -1471,50 +1468,44 @@ public class FXMLDocumentController implements Initializable {
              
 //            acrossQs[0].findFrequencies();
             //Çalışınca sizeAcross ile değiştirelim
-            /*for(int i = 0; i < 1; i++){
+            for(int i = 0; i < 1; i++){
                 acrossQs[i].query(key, cx);
             }
         
             //Çalışınca sizeDown ile değiştirelim
             for(int i = 0; i < 1; i++){
                 downQs[i].query(key, cx);
-            }*/
-            
-            
-        }
-                                
-        /*try
-        {
-            URL url = new URL(
-            "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+ cx + "&" + "q=" + q + "&alt=json");
-              
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/json");
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    (conn.getInputStream())));
-
-            String output;
-            output = "";
-            
-            String line;
-            
-            //Might need to change what we receive from output with jSON.
-            
-            while ((line = br.readLine()) != null) {
-                output += line + "\n";
             }
             
-            Object res = jsonParser.parse(output);
-            result = (JSONObject) res;
-                       
-            items = (JSONArray) result.get("items");
-            
-            conn.disconnect();
+            String freqText = "";
+            for(int i = 0; i < sizeAcross; i++)
+            {
+                frequencyDomains.add(acrossQs[i].getFrequencyDomain());
+                for(String keyword : acrossQs[i].getFrequencyDomain().keySet())
+                {
+                    freqText += keyword + "=" + acrossQs[i].getFrequencyDomain().get(keyword) + "\n"; 
+                }
+                
+                FileWriter fileWriter = new FileWriter(directoryChoosen.getAbsolutePath() + "/a_" + i + "_domain.txt");
+                
+                try (BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+                    bufferedWriter.write(freqText);
+                }
+            }
+            for(int i = 0; i < sizeDown; i++)
+            {
+                frequencyDomains.add(downQs[i].getFrequencyDomain());
+                for(String keyword : downQs[i].getFrequencyDomain().keySet())
+                {
+                    freqText += keyword + "=" + downQs[i].getFrequencyDomain().get(keyword) + "\n"; 
+                }
+                FileWriter fileWriter = new FileWriter(directoryChoosen.getAbsolutePath() + "/d_" + i + "_domain.txt");
+                
+                try (BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+                    bufferedWriter.write(freqText);
+                }
+            }
         }
-        catch(IOException | ParseException ex)
-        {
-        }*/
     }
     
     @Override

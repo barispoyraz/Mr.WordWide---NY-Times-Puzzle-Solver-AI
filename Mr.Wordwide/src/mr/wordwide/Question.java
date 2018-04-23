@@ -144,7 +144,7 @@ public class Question {
         
         Iterator iterator;
         
-        String urlBind = "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+ cx + "&" + "q=" + this.questionUpdated + "&alt=json";
+        String urlBind = "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+ cx + "&" + "q=" + this.questionUpdated + "&alt=json&lr=lang_en";
         
         System.out.println(urlBind);
         
