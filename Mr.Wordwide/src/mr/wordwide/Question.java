@@ -36,6 +36,7 @@ public class Question {
     private String questionUpdated;
     
     private ArrayList<String> domain;
+    private ArrayList<String> newDomain;
     private HashMap<String, Integer> frequencyDomain;
     
     public HashMap<Integer, Integer> gridIDsOfQuestion;
@@ -218,7 +219,11 @@ public class Question {
         
         for(int i = 0; i < size; i++){
             if(!(htmlLinks.get(i).contains("wikipedia") || htmlLinks.get(i).contains("youtube"))){
+                
+                System.out.println("Link: " + htmlLinks.get(i));
+                
                 htmlDocs[i] = Jsoup.connect(htmlLinks.get(i)).get();
+                //htmlDocs[i] = Jsoup.connect(question)
                 
                 //it may or may not work with this (Probably works)
                 htmlTexts[i] = Jsoup.parse(htmlDocs[i].toString()).text();
@@ -249,35 +254,46 @@ public class Question {
               
         String word;
         
+        this.newDomain = new ArrayList<>();
+        
+        //for(int i = 0; i < size; i++){
+        //    newDomain.add(this.domain.get(i));
+        //}
+        
         for(int i = 0; i < size; i++){
             word = this.domain.get(i);
             if(word.length() - 1 == clueL){
                 //if the last character is 's', remove it the add it to the domain list
                 if(word.charAt(word.length() -1) == 's'){
-                    this.domain.remove(i);
-                    this.domain.add(word.substring(0, word.length() - 1));
+                    //this.domain.remove(i);
+                    this.newDomain.add(word.substring(0, word.length() - 1));
+                    //this.domain.add(word.substring(0, word.length() - 1));
                 }
-                else{
-                    this.domain.remove(i);
-                }
+                //else{
+                //    this.domain.remove(i);
+                //}
             }
             else if(word.length() + 1 == clueL){
                 //if the last character is not 's', put a 's' and add it to the domain list
                 if(word.charAt(word.length()-1) != 's'){
-                    this.domain.remove(i);
+                    //this.domain.remove(i);
                     String newWord = word + "s";
-                    this.domain.add(newWord);
+                    //this.domain.add(newWord);
+                    this.newDomain.add(newWord);
                 }
-                else{
-                    this.domain.remove(i);
-                }
+                //else{
+                //    this.domain.remove(i);
+                //}
             }
-            else if(word.length() > clueL){
-                this.domain.remove(i);
+            else if(word.length() == clueL){
+                this.newDomain.add(word);
             }
-            else if(clueL > word.length()){
-                this.domain.remove(i);
-            }
+            //else if(word.length() > clueL){
+            //    this.domain.remove(i);
+            //}
+            //else if(clueL > word.length()){
+            //    this.domain.remove(i);
+            //}
         }
         
         findFrequencies();
@@ -286,21 +302,21 @@ public class Question {
     public void findFrequencies() {
         String added_words = "";
         int frequency;
-        int domainSize = this.domain.size();
+        int newDomainSize = this.newDomain.size();
         
         //Program is case insensitive.
-        for(int i = 0; i < domainSize; i++)
+        for(int i = 0; i < newDomainSize; i++)
         {
-            this.domain.set(i,this.domain.get(i).toLowerCase() );
+            this.newDomain.set(i,this.newDomain.get(i).toLowerCase() );
         }
         
-        for(int i = 0; i < domainSize; i++)
+        for(int i = 0; i < newDomainSize; i++)
         {   
-            String keyword = this.domain.get(i);
+            String keyword = this.newDomain.get(i);
             if(!added_words.contains(keyword))
             {
                 added_words += keyword + " ";
-                frequency = Collections.frequency(this.domain, keyword);
+                frequency = Collections.frequency(this.newDomain, keyword);
                 frequencyDomain.put(keyword, frequency);
             }
         }
