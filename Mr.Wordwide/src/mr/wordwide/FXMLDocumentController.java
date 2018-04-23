@@ -16,12 +16,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -32,6 +37,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -251,6 +257,8 @@ public class FXMLDocumentController implements Initializable {
     private String solPath = "";
     private String queryResultPath = "";
     private PuzzleQuestions puzzleQs;
+    
+    private SolvingOutputController solveOutput;
     
     @FXML
     public void setPuzzleGrid(PuzzleStructure structure)
@@ -1350,6 +1358,63 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void solve(ActionEvent event) throws IOException{
+        
+        //REFERENCE: https://stackoverflow.com/questions/27160951/javafx-open-another-fxml-in-the-another-window-with-button
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SolvingOutput.fxml"));
+        Parent newWindow = fxmlLoader.load();
+        Stage newStage = new Stage();
+        newStage.setScene(new Scene(newWindow));
+        newStage.show();
+        
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        this.solveOutput = fxmlLoader.getController();
+        /*this.solveOutput.appendToOutput("Is it working\n");
+        this.solveOutput.appendToOutput("Is it working?\n");
+        this.solveOutput.appendToOutput("Is it working??\n");
+        this.solveOutput.appendToOutput("Is it working???\n");
+        this.solveOutput.appendToOutput("Is it working\n");
+        this.solveOutput.appendToOutput("Is it working?\n");
+        this.solveOutput.appendToOutput("Is it working??\n");
+        this.solveOutput.appendToOutput("Is it working???\n");
+        this.solveOutput.appendToOutput("Is it working\n");
+        this.solveOutput.appendToOutput("Is it working?\n");
+        this.solveOutput.appendToOutput("Is it working??\n");
+        this.solveOutput.appendToOutput("Is it working???\n");
+        this.solveOutput.appendToOutput("Is it working\n");
+        this.solveOutput.appendToOutput("Is it working?\n");
+        this.solveOutput.appendToOutput("Is it working??\n");
+        this.solveOutput.appendToOutput("Is it working???\n");
+        this.solveOutput.appendToOutput("Is it working\n");
+        this.solveOutput.appendToOutput("Is it working?\n");
+        this.solveOutput.appendToOutput("Is it working??\n");
+        this.solveOutput.appendToOutput("Is it working???\n");
+        this.solveOutput.appendToOutput("Is it working\n");
+        this.solveOutput.appendToOutput("Is it working?\n");
+        this.solveOutput.appendToOutput("Is it working??\n");
+        this.solveOutput.appendToOutput("Is it working???\n");
+        this.solveOutput.appendToOutput("Is it working\n");
+        this.solveOutput.appendToOutput("Is it working?\n");
+        this.solveOutput.appendToOutput("Is it working??\n");
+        this.solveOutput.appendToOutput("Is it working???\n");
+        this.solveOutput.appendToOutput("Is it working\n");
+        this.solveOutput.appendToOutput("Is it working?\n");
+        this.solveOutput.appendToOutput("Is it working??\n");
+        this.solveOutput.appendToOutput("Is it working???\n");
+        this.solveOutput.appendToOutput("Is it working\n");
+        this.solveOutput.appendToOutput("Is it working?\n");
+        this.solveOutput.appendToOutput("Is it working??\n");
+        this.solveOutput.appendToOutput("Is it working???\n");
+        this.solveOutput.appendToOutput("Is it working\n");
+        this.solveOutput.appendToOutput("Is it working?\n");
+        this.solveOutput.appendToOutput("Is it working??\n");
+        this.solveOutput.appendToOutput("Is it working???\n");*/
+        
+        
         File f;
         String key ="AIzaSyCiVLcICXumdXQNxD22D6iuYC-DwN-va7Q";
         String cx = "002788185550341638251:drb89hhatq8";
