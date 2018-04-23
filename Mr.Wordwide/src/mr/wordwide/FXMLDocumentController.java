@@ -16,7 +16,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -1438,18 +1445,34 @@ public class FXMLDocumentController implements Initializable {
             {
                 if(!(freqFiles[i].getAbsolutePath().contains("puzzle.html") || freqFiles[i].getAbsolutePath().contains("solution.txt")))
                 {
-                    HashMap<String, Integer> frequencyDomain = new HashMap<>();
+                    HashMap<String, Integer> frequencyDomain = new HashMap<String, Integer>();
                     br = new BufferedReader(new FileReader(freqFiles[i]));
                     try {
                         String line = br.readLine();
-                        
+                      
                         String[] splittedFreqFile = line.split(";");
                         String[] splittedFreqs;
-                        for (int j = 0; j < splittedFreqFile.length - 1; j++) {
-                             splittedFreqs = splittedFreqFile[j].split("=");
-                             frequencyDomain.put(splittedFreqs[0], Integer.parseInt(splittedFreqs[1]));
+                            
+                        for (int j = 0; j < splittedFreqFile.length; j++) {
+                             splittedFreqs = splittedFreqFile[j].split("=");                                              
+                             frequencyDomain.put(splittedFreqs[0], Integer.parseInt(splittedFreqs[1]));                         
                         }
+                        
+                        List<Map.Entry<String, Integer>> list;
+                        list = new LinkedList<>(frequencyDomain.entrySet());
+              
+                        Collections.sort(list, (Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) -> o2.getValue().compareTo(o1.getValue()));
+        
+                        frequencyDomain = new LinkedHashMap<>();
+                        for (Map.Entry<String, Integer> entry : list)
+                        {
+                            frequencyDomain.put(entry.getKey(), entry.getValue());
+                        }
+                    
                         frequencyDomains.add(frequencyDomain);
+                                  
+                        System.out.println("-----");
+                        System.out.println(frequencyDomains.toString());
                     }
                     finally {
                         br.close();
