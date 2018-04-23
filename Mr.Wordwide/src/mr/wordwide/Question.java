@@ -220,7 +220,7 @@ public class Question {
         String[] htmlTexts = new String[size];
         
         for(int i = 0; i < size; i++){
-            if(!(htmlLinks.get(i).contains("wikipedia") || htmlLinks.get(i).contains("youtube"))){
+            if(!(htmlLinks.get(i).contains("wikipedia") || htmlLinks.get(i).contains("youtube")  || htmlLinks.get(i).contains("wordplays") || htmlLinks.get(i).contains("crossword"))){
                 
                 System.out.println("Link: " + htmlLinks.get(i));
                 
@@ -230,12 +230,16 @@ public class Question {
                 //it may or may not work with this (Probably works)
                 htmlTexts[i] = Jsoup.parse(htmlDocs[i].toString()).text();
                 //htmlTexts[i] = htmlDocs[i].toString().replaceAll("<>", question);
-                htmlTexts[i] = htmlTexts[i].replaceAll("[^\\=-w\\s]", "");
+                htmlTexts[i] = htmlTexts[i].replaceAll("[^a-zA-Z\\s]", "");
                 //Reference: https://stackoverflow.com/questions/7899525/how-to-split-a-string-by-space
                 String[] parts = htmlTexts[i].split("\\s+");
                 
                 for(int j = 0; j < parts.length; j++){
-                    this.domain.add(parts[j]);
+                    if(!(parts[j].equals("the") || parts[j].equals("and")))
+                    {
+                        if(!this.question.toLowerCase().contains(parts[j]))
+                            this.domain.add(parts[j]);
+                    }
                 }
             }
         }
