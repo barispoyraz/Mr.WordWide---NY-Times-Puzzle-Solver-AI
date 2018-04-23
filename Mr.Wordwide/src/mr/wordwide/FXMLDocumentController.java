@@ -1442,11 +1442,12 @@ public class FXMLDocumentController implements Initializable {
                     br = new BufferedReader(new FileReader(freqFiles[i]));
                     try {
                         String line = br.readLine();
-
-                        while (line != null) {
-                            String[] splitted = line.split("=");
-                            frequencyDomain.put(splitted[0], Integer.parseInt(splitted[1]));
-                            line = br.readLine();
+                        
+                        String[] splittedFreqFile = line.split(";");
+                        String[] splittedFreqs;
+                        for (int j = 0; j < splittedFreqFile.length; j++) {
+                             splittedFreqs = splittedFreqFile[j].split("=");
+                             frequencyDomain.put(splittedFreqs[0], Integer.parseInt(splittedFreqs[1]));
                         }
                         frequencyDomains.add(frequencyDomain);
                     }
@@ -1484,14 +1485,13 @@ public class FXMLDocumentController implements Initializable {
                 frequencyDomains.add(acrossQs[i].getFrequencyDomain());
                 for(String keyword : acrossQs[i].getFrequencyDomain().keySet())
                 {
-                    freqText += keyword + "=" + acrossQs[i].getFrequencyDomain().get(keyword) + "\r\n"; 
+                    freqText += keyword + "=" + acrossQs[i].getFrequencyDomain().get(keyword) + ";"; 
                 }
                 
                 FileWriter fileWriter = new FileWriter(directoryChoosen.getAbsolutePath() + "/a_" + i + "_domain.txt");
                 
                 try (BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
                     bufferedWriter.write(freqText);
-                    bufferedWriter.newLine();
                 }
                 freqText = "";
             }
@@ -1500,13 +1500,12 @@ public class FXMLDocumentController implements Initializable {
                 frequencyDomains.add(downQs[i].getFrequencyDomain());
                 for(String keyword : downQs[i].getFrequencyDomain().keySet())
                 {
-                    freqText += keyword + "=" + downQs[i].getFrequencyDomain().get(keyword) + "\r\n"; 
+                    freqText += keyword + "=" + downQs[i].getFrequencyDomain().get(keyword) + ";"; 
                 }
                 FileWriter fileWriter = new FileWriter(directoryChoosen.getAbsolutePath() + "/d_" + i + "_domain.txt");
                 
                 try (BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
                     bufferedWriter.write(freqText);
-                    bufferedWriter.newLine();
                 }
                 freqText = "";
             }
