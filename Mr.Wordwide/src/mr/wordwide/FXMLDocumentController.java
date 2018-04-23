@@ -1445,7 +1445,7 @@ public class FXMLDocumentController implements Initializable {
                         
                         String[] splittedFreqFile = line.split(";");
                         String[] splittedFreqs;
-                        for (int j = 0; j < splittedFreqFile.length; j++) {
+                        for (int j = 0; j < splittedFreqFile.length - 1; j++) {
                              splittedFreqs = splittedFreqFile[j].split("=");
                              frequencyDomain.put(splittedFreqs[0], Integer.parseInt(splittedFreqs[1]));
                         }
@@ -1475,21 +1475,23 @@ public class FXMLDocumentController implements Initializable {
             }
         
             //Çalışınca sizeDown ile değiştirelim
-            for(int i = 0; i < 1; i++){
-                downQs[i].query(key, cx);
-            }
+//            for(int i = 0; i < 1; i++){
+//                downQs[i].query(key, cx);
+//            }
             
             String freqText = "";
             for(int i = 0; i < sizeAcross; i++)
             {
                 frequencyDomains.add(acrossQs[i].getFrequencyDomain());
-                for(String keyword : acrossQs[i].getFrequencyDomain().keySet())
-                {
-                    freqText += keyword + "=" + acrossQs[i].getFrequencyDomain().get(keyword) + ";"; 
+                
+                for (int j = 0; j < acrossQs[i].getFrequencyDomain().keySet().toArray().length; j++) {
+                    freqText += acrossQs[i].getFrequencyDomain().keySet().toArray()[j] + "=" + acrossQs[i].getFrequencyDomain().values().toArray()[j] + ";"; 
                 }
                 
                 FileWriter fileWriter = new FileWriter(directoryChoosen.getAbsolutePath() + "/a_" + i + "_domain.txt");
-                
+                int ind = freqText.lastIndexOf(";");
+                if( ind >= 0 )
+                    freqText = new StringBuilder(freqText).replace(ind, ind+1,"").toString();
                 try (BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
                     bufferedWriter.write(freqText);
                 }
@@ -1498,12 +1500,13 @@ public class FXMLDocumentController implements Initializable {
             for(int i = 0; i < sizeDown; i++)
             {
                 frequencyDomains.add(downQs[i].getFrequencyDomain());
-                for(String keyword : downQs[i].getFrequencyDomain().keySet())
-                {
-                    freqText += keyword + "=" + downQs[i].getFrequencyDomain().get(keyword) + ";"; 
+                for (int j = 0; j < downQs[i].getFrequencyDomain().keySet().toArray().length; j++) {
+                    freqText += downQs[i].getFrequencyDomain().keySet().toArray()[j] + "=" + downQs[i].getFrequencyDomain().values().toArray()[j] + ";"; 
                 }
                 FileWriter fileWriter = new FileWriter(directoryChoosen.getAbsolutePath() + "/d_" + i + "_domain.txt");
-                
+                int ind = freqText.lastIndexOf(";");
+                if( ind >= 0 )
+                    freqText = new StringBuilder(freqText).replace(ind, ind+1,"").toString();
                 try (BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
                     bufferedWriter.write(freqText);
                 }
