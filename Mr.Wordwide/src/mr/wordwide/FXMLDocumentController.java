@@ -1552,8 +1552,16 @@ public class FXMLDocumentController implements Initializable {
     
     private void updateDomains(Question updating, Question[] questionArray)
     {
+        HashMap<String, Integer> to_be_compared;
+        
+        HashMap<String, Integer> to_be_updated = new HashMap<>();
+        to_be_updated = updating.getFrequencyDomain();
+        
         for (int i = 0; i < questionArray.length; i++)
         {
+            to_be_compared = new HashMap<>();
+            to_be_compared = questionArray[i].getFrequencyDomain();
+            
             
         }
     }
