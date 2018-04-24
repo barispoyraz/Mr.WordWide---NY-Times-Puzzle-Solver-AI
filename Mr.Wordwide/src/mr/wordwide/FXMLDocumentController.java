@@ -59,6 +59,7 @@ public class FXMLDocumentController implements Initializable {
   
     LocalDate localDate = LocalDate.now();
     File directoryChoosen = null;
+    ArrayList<HashMap<String, Integer>> frequencyDomains;
     
     private boolean isDown;
     @FXML
@@ -265,7 +266,6 @@ public class FXMLDocumentController implements Initializable {
     private GridPane solGrid;
     
     private String solPath = "";
-    private String queryResultPath = "";
     private PuzzleQuestions puzzleQs;
     
     private SolvingOutputController solveOutput;
@@ -1149,7 +1149,6 @@ public class FXMLDocumentController implements Initializable {
         directoryChoosen = directoryChooser.showDialog(stage);
         
         solPath = directoryChoosen.getAbsolutePath() + "/solution.txt";
-        queryResultPath = directoryChoosen.getAbsolutePath() + "/queryResult.txt";
         File puzzle = 
                 new File(directoryChoosen.getAbsolutePath() + "/puzzle.html");
         
@@ -1369,7 +1368,6 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void solve(ActionEvent event) throws IOException{
-        
         //REFERENCE: https://stackoverflow.com/questions/27160951/javafx-open-another-fxml-in-the-another-window-with-button
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SolvingOutput.fxml"));
         Parent newWindow = fxmlLoader.load();
@@ -1429,7 +1427,9 @@ public class FXMLDocumentController implements Initializable {
         String key ="AIzaSyCiVLcICXumdXQNxD22D6iuYC-DwN-va7Q";
         String cx = "002788185550341638251:drb89hhatq8";
         
-        ArrayList<HashMap<String, Integer>> frequencyDomains = new ArrayList<>();
+        frequencyDomains = new ArrayList<>();
+        int sizeAcross = this.puzzleQs.getAcrossQuestions().length;
+        int sizeDown = this.puzzleQs.getDownQuestions().length;
         
         if(directoryChoosen == null)
         {
@@ -1479,9 +1479,7 @@ public class FXMLDocumentController implements Initializable {
         }
         else //Query Result not Available!
         {
-            int sizeAcross = this.puzzleQs.getAcrossQuestions().length;
-            int sizeDown = this.puzzleQs.getDownQuestions().length;
-        
+            
             Question[] acrossQs = this.puzzleQs.getAcrossQuestions();
             Question[] downQs = this.puzzleQs.getDownQuestions();
             
@@ -1490,14 +1488,14 @@ public class FXMLDocumentController implements Initializable {
              
 //            acrossQs[0].findFrequencies();
             //Çalışınca sizeAcross ile değiştirelim
-            for(int i = 0; i < 1; i++){
+            for(int i = 0; i < sizeAcross; i++){
                 acrossQs[i].query(key, cx);
             }
         
             //Çalışınca sizeDown ile değiştirelim
-//            for(int i = 0; i < 1; i++){
-//                downQs[i].query(key, cx);
-//            }
+            for(int i = 0; i < sizeDown; i++){
+                downQs[i].query(key, cx);
+            }
             
             String freqText = "";
             for(int i = 0; i < sizeAcross; i++)
@@ -1533,6 +1531,20 @@ public class FXMLDocumentController implements Initializable {
                 freqText = "";
             }
         }
+        for (int i = 0; i < sizeAcross; i++) {
+            updateDomains(this.puzzleQs.getAcrossQuestions()[i].gridIDsOfQuestion, this.puzzleQs.getDownQuestions());
+        }
+        
+        for(int i = 0; i < sizeDown; i++)
+        {
+            updateDomains(this.puzzleQs.getDownQuestions()[i].gridIDsOfQuestion, this.puzzleQs.getAcrossQuestions());
+        }
+        
+    }
+    
+    private void updateDomains(HashMap<Integer, Integer> gridIDs, Question[] Qs)
+    {
+        
     }
     
     @Override
