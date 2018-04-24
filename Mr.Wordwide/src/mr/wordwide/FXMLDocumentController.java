@@ -25,6 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -1611,6 +1612,41 @@ public class FXMLDocumentController implements Initializable {
         this.solveOutput.appendToOutput("Step " + numberOfSteps + ":Beginning to fill the grid!\n");
         numberOfSteps++;
         //Fill
+        
+        boolean[] visitedQ1 = new boolean[constrainedFrequencyDomains.get(0).size()];
+        boolean[] visitedQ2 = new boolean[constrainedFrequencyDomains.get(1).size()];
+        boolean[] visitedQ3 = new boolean[constrainedFrequencyDomains.get(2).size()];
+        boolean[] visitedQ4 = new boolean[constrainedFrequencyDomains.get(3).size()];
+        boolean[] visitedQ5 = new boolean[constrainedFrequencyDomains.get(4).size()];
+        boolean[] visitedQ6 = new boolean[constrainedFrequencyDomains.get(5).size()];
+        boolean[] visitedQ7 = new boolean[constrainedFrequencyDomains.get(6).size()];
+        boolean[] visitedQ8 = new boolean[constrainedFrequencyDomains.get(7).size()];
+        boolean[] visitedQ9 = new boolean[constrainedFrequencyDomains.get(8).size()];
+        boolean[] visitedQ10 = new boolean[constrainedFrequencyDomains.get(9).size()];
+        
+        int indexQ1 = 0;
+        int indexQ2 = 0;
+        int indexQ3 = 0;
+        int indexQ4 = 0;
+        int indexQ5 = 0;
+        int indexQ6 = 0;
+        int indexQ7 = 0;
+        int indexQ8 = 0;
+        int indexQ9 = 0;
+        int indexQ10 = 0;
+        
+        Stack s = new Stack();
+        s.push(constrainedFrequencyDomains.get(0).get(0));
+        visitedQ1[indexQ1] = true;
+        indexQ1++;
+        
+        int indexWhichQ = 1;
+        int indexWhichD = 0;
+
+        while(!s.isEmpty()){
+            
+        }
+        
     }
     
     @Override
