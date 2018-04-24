@@ -60,6 +60,7 @@ public class FXMLDocumentController implements Initializable {
     LocalDate localDate = LocalDate.now();
     File directoryChoosen = null;
     ArrayList<HashMap<String, Integer>> frequencyDomains;
+    ArrayList<ArrayList<String>> constrainedFrequencyDomains;
     
     private boolean isDown;
     @FXML
@@ -1428,6 +1429,7 @@ public class FXMLDocumentController implements Initializable {
         String cx = "002788185550341638251:drb89hhatq8";
         
         frequencyDomains = new ArrayList<>();
+        constrainedFrequencyDomains = new ArrayList<>();
         int sizeAcross = this.puzzleQs.getAcrossQuestions().length;
         int sizeDown = this.puzzleQs.getDownQuestions().length;
         
@@ -1539,31 +1541,72 @@ public class FXMLDocumentController implements Initializable {
             this.puzzleQs.getDownQuestions()[i].setFrequencyDomain(frequencyDomains.get(sizeAcross + i));
         }
         
+        
         for (int i = 0; i < sizeAcross; i++) {
-            updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions());
+            constrainedFrequencyDomains.add(updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions()));
         }
         
         for(int i = 0; i < sizeDown; i++)
         {
-            updateDomains(this.puzzleQs.getDownQuestions()[i], this.puzzleQs.getAcrossQuestions());
+            constrainedFrequencyDomains.add(updateDomains(this.puzzleQs.getDownQuestions()[i], this.puzzleQs.getAcrossQuestions()));
         }
         
+        writeToGrid();
     }
     
-    private void updateDomains(Question updating, Question[] questionArray)
+    private ArrayList<String> updateDomains(Question updating, Question[] questionArray)
     {
         HashMap<String, Integer> to_be_compared;
         
         HashMap<String, Integer> to_be_updated = new HashMap<>();
         to_be_updated = updating.getFrequencyDomain();
         
+        ArrayList<String> constrained = new ArrayList<>();
         for (int i = 0; i < questionArray.length; i++)
         {
             to_be_compared = new HashMap<>();
             to_be_compared = questionArray[i].getFrequencyDomain();
             
+            Integer[] updatingGridIds = (Integer[])updating.getQuestionGridIds().values().toArray();
+            Integer[] comparingGridIds = (Integer[])questionArray[i].getQuestionGridIds().values().toArray();
+        
+            boolean foundEquality = false;
             
+            for(int j = 0; j < updatingGridIds.length; j++)
+            {
+                for(int k = 0; k < comparingGridIds.length; k++)
+                {
+                    if(updatingGridIds[j] < comparingGridIds[k])
+                        break;
+                    if(updatingGridIds[j] == comparingGridIds[k])
+                    {
+                        int place1 = (int)updating.getQuestionGridIds().keySet().toArray()[j];
+                        int place2 = (int)questionArray[i].getQuestionGridIds().keySet().toArray()[k];
+                        foundEquality = true;
+                        //here we update the domain
+                        for(int m = 0; m < to_be_updated.size(); m++)
+                        {
+                            String str = (String)to_be_updated.keySet().toArray()[m];
+                            for(int n = 0; n < to_be_compared.size(); n++)
+                            {
+                                String str_comp = (String)to_be_compared.keySet().toArray()[n];
+                                if(str.charAt(place1) == str_comp.charAt(place2))
+                                    constrained.add(str);
+                            }
+                        }
+                        break;
+                    }
+                }
+                if(foundEquality)
+                    break;
+            }
         }
+        return constrained;
+    }
+    
+    private void writeToGrid()
+    {
+        //Fill
     }
     
     @Override
