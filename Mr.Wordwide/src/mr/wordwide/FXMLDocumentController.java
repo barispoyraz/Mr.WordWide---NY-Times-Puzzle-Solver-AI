@@ -61,6 +61,7 @@ public class FXMLDocumentController implements Initializable {
     File directoryChoosen = null;
     ArrayList<HashMap<String, Integer>> frequencyDomains;
     ArrayList<ArrayList<String>> constrainedFrequencyDomains;
+    int numberOfSteps;
     
     private boolean isDown;
     @FXML
@@ -1427,6 +1428,7 @@ public class FXMLDocumentController implements Initializable {
         
         String key ="AIzaSyCiVLcICXumdXQNxD22D6iuYC-DwN-va7Q";
         String cx = "002788185550341638251:drb89hhatq8";
+        numberOfSteps = 1;
         
         frequencyDomains = new ArrayList<>();
         constrainedFrequencyDomains = new ArrayList<>();
@@ -1606,6 +1608,8 @@ public class FXMLDocumentController implements Initializable {
     
     private void writeToGrid()
     {
+        this.solveOutput.appendToOutput("Step " + numberOfSteps + ":Beginning to fill the grid!\n");
+        numberOfSteps++;
         //Fill
     }
     
