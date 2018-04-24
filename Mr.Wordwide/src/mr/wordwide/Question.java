@@ -235,7 +235,12 @@ public class Question {
                 String[] parts = htmlTexts[i].split("\\s+");
                 
                 for(int j = 0; j < parts.length; j++){
-                    if(!(parts[j].equals("the") || parts[j].equals("and")))
+                    if(!(parts[j].equals("the") || parts[j].equals("and") || parts[j].equals("be") || parts[j].equals("to") || parts[j].equals("too") || parts[j].equals("of")
+                            || parts[j].equals("in") || parts[j].equals("that") || parts[j].equals("this") || parts[j].equals("it") || parts[j].equals("for") || parts[j].equals("not")
+                            || parts[j].equals("on") || parts[j].equals("with") || parts[j].equals("as") || parts[j].equals("you") || parts[j].equals("at") || parts[j].equals("but")
+                            || parts[j].equals("his") || parts[j].equals("her") || parts[j].equals("she") || parts[j].equals("or") || parts[j].equals("an") || parts[j].equals("my")
+                            || parts[j].equals("all") || parts[j].equals("would") || parts[j].equals("there") || parts[j].equals("their") || parts[j].equals("what") || parts[j].equals("so")
+                            || parts[j].equals("if") || parts[j].equals("my") || parts[j].equals("my")|| parts[j].equals("my") || parts[j].equals("my") || parts[j].equals("my") || parts[j].equals("my")))
                     {
                         if(!this.question.toLowerCase().contains(parts[j]))
                             this.domain.add(parts[j]);
