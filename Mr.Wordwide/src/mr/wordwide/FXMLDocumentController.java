@@ -1537,24 +1537,24 @@ public class FXMLDocumentController implements Initializable {
             }
         }
         //Frequency domains in each question are set by frequencyDomains object.
-        for (int i = 0; i < sizeAcross; i++) {
-            this.puzzleQs.getAcrossQuestions()[i].setFrequencyDomain(frequencyDomains.get(i));
-        }
-        for (int i = 0; i < sizeDown; i++) {
-            this.puzzleQs.getDownQuestions()[i].setFrequencyDomain(frequencyDomains.get(sizeAcross + i));
-        }
-        
-        
-        for (int i = 0; i < sizeAcross; i++) {
-            constrainedFrequencyDomains.add(updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions()));
-        }
-        
-        for(int i = 0; i < sizeDown; i++)
-        {
-            constrainedFrequencyDomains.add(updateDomains(this.puzzleQs.getDownQuestions()[i], this.puzzleQs.getAcrossQuestions()));
-        }
-        
-        writeToGrid();
+//        for (int i = 0; i < sizeAcross; i++) {
+//            this.puzzleQs.getAcrossQuestions()[i].setFrequencyDomain(frequencyDomains.get(i));
+//        }
+//        for (int i = 0; i < sizeDown; i++) {
+//            this.puzzleQs.getDownQuestions()[i].setFrequencyDomain(frequencyDomains.get(sizeAcross + i));
+//        }
+//        
+//        
+//        for (int i = 0; i < sizeAcross; i++) {
+//            constrainedFrequencyDomains.add(updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions()));
+//        }
+//        
+//        for(int i = 0; i < sizeDown; i++)
+//        {
+//            constrainedFrequencyDomains.add(updateDomains(this.puzzleQs.getDownQuestions()[i], this.puzzleQs.getAcrossQuestions()));
+//        }
+//        
+//        writeToGrid();
     }
     
     private ArrayList<String> updateDomains(Question updating, Question[] questionArray)
@@ -1613,35 +1613,21 @@ public class FXMLDocumentController implements Initializable {
         numberOfSteps++;
         //Fill
         
-        boolean[] visitedQ1 = new boolean[constrainedFrequencyDomains.get(0).size()];
-        boolean[] visitedQ2 = new boolean[constrainedFrequencyDomains.get(1).size()];
-        boolean[] visitedQ3 = new boolean[constrainedFrequencyDomains.get(2).size()];
-        boolean[] visitedQ4 = new boolean[constrainedFrequencyDomains.get(3).size()];
-        boolean[] visitedQ5 = new boolean[constrainedFrequencyDomains.get(4).size()];
-        boolean[] visitedQ6 = new boolean[constrainedFrequencyDomains.get(5).size()];
-        boolean[] visitedQ7 = new boolean[constrainedFrequencyDomains.get(6).size()];
-        boolean[] visitedQ8 = new boolean[constrainedFrequencyDomains.get(7).size()];
-        boolean[] visitedQ9 = new boolean[constrainedFrequencyDomains.get(8).size()];
-        boolean[] visitedQ10 = new boolean[constrainedFrequencyDomains.get(9).size()];
+        boolean[][] visited = new boolean[10][];
+        for (int i = 0; i < visited.length; i++) {
+            visited[i] = new boolean[constrainedFrequencyDomains.get(i).size()];
+        }
+        int[] indexes = new int[10];
+        for (int i = 0; i < indexes.length; i++) {
+            indexes[i] = 0;
+        }
         
-        int indexQ1 = 0;
-        int indexQ2 = 0;
-        int indexQ3 = 0;
-        int indexQ4 = 0;
-        int indexQ5 = 0;
-        int indexQ6 = 0;
-        int indexQ7 = 0;
-        int indexQ8 = 0;
-        int indexQ9 = 0;
-        int indexQ10 = 0;
         
         Stack s = new Stack();
         s.push(constrainedFrequencyDomains.get(0).get(0));
-        visitedQ1[indexQ1] = true;
-        indexQ1++;
+        visited[0][indexes[0]++] = true;
         
         int indexWhichQ = 1;
-        int indexWhichD = 0;
 
         while(!s.isEmpty()){
             
