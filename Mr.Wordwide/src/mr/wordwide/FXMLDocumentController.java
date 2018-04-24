@@ -1531,20 +1531,31 @@ public class FXMLDocumentController implements Initializable {
                 freqText = "";
             }
         }
+        //Frequency domains in each question are set by frequencyDomains object.
         for (int i = 0; i < sizeAcross; i++) {
-            updateDomains(this.puzzleQs.getAcrossQuestions()[i].gridIDsOfQuestion, this.puzzleQs.getDownQuestions());
+            this.puzzleQs.getAcrossQuestions()[i].setFrequencyDomain(frequencyDomains.get(i));
+        }
+        for (int i = 0; i < sizeDown; i++) {
+            this.puzzleQs.getDownQuestions()[i].setFrequencyDomain(frequencyDomains.get(sizeAcross + i));
+        }
+        
+        for (int i = 0; i < sizeAcross; i++) {
+            updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions());
         }
         
         for(int i = 0; i < sizeDown; i++)
         {
-            updateDomains(this.puzzleQs.getDownQuestions()[i].gridIDsOfQuestion, this.puzzleQs.getAcrossQuestions());
+            updateDomains(this.puzzleQs.getDownQuestions()[i], this.puzzleQs.getAcrossQuestions());
         }
         
     }
     
-    private void updateDomains(HashMap<Integer, Integer> gridIDs, Question[] Qs)
+    private void updateDomains(Question updating, Question[] questionArray)
     {
-        
+        for (int i = 0; i < questionArray.length; i++)
+        {
+            
+        }
     }
     
     @Override

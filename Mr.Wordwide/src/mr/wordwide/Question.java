@@ -94,6 +94,10 @@ public class Question {
         this.gridIDsOfQuestion = ids;
     }
     
+    public void setFrequencyDomain(HashMap<String, Integer> freqs){
+        this.frequencyDomain = freqs;
+    }
+    
     public HashMap<Integer, Integer> getQuestionGridIds(){
         return this.gridIDsOfQuestion;
     }
