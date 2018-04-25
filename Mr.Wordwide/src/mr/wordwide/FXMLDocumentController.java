@@ -1549,12 +1549,12 @@ public class FXMLDocumentController implements Initializable {
         for(int j = 0; j < 10; j++)
         {
             for (int i = 0; i < sizeAcross; i++) {
-                updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions(), i);
+                updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions(), i,frequencyDomains);
             }
 
             for(int i = 0; i < sizeDown; i++)
             {
-                updateDomains(this.puzzleQs.getDownQuestions()[i], this.puzzleQs.getAcrossQuestions(), i + 5);
+                updateDomains(this.puzzleQs.getDownQuestions()[i], this.puzzleQs.getAcrossQuestions(), i + 5,frequencyDomains);
             }
         }
         
@@ -1562,7 +1562,7 @@ public class FXMLDocumentController implements Initializable {
         tryFindingSolution();
     }
     
-    private void updateDomains(Question updating, Question[] questionArray, int cfd_index)
+    private void updateDomains(Question updating, Question[] questionArray, int cfd_index,ArrayList<HashMap<String,Integer>> freqs)
     {
         HashMap<String, Integer> to_be_compared;
         
@@ -1616,7 +1616,7 @@ public class FXMLDocumentController implements Initializable {
                                 }
                             }
                             if(!seen)
-                                frequencyDomains.get(cfd_index).remove(str);
+                                freqs.get(cfd_index).remove(str);
                         }
                         break;
                     }
