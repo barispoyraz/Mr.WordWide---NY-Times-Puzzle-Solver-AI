@@ -61,7 +61,6 @@ public class FXMLDocumentController implements Initializable {
     LocalDate localDate = LocalDate.now();
     File directoryChoosen = null;
     ArrayList<HashMap<String, Integer>> frequencyDomains;
-    ArrayList<ArrayList<String>> constrainedFrequencyDomains;
     int numberOfSteps;
     
     private boolean isDown;
@@ -1432,7 +1431,6 @@ public class FXMLDocumentController implements Initializable {
         numberOfSteps = 1;
         
         frequencyDomains = new ArrayList<>();
-        constrainedFrequencyDomains = new ArrayList<>();
         int sizeAcross = this.puzzleQs.getAcrossQuestions().length;
         int sizeDown = this.puzzleQs.getDownQuestions().length;
         
@@ -1545,33 +1543,47 @@ public class FXMLDocumentController implements Initializable {
             this.puzzleQs.getDownQuestions()[i].setFrequencyDomain(frequencyDomains.get(sizeAcross + i));
         }
         
-        for (int i = 0; i < sizeAcross; i++) {
-            constrainedFrequencyDomains.add(updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions()));
+        for(int j = 0; j < 10; j++)
+        {
+            for (int i = 0; i < sizeAcross; i++) {
+                updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions(), i);
+            }
+
+            for(int i = 0; i < sizeDown; i++)
+            {
+                updateDomains(this.puzzleQs.getDownQuestions()[i], this.puzzleQs.getAcrossQuestions(), i + 5);
+            }
         }
         
-        for(int i = 0; i < sizeDown; i++)
-        {
-            constrainedFrequencyDomains.add(updateDomains(this.puzzleQs.getDownQuestions()[i], this.puzzleQs.getAcrossQuestions()));
-        }
         
         writeToGrid();
     }
     
-    private ArrayList<String> updateDomains(Question updating, Question[] questionArray)
+    private void updateDomains(Question updating, Question[] questionArray, int cfd_index)
     {
         HashMap<String, Integer> to_be_compared;
         
         HashMap<String, Integer> to_be_updated = new HashMap<>();
         to_be_updated = updating.getFrequencyDomain();
         
-        ArrayList<String> constrained = new ArrayList<>();
         for (int i = 0; i < questionArray.length; i++)
         {
             to_be_compared = new HashMap<>();
             to_be_compared = questionArray[i].getFrequencyDomain();
             
-            Integer[] updatingGridIds = (Integer[])updating.getQuestionGridIds().values().toArray();
-            Integer[] comparingGridIds = (Integer[])questionArray[i].getQuestionGridIds().values().toArray();
+//            Integer[] updatingGridIds = (Integer[])updating.getQuestionGridIds().values().toArray();
+//            Integer[] comparingGridIds = (Integer[])questionArray[i].getQuestionGridIds().values().toArray();
+
+            int[] updatingGridIds = new int[updating.getQuestionGridIds().values().toArray().length];
+            int[] comparingGridIds = new int[questionArray[i].getQuestionGridIds().values().toArray().length];
+            
+            for (int j = 0; j < updatingGridIds.length; j++) {
+                updatingGridIds[j] = (int)updating.getQuestionGridIds().values().toArray()[j];
+            }
+            
+            for (int j = 0; j < comparingGridIds.length; j++) {
+                comparingGridIds[j] = (int)questionArray[i].getQuestionGridIds().values().toArray()[j];
+            }
         
             boolean foundEquality = false;
             
@@ -1589,13 +1601,19 @@ public class FXMLDocumentController implements Initializable {
                         //here we update the domain
                         for(int m = 0; m < to_be_updated.size(); m++)
                         {
+                            boolean seen = false;
                             String str = (String)to_be_updated.keySet().toArray()[m];
                             for(int n = 0; n < to_be_compared.size(); n++)
                             {
                                 String str_comp = (String)to_be_compared.keySet().toArray()[n];
                                 if(str.charAt(place1) == str_comp.charAt(place2))
-                                    constrained.add(str);
+                                {
+                                    seen = true;
+                                    break;
+                                }
                             }
+                            if(!seen)
+                                frequencyDomains.get(cfd_index).remove(str);
                         }
                         break;
                     }
@@ -1604,30 +1622,29 @@ public class FXMLDocumentController implements Initializable {
                     break;
             }
         }
-        return constrained;
     }
     
     private void writeToGrid()
     {
-        this.solveOutput.appendToOutput("Step " + numberOfSteps + ":Beginning to fill the grid!\n");
-        numberOfSteps++;
-        //Fill
-        
-        boolean[][] visited = new boolean[10][];
-        for (int i = 0; i < visited.length; i++) {
-            visited[i] = new boolean[constrainedFrequencyDomains.get(i).size()];
-        }
-        int[] indexes = new int[10];
-        for (int i = 0; i < indexes.length; i++) {
-            indexes[i] = 0;
-        }
-        
-        
-        Stack s = new Stack();
-        s.push(constrainedFrequencyDomains.get(0).get(0));
-        visited[0][indexes[0]++] = true;
-        
-        int indexWhichQ = 1;
+//        this.solveOutput.appendToOutput("Step " + numberOfSteps + ":Beginning to fill the grid!\n");
+//        numberOfSteps++;
+//        //Fill
+//        
+//        boolean[][] visited = new boolean[10][];
+//        for (int i = 0; i < visited.length; i++) {
+//            visited[i] = new boolean[constrainedFrequencyDomains.get(i).size()];
+//        }
+//        int[] indexes = new int[10];
+//        for (int i = 0; i < indexes.length; i++) {
+//            indexes[i] = 0;
+//        }
+//        
+//        
+//        Stack s = new Stack();
+//        s.push(constrainedFrequencyDomains.get(0).get(0));
+//        visited[0][indexes[0]++] = true;
+//        System.out.println("mr.wordwide.FXMLDocumentController.writeToGrid()");
+//        int indexWhichQ = 1;
 
 //        while(!s.isEmpty()){
 //            

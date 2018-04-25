@@ -223,7 +223,7 @@ public class Question {
         Document[] htmlDocs = new Document[size];
         String[] htmlTexts = new String[size];
         
-        for(int i = 0; i < size - 3; i++){
+        for(int i = 0; i < size - 5; i++){
             if(!(htmlLinks.get(i).contains("wikipedia") || htmlLinks.get(i).contains("youtube")  || htmlLinks.get(i).contains("wordplays") || htmlLinks.get(i).contains("crossword")
                     || htmlLinks.get(i).contains(".pdf") || htmlLinks.get(i).contains(".ppt") || htmlLinks.get(i).contains(".pptx") || htmlLinks.get(i).contains(".doc") 
                     || htmlLinks.get(i).contains(".docx") || htmlLinks.get(i).contains("riteaid"))){
