@@ -223,7 +223,7 @@ public class Question {
         Document[] htmlDocs = new Document[size];
         String[] htmlTexts = new String[size];
         
-        for(int i = 0; i < size; i++){
+        for(int i = 0; i < size - 3; i++){
             if(!(htmlLinks.get(i).contains("wikipedia") || htmlLinks.get(i).contains("youtube")  || htmlLinks.get(i).contains("wordplays") || htmlLinks.get(i).contains("crossword")
                     || htmlLinks.get(i).contains(".pdf") || htmlLinks.get(i).contains(".ppt") || htmlLinks.get(i).contains(".pptx") || htmlLinks.get(i).contains(".doc") 
                     || htmlLinks.get(i).contains(".docx") || htmlLinks.get(i).contains("riteaid"))){
@@ -246,7 +246,7 @@ public class Question {
                             || parts[j].equals("on") || parts[j].equals("with") || parts[j].equals("as") || parts[j].equals("you") || parts[j].equals("at") || parts[j].equals("but")
                             || parts[j].equals("his") || parts[j].equals("her") || parts[j].equals("she") || parts[j].equals("or") || parts[j].equals("an") || parts[j].equals("my")
                             || parts[j].equals("all") || parts[j].equals("would") || parts[j].equals("there") || parts[j].equals("their") || parts[j].equals("what") || parts[j].equals("so")
-                            || parts[j].equals("if")))
+                            || parts[j].equals("if") || parts[j].equals("from") || parts[j].equals("more") || parts[j].equals("will") || parts[j].equals("word")))
                     {
                         if(!this.question.toLowerCase().contains(parts[j]))
                             this.domain.add(parts[j]);
