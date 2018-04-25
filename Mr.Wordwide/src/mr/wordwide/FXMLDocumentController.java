@@ -1629,6 +1629,7 @@ public class FXMLDocumentController implements Initializable {
     
     private void tryFindingSolution()
     {
+        fillGridsWithAnswers((String)frequencyDomains.get(0).keySet().toArray()[0], this.puzzleQs.getAcrossQuestions()[0]);
         this.solveOutput.appendToOutput("Step " + numberOfSteps + ":Beginning to fill the grid!\n");
         numberOfSteps++;
         //Fill
@@ -1643,10 +1644,22 @@ public class FXMLDocumentController implements Initializable {
         }
         
         visited[0][indexes[0]++] = true;
-        System.out.println("mr.wordwide.FXMLDocumentController.writeToGrid()");
         int indexWhichQ = 1;
 
         
+    }
+    
+    public void fillGridsWithAnswers(String answer, Question question){
+
+        int[] questionIds = new int[question.getQuestionGridIds().values().toArray().length];
+
+        for (int i = 0; i < questionIds.length; i++) {
+            questionIds[i] = (int)question.getQuestionGridIds().values().toArray()[i];
+        }
+
+        for(int i = 0; i < answer.length(); i++){
+            ((Label)((StackPane)thePuzzle.getChildrenUnmodifiable().get(questionIds[i])).getChildren().get(0)).setText(Character.toString(answer.charAt(i)).toUpperCase());
+        }
     }
     
     @Override
