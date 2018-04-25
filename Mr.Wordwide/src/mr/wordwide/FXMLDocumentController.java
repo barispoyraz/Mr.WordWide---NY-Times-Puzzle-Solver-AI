@@ -1387,47 +1387,8 @@ public class FXMLDocumentController implements Initializable {
         }
         
         this.solveOutput = fxmlLoader.getController();
-        /*this.solveOutput.appendToOutput("Is it working\n");
-        this.solveOutput.appendToOutput("Is it working?\n");
-        this.solveOutput.appendToOutput("Is it working??\n");
-        this.solveOutput.appendToOutput("Is it working???\n");
-        this.solveOutput.appendToOutput("Is it working\n");
-        this.solveOutput.appendToOutput("Is it working?\n");
-        this.solveOutput.appendToOutput("Is it working??\n");
-        this.solveOutput.appendToOutput("Is it working???\n");
-        this.solveOutput.appendToOutput("Is it working\n");
-        this.solveOutput.appendToOutput("Is it working?\n");
-        this.solveOutput.appendToOutput("Is it working??\n");
-        this.solveOutput.appendToOutput("Is it working???\n");
-        this.solveOutput.appendToOutput("Is it working\n");
-        this.solveOutput.appendToOutput("Is it working?\n");
-        this.solveOutput.appendToOutput("Is it working??\n");
-        this.solveOutput.appendToOutput("Is it working???\n");
-        this.solveOutput.appendToOutput("Is it working\n");
-        this.solveOutput.appendToOutput("Is it working?\n");
-        this.solveOutput.appendToOutput("Is it working??\n");
-        this.solveOutput.appendToOutput("Is it working???\n");
-        this.solveOutput.appendToOutput("Is it working\n");
-        this.solveOutput.appendToOutput("Is it working?\n");
-        this.solveOutput.appendToOutput("Is it working??\n");
-        this.solveOutput.appendToOutput("Is it working???\n");
-        this.solveOutput.appendToOutput("Is it working\n");
-        this.solveOutput.appendToOutput("Is it working?\n");
-        this.solveOutput.appendToOutput("Is it working??\n");
-        this.solveOutput.appendToOutput("Is it working???\n");
-        this.solveOutput.appendToOutput("Is it working\n");
-        this.solveOutput.appendToOutput("Is it working?\n");
-        this.solveOutput.appendToOutput("Is it working??\n");
-        this.solveOutput.appendToOutput("Is it working???\n");
-        this.solveOutput.appendToOutput("Is it working\n");
-        this.solveOutput.appendToOutput("Is it working?\n");
-        this.solveOutput.appendToOutput("Is it working??\n");
-        this.solveOutput.appendToOutput("Is it working???\n");
-        this.solveOutput.appendToOutput("Is it working\n");
-        this.solveOutput.appendToOutput("Is it working?\n");
-        this.solveOutput.appendToOutput("Is it working??\n");
-        this.solveOutput.appendToOutput("Is it working???\n");*/
-        
+        this.solveOutput.appendToOutput("Solve function started\n");
+
         
         String key ="AIzaSyCiVLcICXumdXQNxD22D6iuYC-DwN-va7Q";
         String cx = "002788185550341638251:drb89hhatq8";
@@ -1486,6 +1447,8 @@ public class FXMLDocumentController implements Initializable {
         else //Query Result not Available!
         {
             
+            this.solveOutput.appendToOutput("I am getting the across and down questions\n");
+            
             Question[] acrossQs = this.puzzleQs.getAcrossQuestions();
             Question[] downQs = this.puzzleQs.getDownQuestions();
             
@@ -1494,20 +1457,32 @@ public class FXMLDocumentController implements Initializable {
              
 //            acrossQs[0].findFrequencies();
             //Çalışınca sizeAcross ile değiştirelim
+            this.solveOutput.appendToOutput("For each across question, I am querying the custom search engine\n");
             for(int i = 0; i < sizeAcross; i++){
                 acrossQs[i].query(key, cx);
             }
+            
+            this.solveOutput.appendToOutput("For each html that is returned by the custom search engine for the across questions"
+                    + ", I got their texts, calculated their domains"
+                    + "and based on the domains, I found their frequency domains\n");
         
             //Çalışınca sizeDown ile değiştirelim
+            this.solveOutput.appendToOutput("For each down question, I am querying the custom search engine\n");
             for(int i = 0; i < sizeDown; i++){
                 downQs[i].query(key, cx);
             }
             
+            this.solveOutput.appendToOutput("For each html that is returned by the custom search engine for the down questions"
+                    + ", I got their texts, calculated their domains"
+                    + "and based on the domains, I found their frequency domains\n");
+            
             String freqText = "";
+            
+            this.solveOutput.appendToOutput("I write frequency domains to files for further use\n");
             for(int i = 0; i < sizeAcross; i++)
             {
                 frequencyDomains.add(acrossQs[i].getFrequencyDomain());
-                
+                           
                 for (int j = 0; j < acrossQs[i].getFrequencyDomain().keySet().toArray().length; j++) {
                     freqText += acrossQs[i].getFrequencyDomain().keySet().toArray()[j] + "=" + acrossQs[i].getFrequencyDomain().values().toArray()[j] + ";"; 
                 }
