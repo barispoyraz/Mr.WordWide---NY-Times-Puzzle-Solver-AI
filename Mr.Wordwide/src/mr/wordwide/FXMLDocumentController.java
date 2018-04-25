@@ -1454,26 +1454,26 @@ public class FXMLDocumentController implements Initializable {
                     br = new BufferedReader(new FileReader(freqFiles[i]));
                     try {
                         String line = br.readLine();
-                      
+                        
                         String[] splittedFreqFile = line.split(";");
                         String[] splittedFreqs;
-                            
+
                         for (int j = 0; j < splittedFreqFile.length; j++) {
                              splittedFreqs = splittedFreqFile[j].split("=");                                              
                              frequencyDomain.put(splittedFreqs[0], Integer.parseInt(splittedFreqs[1]));                         
                         }
-                        
+
                         List<Map.Entry<String, Integer>> list;
                         list = new LinkedList<>(frequencyDomain.entrySet());
-              
+
                         Collections.sort(list, (Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) -> o2.getValue().compareTo(o1.getValue()));
-        
+
                         frequencyDomain = new LinkedHashMap<>();
                         for (Map.Entry<String, Integer> entry : list)
                         {
                             frequencyDomain.put(entry.getKey(), entry.getValue());
                         }
-                    
+                        
                         frequencyDomains.add(frequencyDomain);
                     }
                     finally {
@@ -1536,25 +1536,25 @@ public class FXMLDocumentController implements Initializable {
                 freqText = "";
             }
         }
+        
         //Frequency domains in each question are set by frequencyDomains object.
-//        for (int i = 0; i < sizeAcross; i++) {
-//            this.puzzleQs.getAcrossQuestions()[i].setFrequencyDomain(frequencyDomains.get(i));
-//        }
-//        for (int i = 0; i < sizeDown; i++) {
-//            this.puzzleQs.getDownQuestions()[i].setFrequencyDomain(frequencyDomains.get(sizeAcross + i));
-//        }
-//        
-//        
-//        for (int i = 0; i < sizeAcross; i++) {
-//            constrainedFrequencyDomains.add(updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions()));
-//        }
-//        
-//        for(int i = 0; i < sizeDown; i++)
-//        {
-//            constrainedFrequencyDomains.add(updateDomains(this.puzzleQs.getDownQuestions()[i], this.puzzleQs.getAcrossQuestions()));
-//        }
-//        
-//        writeToGrid();
+        for (int i = 0; i < sizeAcross; i++) {
+            this.puzzleQs.getAcrossQuestions()[i].setFrequencyDomain(frequencyDomains.get(i));
+        }
+        for (int i = 0; i < sizeDown; i++) {
+            this.puzzleQs.getDownQuestions()[i].setFrequencyDomain(frequencyDomains.get(sizeAcross + i));
+        }
+        
+        for (int i = 0; i < sizeAcross; i++) {
+            constrainedFrequencyDomains.add(updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions()));
+        }
+        
+        for(int i = 0; i < sizeDown; i++)
+        {
+            constrainedFrequencyDomains.add(updateDomains(this.puzzleQs.getDownQuestions()[i], this.puzzleQs.getAcrossQuestions()));
+        }
+        
+        writeToGrid();
     }
     
     private ArrayList<String> updateDomains(Question updating, Question[] questionArray)
@@ -1629,9 +1629,9 @@ public class FXMLDocumentController implements Initializable {
         
         int indexWhichQ = 1;
 
-        while(!s.isEmpty()){
-            
-        }
+//        while(!s.isEmpty()){
+//            
+//        }
         
     }
     
