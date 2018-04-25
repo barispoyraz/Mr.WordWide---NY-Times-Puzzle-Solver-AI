@@ -61,6 +61,7 @@ public class FXMLDocumentController implements Initializable {
     LocalDate localDate = LocalDate.now();
     File directoryChoosen = null;
     ArrayList<HashMap<String, Integer>> frequencyDomains;
+    ArrayList<HashMap<String, Integer>> tempFrequencyDomains;
     int numberOfSteps;
     
     private boolean isDown;
@@ -1395,6 +1396,7 @@ public class FXMLDocumentController implements Initializable {
         numberOfSteps = 1;
         
         frequencyDomains = new ArrayList<>();
+        tempFrequencyDomains = new ArrayList<>();
         int sizeAcross = this.puzzleQs.getAcrossQuestions().length;
         int sizeDown = this.puzzleQs.getDownQuestions().length;
         
@@ -1421,8 +1423,8 @@ public class FXMLDocumentController implements Initializable {
                         String[] splittedFreqs;
 
                         for (int j = 0; j < splittedFreqFile.length; j++) {
-                             splittedFreqs = splittedFreqFile[j].split("=");                                              
-                             frequencyDomain.put(splittedFreqs[0], Integer.parseInt(splittedFreqs[1]));                         
+                            splittedFreqs = splittedFreqFile[j].split("=");                                              
+                            frequencyDomain.put(splittedFreqs[0], Integer.parseInt(splittedFreqs[1]));   
                         }
 
                         List<Map.Entry<String, Integer>> list;
@@ -1435,7 +1437,7 @@ public class FXMLDocumentController implements Initializable {
                         {
                             frequencyDomain.put(entry.getKey(), entry.getValue());
                         }
-                        
+                        tempFrequencyDomains.add(frequencyDomain);
                         frequencyDomains.add(frequencyDomain);
                     }
                     finally {
@@ -1486,6 +1488,7 @@ public class FXMLDocumentController implements Initializable {
             for(int i = 0; i < sizeAcross; i++)
             {
                 frequencyDomains.add(acrossQs[i].getFrequencyDomain());
+                tempFrequencyDomains.add(acrossQs[i].getFrequencyDomain());
                            
                 for (int j = 0; j < acrossQs[i].getFrequencyDomain().keySet().toArray().length; j++) {
                     freqText += acrossQs[i].getFrequencyDomain().keySet().toArray()[j] + "=" + acrossQs[i].getFrequencyDomain().values().toArray()[j] + ";"; 
@@ -1503,6 +1506,7 @@ public class FXMLDocumentController implements Initializable {
             for(int i = 0; i < sizeDown; i++)
             {
                 frequencyDomains.add(downQs[i].getFrequencyDomain());
+                tempFrequencyDomains.add(downQs[i].getFrequencyDomain());
                 for (int j = 0; j < downQs[i].getFrequencyDomain().keySet().toArray().length; j++) {
                     freqText += downQs[i].getFrequencyDomain().keySet().toArray()[j] + "=" + downQs[i].getFrequencyDomain().values().toArray()[j] + ";"; 
                 }
@@ -1522,9 +1526,11 @@ public class FXMLDocumentController implements Initializable {
         this.numberOfSteps = this.numberOfSteps + 1;
         for (int i = 0; i < sizeAcross; i++) {
             this.puzzleQs.getAcrossQuestions()[i].setFrequencyDomain(frequencyDomains.get(i));
+            this.puzzleQs.getAcrossQuestions()[i].setTempDomain(frequencyDomains.get(i));
         }
         for (int i = 0; i < sizeDown; i++) {
             this.puzzleQs.getDownQuestions()[i].setFrequencyDomain(frequencyDomains.get(sizeAcross + i));
+            this.puzzleQs.getDownQuestions()[i].setTempDomain(frequencyDomains.get(sizeAcross + i));
         }
         
         this.solveOutput.appendToOutput("" + this.numberOfSteps + ". " + "I started looking for constraints and updating my domain based on the findings\n");
@@ -1532,12 +1538,12 @@ public class FXMLDocumentController implements Initializable {
         for(int j = 0; j < 10; j++)
         {
             for (int i = 0; i < sizeAcross; i++) {
-                updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions(), i,frequencyDomains);
+                updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions(), i,tempFrequencyDomains);
             }
 
             for(int i = 0; i < sizeDown; i++)
             {
-                updateDomains(this.puzzleQs.getDownQuestions()[i], this.puzzleQs.getAcrossQuestions(), i + 5,frequencyDomains);
+                updateDomains(this.puzzleQs.getDownQuestions()[i], this.puzzleQs.getAcrossQuestions(), i + 5,tempFrequencyDomains);
             }
         }
         
@@ -1545,17 +1551,17 @@ public class FXMLDocumentController implements Initializable {
         tryFindingSolution();
     }
     
-    private void updateDomains(Question updating, Question[] questionArray, int cfd_index,ArrayList<HashMap<String,Integer>> freqs)
+    private void updateDomains(Question updating, Question[] questionArray, int cfd_index, ArrayList<HashMap<String,Integer>> freqs)
     {
         HashMap<String, Integer> to_be_compared;
         
         HashMap<String, Integer> to_be_updated = new HashMap<>();
-        to_be_updated = updating.getFrequencyDomain();
+        to_be_updated = updating.getTempDomain();
         
         for (int i = 0; i < questionArray.length; i++)
         {
             to_be_compared = new HashMap<>();
-            to_be_compared = questionArray[i].getFrequencyDomain();
+            to_be_compared = questionArray[i].getTempDomain();
             
 //            Integer[] updatingGridIds = (Integer[])updating.getQuestionGridIds().values().toArray();
 //            Integer[] comparingGridIds = (Integer[])questionArray[i].getQuestionGridIds().values().toArray();
@@ -1612,24 +1618,29 @@ public class FXMLDocumentController implements Initializable {
     
     private void tryFindingSolution()
     {
-        fillGridsWithAnswers((String)frequencyDomains.get(0).keySet().toArray()[0], this.puzzleQs.getAcrossQuestions()[0]);
+        //fillGridsWithAnswers((String)frequencyDomains.get(0).keySet().toArray()[0], this.puzzleQs.getAcrossQuestions()[0]);
         this.solveOutput.appendToOutput("Step " + numberOfSteps + ":Beginning to fill the grid!\n");
         numberOfSteps++;
         //Fill
         
-        boolean[][] visited = new boolean[10][];
-        for (int i = 0; i < visited.length; i++) {
-            visited[i] = new boolean[frequencyDomains.get(i).size()];
-        }
-        int[] indexes = new int[10];
-        for (int i = 0; i < indexes.length; i++) {
-            indexes[i] = 0;
-        }
+        ArrayList<ArrayList<Boolean>> visitedWords = new ArrayList<>();
         
-        visited[0][indexes[0]++] = true;
-        int indexWhichQ = 1;
+        for (int i = 0; i < 10; i++) {
+            ArrayList<Boolean> temp = new ArrayList<>();
+            for(int j = 0; j < tempFrequencyDomains.get(i).size(); j++)
+            {
+                temp.add(false);
+            }
+            visitedWords.add(temp);
+        }
 
+        //For a given domain and its values get the one with the highest frequency
+        //if it is greater than 100 put the value into the grid and mark as visited.
         
+        //Update the frequency domains by accepting the domain of a clue only including
+        //the answer with the highest frequency and over 100.
+        
+        //Loop over the puzzle to fill the remaining (How many times??)
     }
     
     public void fillGridsWithAnswers(String answer, Question question){

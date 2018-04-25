@@ -38,6 +38,7 @@ public class Question {
     private ArrayList<String> domain;
     private ArrayList<String> newDomain;
     private HashMap<String, Integer> frequencyDomain;
+    private HashMap<String, Integer> tempFrequencyDomain;
     
     public HashMap<Integer, Integer> gridIDsOfQuestion;
     
@@ -61,6 +62,7 @@ public class Question {
         queryResultArr = new ArrayList<>();
         gridIDsOfQuestion = new HashMap<>();
         frequencyDomain = new HashMap<>();
+        tempFrequencyDomain = frequencyDomain;
         
         this.googleFriendly = new ArrayList<>();
         
@@ -82,6 +84,10 @@ public class Question {
     {
         return this.frequencyDomain;
     }
+    public HashMap<String, Integer> getTempDomain()
+    {
+        return this.tempFrequencyDomain;
+    }
     public void setQuestionClueLength(int clueLength){
         this.clueLength = clueLength;
     }
@@ -96,6 +102,9 @@ public class Question {
     
     public void setFrequencyDomain(HashMap<String, Integer> freqs){
         this.frequencyDomain = freqs;
+    }
+    public void setTempDomain(HashMap<String, Integer> freqs){
+        this.tempFrequencyDomain = freqs;
     }
     
     public HashMap<Integer, Integer> getQuestionGridIds(){
