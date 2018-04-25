@@ -20,7 +20,7 @@
             <JFXButton layoutX="840.0" layoutY="35.0" onAction="#presentSolution" styleClass="solve-button-ai" stylesheets="@../../guiElements/guiCSS.css" text="See Solution" textFill="#16d70c" />
          </children>
       </AnchorPane>
-      <GridPane layoutX="14.0" layoutY="110.0" style="-fx-grid-lines-visible: true; -fx-border-color: ff5900; -fx-border-width: 10;">
+      <GridPane fx:id="thePuzzle" layoutX="14.0" layoutY="110.0" style="-fx-grid-lines-visible: true; -fx-border-color: ff5900; -fx-border-width: 10;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

@@ -64,6 +64,9 @@ public class FXMLDocumentController implements Initializable {
     int numberOfSteps;
     
     private boolean isDown;
+    
+    @FXML
+    private GridPane thePuzzle;
     @FXML
     private Label puzzleGrid0;
     @FXML
@@ -1556,7 +1559,7 @@ public class FXMLDocumentController implements Initializable {
         }
         
         
-        writeToGrid();
+        tryFindingSolution();
     }
     
     private void updateDomains(Question updating, Question[] questionArray, int cfd_index)
@@ -1624,31 +1627,25 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
-    private void writeToGrid()
+    private void tryFindingSolution()
     {
-//        this.solveOutput.appendToOutput("Step " + numberOfSteps + ":Beginning to fill the grid!\n");
-//        numberOfSteps++;
-//        //Fill
-//        
-//        boolean[][] visited = new boolean[10][];
-//        for (int i = 0; i < visited.length; i++) {
-//            visited[i] = new boolean[constrainedFrequencyDomains.get(i).size()];
-//        }
-//        int[] indexes = new int[10];
-//        for (int i = 0; i < indexes.length; i++) {
-//            indexes[i] = 0;
-//        }
-//        
-//        
-//        Stack s = new Stack();
-//        s.push(constrainedFrequencyDomains.get(0).get(0));
-//        visited[0][indexes[0]++] = true;
-//        System.out.println("mr.wordwide.FXMLDocumentController.writeToGrid()");
-//        int indexWhichQ = 1;
+        this.solveOutput.appendToOutput("Step " + numberOfSteps + ":Beginning to fill the grid!\n");
+        numberOfSteps++;
+        //Fill
+        
+        boolean[][] visited = new boolean[10][];
+        for (int i = 0; i < visited.length; i++) {
+            visited[i] = new boolean[frequencyDomains.get(i).size()];
+        }
+        int[] indexes = new int[10];
+        for (int i = 0; i < indexes.length; i++) {
+            indexes[i] = 0;
+        }
+        
+        visited[0][indexes[0]++] = true;
+        System.out.println("mr.wordwide.FXMLDocumentController.writeToGrid()");
+        int indexWhichQ = 1;
 
-//        while(!s.isEmpty()){
-//            
-//        }
         
     }
     
