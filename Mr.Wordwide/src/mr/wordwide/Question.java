@@ -257,8 +257,7 @@ public class Question {
                             || parts[j].equals("all") || parts[j].equals("would") || parts[j].equals("there") || parts[j].equals("their") || parts[j].equals("what") || parts[j].equals("so")
                             || parts[j].equals("if") || parts[j].equals("from") || parts[j].equals("more") || parts[j].equals("will") || parts[j].equals("word") || parts[j].equals("words")
                             || parts[j].equals("your") || parts[j].equals("are") || parts[j].equals("our") || parts[j].equals("new") || parts[j].equals("news") || parts[j].equals("like")
-                            || parts[j].equals("news") || parts[j].equals("edt") || parts[j].equals("gmt") || parts[j].equals("news") || parts[j].equals("news")
-                            || parts[j].equals("news") || parts[j].equals("news") || parts[j].equals("news")))
+                            || parts[j].equals("news") || parts[j].equals("edt") || parts[j].equals("gmt") || parts[j].equals("news")))
                     {
                         if(!this.question.toLowerCase().contains(parts[j]))
                             this.domain.add(parts[j]);
