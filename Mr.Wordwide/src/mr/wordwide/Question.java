@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -235,7 +236,7 @@ public class Question {
         for(int i = 0; i < size; i++){
             if(!(htmlLinks.get(i).contains("wikipedia") || htmlLinks.get(i).contains("youtube")  || htmlLinks.get(i).contains("wordplays") || htmlLinks.get(i).contains("crossword")
                     || htmlLinks.get(i).contains(".pdf") || htmlLinks.get(i).contains(".ppt") || htmlLinks.get(i).contains(".pptx") || htmlLinks.get(i).contains(".doc") 
-                    || htmlLinks.get(i).contains(".docx") || htmlLinks.get(i).contains("riteaid") || htmlLinks.get(i).contains("facebook"))){
+                    || htmlLinks.get(i).contains(".docx") || htmlLinks.get(i).contains("riteaid") || htmlLinks.get(i).contains("facebook") || htmlLinks.get(i).contains("te.com/commerce/DocumentDelivery"))){
                 
                 System.out.println("Link: " + htmlLinks.get(i));
                 
@@ -243,7 +244,7 @@ public class Question {
                 //htmlDocs[i] = Jsoup.connect(question)
                 
                 //it may or may not work with this (Probably works)
-                htmlTexts[i] = Jsoup.parse(htmlDocs[i].toString()).text().toLowerCase();
+                htmlTexts[i] = Jsoup.parse(htmlDocs[i].toString()).text().toLowerCase(Locale.US);
                 //htmlTexts[i] = htmlDocs[i].toString().replaceAll("<>", question);
                 htmlTexts[i] = htmlTexts[i].replaceAll("[^a-zA-Z\\s]", "");
                 //Reference: https://stackoverflow.com/questions/7899525/how-to-split-a-string-by-space
@@ -257,9 +258,10 @@ public class Question {
                             || parts[j].equals("all") || parts[j].equals("would") || parts[j].equals("there") || parts[j].equals("their") || parts[j].equals("what") || parts[j].equals("so")
                             || parts[j].equals("if") || parts[j].equals("from") || parts[j].equals("more") || parts[j].equals("will") || parts[j].equals("word") || parts[j].equals("words")
                             || parts[j].equals("your") || parts[j].equals("are") || parts[j].equals("our") || parts[j].equals("new") || parts[j].equals("news") || parts[j].equals("like")
-                            || parts[j].equals("news") || parts[j].equals("edt") || parts[j].equals("gmt") || parts[j].equals("news")))
+                            || parts[j].equals("edt") || parts[j].equals("gmt") || parts[j].equals("show") || parts[j].equals("wave") || parts[j].equals("war") || parts[j].equals("wars")
+                             || parts[j].equals("color") || parts[j].equals("ares")))
                     {
-                        if(!this.question.toLowerCase().contains(parts[j]))
+                        if(!this.question.toLowerCase(Locale.US).contains(parts[j]))
                             this.domain.add(parts[j]);
                     }
                 }

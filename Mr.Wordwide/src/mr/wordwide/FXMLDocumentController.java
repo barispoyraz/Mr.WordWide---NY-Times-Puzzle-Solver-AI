@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Stack;
@@ -1635,7 +1636,35 @@ public class FXMLDocumentController implements Initializable {
         }
 
         //For a given domain and its values get the one with the highest frequency
-        //if it is greater than 100 put the value into the grid and mark as visited.
+        //if it is greater than 100 put the value into the grid and mark as visited.s
+        for(int i = 0; i < 5; i++)
+        {
+            if((int)tempFrequencyDomains.get(i).values().toArray()[0] >= 25)
+            {
+                fillGridsWithAnswers((String)tempFrequencyDomains.get(i).keySet().toArray()[0], this.puzzleQs.getAcrossQuestions()[i], false);
+                HashMap<String, Integer> tmp = new HashMap<>();
+                
+                tmp.put((String)tempFrequencyDomains.get(i).keySet().toArray()[0], (int)tempFrequencyDomains.get(i).values().toArray()[0]);
+                tempFrequencyDomains.set(i, tmp);
+            }
+        }
+        
+        for (int i = 0; i < 5; i++) {
+                updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions(), i,tempFrequencyDomains);
+        }
+        
+        for(int i = 0; i < 5; i++)
+        {
+            if((int)tempFrequencyDomains.get(i + 5).values().toArray()[0] >= 25)
+            {
+                if(!fillGridsWithAnswers((String)tempFrequencyDomains.get(i + 5).keySet().toArray()[0], this.puzzleQs.getDownQuestions()[i], true))
+                {
+                    if(tempFrequencyDomains.get(i + 5).keySet().toArray()[0] != null)
+                        tempFrequencyDomains.get(i+ 5).remove(tempFrequencyDomains.get(i + 5).keySet().toArray()[0]);
+                        i--;
+                }
+            }
+        }
         
         //Update the frequency domains by accepting the domain of a clue only including
         //the answer with the highest frequency and over 100.
@@ -1643,8 +1672,9 @@ public class FXMLDocumentController implements Initializable {
         //Loop over the puzzle to fill the remaining (How many times??)
     }
     
-    public void fillGridsWithAnswers(String answer, Question question){
-
+    public boolean fillGridsWithAnswers(String answer, Question question, boolean down){
+        this.solveOutput.appendToOutput("" + this.numberOfSteps + ". " + "I am trying: " + answer + " for question: " + question.getQuestionNumber() +  " " + question.getQuestionType() + "\n");
+        numberOfSteps++;
         int[] questionIds = new int[question.getQuestionGridIds().values().toArray().length];
 
         for (int i = 0; i < questionIds.length; i++) {
@@ -1652,8 +1682,24 @@ public class FXMLDocumentController implements Initializable {
         }
 
         for(int i = 0; i < answer.length(); i++){
-            ((Label)((StackPane)thePuzzle.getChildrenUnmodifiable().get(questionIds[i])).getChildren().get(0)).setText(Character.toString(answer.charAt(i)).toUpperCase());
+            if(down)
+            {
+                if(((Label)((StackPane)thePuzzle.getChildrenUnmodifiable().get(questionIds[i])).getChildren().get(0)).getText().isEmpty())
+                    ((Label)((StackPane)thePuzzle.getChildrenUnmodifiable().get(questionIds[i])).getChildren().get(0)).setText(Character.toString(answer.charAt(i)).toUpperCase(Locale.US));
+                else
+                {
+                    if(((Label)((StackPane)thePuzzle.getChildrenUnmodifiable().get(questionIds[i])).getChildren().get(0)).getText().equals(Character.toString(answer.charAt(i)).toUpperCase(Locale.US)))
+                        ((Label)((StackPane)thePuzzle.getChildrenUnmodifiable().get(questionIds[i])).getChildren().get(0)).setText(Character.toString(answer.charAt(i)).toUpperCase(Locale.US));
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+                ((Label)((StackPane)thePuzzle.getChildrenUnmodifiable().get(questionIds[i])).getChildren().get(0)).setText(Character.toString(answer.charAt(i)).toUpperCase(Locale.US));
         }
+        return true;
     }
     
     @Override
