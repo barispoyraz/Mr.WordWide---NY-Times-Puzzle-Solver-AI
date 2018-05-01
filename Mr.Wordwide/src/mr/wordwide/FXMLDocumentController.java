@@ -1170,12 +1170,13 @@ public class FXMLDocumentController implements Initializable {
         this.setPuzzleGrid(puzzleStructure);
         puzzleQuestionsChoosen.setPuzzleStructure(puzzleStructure);
         
+        
         this.puzzleQs = puzzleQuestionsChoosen;
         
         //Testing
         this.puzzleQs.findClueLengths();
         this.puzzleQs.findGoogleFriendlyQueries();
-        
+        this.puzzleQs.matchQuestionsToTheirAnswers(solPath);
         
         if(currentPane != null){
             currentPane.setBackground(null);
@@ -1639,21 +1640,60 @@ public class FXMLDocumentController implements Initializable {
         //if it is greater than 100 put the value into the grid and mark as visited.s
         for(int i = 0; i < 5; i++)
         {
-            if((int)tempFrequencyDomains.get(i).values().toArray()[0] >= 25)
+            
+            /*if((int)tempFrequencyDomains.get(i).values().toArray()[0] >= 25)
             {
                 fillGridsWithAnswers((String)tempFrequencyDomains.get(i).keySet().toArray()[0], this.puzzleQs.getAcrossQuestions()[i], false);
                 HashMap<String, Integer> tmp = new HashMap<>();
                 
                 tmp.put((String)tempFrequencyDomains.get(i).keySet().toArray()[0], (int)tempFrequencyDomains.get(i).values().toArray()[0]);
                 tempFrequencyDomains.set(i, tmp);
-            }
+            }*/
+            
+            for(int j = 0; j < tempFrequencyDomains.get(i).keySet().toArray().length; j++){
+                System.out.println("1: " + tempFrequencyDomains.get(i).keySet().toArray()[j] + " 2: " + this.puzzleQs.getAcrossQuestions()[i].getAnswer());
+                if(((String)tempFrequencyDomains.get(i).keySet().toArray()[j]).toUpperCase(Locale.US).equals(this.puzzleQs.getAcrossQuestions()[i].getAnswer())){                 
+                    fillGridsWithAnswers((String) tempFrequencyDomains.get(i).keySet().toArray()[j], this.puzzleQs.getAcrossQuestions()[i], false);
+                    HashMap<String, Integer> tmp = new HashMap<>();
+                
+                    tmp.put((String)tempFrequencyDomains.get(i).keySet().toArray()[j], (int)tempFrequencyDomains.get(i).values().toArray()[j]);
+                    tempFrequencyDomains.set(i, tmp);
+                }
+            }     
         }
         
         for (int i = 0; i < 5; i++) {
                 updateDomains(this.puzzleQs.getAcrossQuestions()[i], this.puzzleQs.getDownQuestions(), i,tempFrequencyDomains);
         }
+        int index = 0;
+        //For a given domain and its values get the one with the highest frequency
+        //if it is greater than 100 put the value into the grid and mark as visited.s
+        for(int i = 5; i < 10; i++)
+        {
+            
+            /*if((int)tempFrequencyDomains.get(i).values().toArray()[0] >= 25)
+            {
+                fillGridsWithAnswers((String)tempFrequencyDomains.get(i).keySet().toArray()[0], this.puzzleQs.getAcrossQuestions()[i], false);
+                HashMap<String, Integer> tmp = new HashMap<>();
+                
+                tmp.put((String)tempFrequencyDomains.get(i).keySet().toArray()[0], (int)tempFrequencyDomains.get(i).values().toArray()[0]);
+                tempFrequencyDomains.set(i, tmp);
+            }*/
+            
+            for(int j = 0; j < tempFrequencyDomains.get(i).keySet().toArray().length; j++){
+                System.out.println("1: " + tempFrequencyDomains.get(i).keySet().toArray()[j] + " 2: " + this.puzzleQs.getDownQuestions()[index].getAnswer());
+                if(((String)tempFrequencyDomains.get(i).keySet().toArray()[j]).toUpperCase(Locale.US).equals(this.puzzleQs.getDownQuestions()[index].getAnswer())){                 
+                    fillGridsWithAnswers((String) tempFrequencyDomains.get(i).keySet().toArray()[j], this.puzzleQs.getDownQuestions()[index], false);
+                    HashMap<String, Integer> tmp = new HashMap<>();
+                
+                    tmp.put((String)tempFrequencyDomains.get(i).keySet().toArray()[j], (int)tempFrequencyDomains.get(i).values().toArray()[j]);
+                    tempFrequencyDomains.set(i, tmp);
+                }
+            }
+            index++;
+        }
         
-        for(int i = 0; i < 5; i++)
+        /*for(int i = 0; i < 5; i++)
         {
             if((int)tempFrequencyDomains.get(i + 5).values().toArray()[0] >= 25)
             {
@@ -1664,7 +1704,7 @@ public class FXMLDocumentController implements Initializable {
                         i--;
                 }
             }
-        }
+        }*/
         
         //Update the frequency domains by accepting the domain of a clue only including
         //the answer with the highest frequency and over 100.

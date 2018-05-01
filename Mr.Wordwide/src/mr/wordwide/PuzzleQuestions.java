@@ -5,8 +5,11 @@
  */
 package mr.wordwide;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,6 +18,8 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -333,7 +338,8 @@ public class PuzzleQuestions {
         
         for(int i = 0; i < sizeDown; i++){
             System.out.println(downQ[i].toString() + " ids: " + downQ[i].getQuestionGridIds());
-        }
+        }  
+       
     }
     
     //Based on A COMPARISON OF KEYWORD-BASED AND SEMANTICS-BASED SEARCHING By David E. Goldschmidt
@@ -462,6 +468,60 @@ public class PuzzleQuestions {
                 googleFriendly.add(tempQuestion);
                 downQ[i].setGoogleFriendly(googleFriendly);
             }
+        }
+    }
+
+    public void matchQuestionsToTheirAnswers(String path) throws IOException {
+        
+        BufferedReader br = null;
+        String everything = "";
+        try {
+            br = new BufferedReader(new FileReader(path));
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+            while (line != null) {
+                sb.append(line);
+                sb.append(System.lineSeparator());
+                line = br.readLine();
+            }
+            everything = sb.toString();  
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PuzzleQuestions.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                br.close();
+            } catch (IOException ex) {
+                Logger.getLogger(PuzzleQuestions.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        System.out.println(everything);
+        
+        StringBuilder questionAnswer = new StringBuilder();
+        
+        for(int i = 0; i < this.getAcrossQuestions().length; i++){
+            HashMap<Integer, Integer> tmp = this.getAcrossQuestions()[i].gridIDsOfQuestion;
+            for(int j = 0; j < tmp.values().toArray().length; j++){
+                questionAnswer.append("").append(everything.charAt((int)tmp.values().toArray()[j]));
+            }
+            this.getAcrossQuestions()[i].setAnswer(questionAnswer.toString());
+            
+            System.out.println("Question: " + this.getDownQuestions()[i].getQuestion() + " Answer :" + questionAnswer.toString());
+            
+            questionAnswer.setLength(0);
+        }
+        
+        questionAnswer = new StringBuilder();
+        
+        for(int i = 0; i < this.getDownQuestions().length; i++){
+            HashMap<Integer, Integer> tmp = this.getDownQuestions()[i].gridIDsOfQuestion;
+            for(int j = 0; j < tmp.values().toArray().length; j++){
+                questionAnswer.append("").append(everything.charAt((int)tmp.values().toArray()[j]));
+            }
+            this.getDownQuestions()[i].setAnswer(questionAnswer.toString());
+            
+            System.out.println("Question: " + this.getDownQuestions()[i].getQuestion() + " Answer :" + questionAnswer.toString());
+            questionAnswer.setLength(0);
         }
     }
 }

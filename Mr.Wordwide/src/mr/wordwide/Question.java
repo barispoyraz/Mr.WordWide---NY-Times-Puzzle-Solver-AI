@@ -47,6 +47,8 @@ public class Question {
     
     private ArrayList<JSONArray> queryResultArr;
     
+    private String answer;
+    
     private JSONObject resultJSON;
       
     private int clueLength;
@@ -68,6 +70,7 @@ public class Question {
         tempFrequencyDomain = frequencyDomain;
         
         this.googleFriendly = new ArrayList<>();
+        this.answer = "";
         
         resultJSON = new JSONObject();
     }
@@ -112,6 +115,14 @@ public class Question {
     
     public HashMap<Integer, Integer> getQuestionGridIds(){
         return this.gridIDsOfQuestion;
+    }
+    
+    public String getAnswer(){
+        return this.answer;
+    }
+    
+    public void setAnswer(String answer){
+        this.answer = answer;
     }
     
     @Override

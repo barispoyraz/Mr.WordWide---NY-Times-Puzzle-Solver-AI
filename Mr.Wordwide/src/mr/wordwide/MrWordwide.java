@@ -37,7 +37,7 @@ public class MrWordwide extends Application {
         puzzleQuestions.setPuzzleStructure(puzzleStructure);
         puzzleQuestions.findClueLengths();
         puzzleQuestions.findGoogleFriendlyQueries();
-        
+           
         FXMLDocumentController controller = loader.getController();
         controller.setPuzzleGrid(puzzleStructure);
         controller.setAcrossQuestions(puzzleQuestions);
