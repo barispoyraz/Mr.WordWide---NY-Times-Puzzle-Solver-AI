@@ -27,6 +27,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.Connection;
+import org.jsoup.Connection.Response;
 
 public class Question {
     
@@ -240,31 +242,57 @@ public class Question {
                 
                 System.out.println("Link: " + htmlLinks.get(i));
                 
-                htmlDocs[i] = Jsoup.connect(htmlLinks.get(i)).get();
-                //htmlDocs[i] = Jsoup.connect(question)
+                try{
+                    Connection.Response response = Jsoup.connect(htmlLinks.get(i)).execute();
+                    if(response.statusCode()  == 200){
+                        try{
+                            htmlDocs[i] = Jsoup.connect(htmlLinks.get(i)).get();
+                            //htmlDocs[i] = Jsoup.connect(question)
+                            
+                            //it may or may not work with this (Probably works)
+                            htmlTexts[i] = Jsoup.parse(htmlDocs[i].toString()).text().toLowerCase(Locale.US);
+                            //htmlTexts[i] = htmlDocs[i].toString().replaceAll("<>", question);
+                            htmlTexts[i] = htmlTexts[i].replaceAll("[^a-zA-Z\\s]", "");
+                            //Reference: https://stackoverflow.com/questions/7899525/how-to-split-a-string-by-space
+                            String[] parts = htmlTexts[i].split("\\s+");
                 
-                //it may or may not work with this (Probably works)
-                htmlTexts[i] = Jsoup.parse(htmlDocs[i].toString()).text().toLowerCase(Locale.US);
-                //htmlTexts[i] = htmlDocs[i].toString().replaceAll("<>", question);
-                htmlTexts[i] = htmlTexts[i].replaceAll("[^a-zA-Z\\s]", "");
-                //Reference: https://stackoverflow.com/questions/7899525/how-to-split-a-string-by-space
-                String[] parts = htmlTexts[i].split("\\s+");
-                
-                for(int j = 0; j < parts.length; j++){
-                    if(!(parts[j].equals("the") || parts[j].equals("and") || parts[j].equals("be") || parts[j].equals("to") || parts[j].equals("too") || parts[j].equals("of")
-                            || parts[j].equals("in") || parts[j].equals("that") || parts[j].equals("this") || parts[j].equals("it") || parts[j].equals("for") || parts[j].equals("not")
-                            || parts[j].equals("on") || parts[j].equals("with") || parts[j].equals("as") || parts[j].equals("you") || parts[j].equals("at") || parts[j].equals("but")
-                            || parts[j].equals("his") || parts[j].equals("her") || parts[j].equals("she") || parts[j].equals("or") || parts[j].equals("an") || parts[j].equals("my")
-                            || parts[j].equals("all") || parts[j].equals("would") || parts[j].equals("there") || parts[j].equals("their") || parts[j].equals("what") || parts[j].equals("so")
-                            || parts[j].equals("if") || parts[j].equals("from") || parts[j].equals("more") || parts[j].equals("will") || parts[j].equals("word") || parts[j].equals("words")
-                            || parts[j].equals("your") || parts[j].equals("are") || parts[j].equals("our") || parts[j].equals("new") || parts[j].equals("news") || parts[j].equals("like")
-                            || parts[j].equals("edt") || parts[j].equals("gmt") || parts[j].equals("show") || parts[j].equals("wave") || parts[j].equals("war") || parts[j].equals("wars")
-                             || parts[j].equals("color") || parts[j].equals("ares")))
-                    {
-                        if(!this.question.toLowerCase(Locale.US).contains(parts[j]))
-                            this.domain.add(parts[j]);
-                    }
-                }
+                            for(int j = 0; j < parts.length; j++){
+                                if(!(parts[j].equals("the") || parts[j].equals("and") || parts[j].equals("be") || parts[j].equals("to") || parts[j].equals("too") || parts[j].equals("of")
+                                    || parts[j].equals("in") || parts[j].equals("that") || parts[j].equals("this") || parts[j].equals("it") || parts[j].equals("for") || parts[j].equals("not")
+                                    || parts[j].equals("on") || parts[j].equals("with") || parts[j].equals("as") || parts[j].equals("you") || parts[j].equals("at") || parts[j].equals("but")
+                                    || parts[j].equals("his") || parts[j].equals("her") || parts[j].equals("she") || parts[j].equals("or") || parts[j].equals("an") || parts[j].equals("my")
+                                    || parts[j].equals("all") || parts[j].equals("would") || parts[j].equals("there") || parts[j].equals("their") || parts[j].equals("what") || parts[j].equals("so")
+                                    || parts[j].equals("if") || parts[j].equals("from") || parts[j].equals("more") || parts[j].equals("will") || parts[j].equals("word") || parts[j].equals("words")
+                                    || parts[j].equals("your") || parts[j].equals("are") || parts[j].equals("our") || parts[j].equals("new") || parts[j].equals("news") || parts[j].equals("like")
+                                    || parts[j].equals("edt") || parts[j].equals("gmt") || parts[j].equals("show") || parts[j].equals("wave") || parts[j].equals("war") || parts[j].equals("wars")
+                                    || parts[j].equals("color") || parts[j].equals("ares")))
+                                {
+                                    if(!this.question.toLowerCase(Locale.US).contains(parts[j]))
+                                        this.domain.add(parts[j]);
+                                }
+                            }
+
+                            for(int j = 0; j < parts.length; j++){
+                                if(!(parts[j].equals("the") || parts[j].equals("and") || parts[j].equals("be") || parts[j].equals("to") || parts[j].equals("too") || parts[j].equals("of")
+                                    || parts[j].equals("in") || parts[j].equals("that") || parts[j].equals("this") || parts[j].equals("it") || parts[j].equals("for") || parts[j].equals("not")
+                                    || parts[j].equals("on") || parts[j].equals("with") || parts[j].equals("as") || parts[j].equals("you") || parts[j].equals("at") || parts[j].equals("but")
+                                    || parts[j].equals("his") || parts[j].equals("her") || parts[j].equals("she") || parts[j].equals("or") || parts[j].equals("an") || parts[j].equals("my")
+                                    || parts[j].equals("all") || parts[j].equals("would") || parts[j].equals("there") || parts[j].equals("their") || parts[j].equals("what") || parts[j].equals("so")
+                                    || parts[j].equals("if") || parts[j].equals("from") || parts[j].equals("more") || parts[j].equals("will") || parts[j].equals("word") || parts[j].equals("words")
+                                    || parts[j].equals("your") || parts[j].equals("are") || parts[j].equals("our") || parts[j].equals("new") || parts[j].equals("news") || parts[j].equals("like")
+                                    || parts[j].equals("news") || parts[j].equals("edt") || parts[j].equals("gmt") || parts[j].equals("news")))
+                                {
+                                if(!this.question.toLowerCase().contains(parts[j]))
+                                    this.domain.add(parts[j]);
+                                }
+                            }
+                        }catch(Exception e){  
+                            
+                        }
+                    }                               
+                }catch(Exception ex){
+                    
+                }           
             }
         }
         
