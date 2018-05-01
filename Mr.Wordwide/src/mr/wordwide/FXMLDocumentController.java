@@ -854,6 +854,9 @@ public class FXMLDocumentController implements Initializable {
             } finally {
                 br.close();
             }
+            
+            this.puzzleQs.matchQuestionsToTheirAnswers("ai-puzzles/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
+                + "-" + localDate.getYear() + "/solution.txt");
         }
         else
         {
@@ -1123,7 +1126,7 @@ public class FXMLDocumentController implements Initializable {
         
             FileWriter fileWriter = new FileWriter("ai-puzzles/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
                 + "-" + localDate.getYear() + "/solution.txt");
-                
+                                  
             try (BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
                 bufferedWriter.write(solutionText);
                 bufferedWriter.newLine();
@@ -1132,6 +1135,8 @@ public class FXMLDocumentController implements Initializable {
         
         solGrid.setVisible(true);
         
+        this.puzzleQs.matchQuestionsToTheirAnswers("ai-puzzles/" + localDate.getDayOfMonth() 
+                + "-" + localDate.getMonthValue() + "-" + localDate.getYear() + "/solution.txt");
         
                 
     }
@@ -1382,7 +1387,7 @@ public class FXMLDocumentController implements Initializable {
         Stage newStage = new Stage();
         newStage.setScene(new Scene(newWindow));
         newStage.show();
-        
+          
         try {
             Thread.sleep(500);
         } catch (InterruptedException ex) {
