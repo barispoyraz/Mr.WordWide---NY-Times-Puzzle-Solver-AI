@@ -855,8 +855,8 @@ public class FXMLDocumentController implements Initializable {
                 br.close();
             }
             
-            this.puzzleQs.matchQuestionsToTheirAnswers("ai-puzzles/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
-                + "-" + localDate.getYear() + "/solution.txt");
+            //this.puzzleQs.matchQuestionsToTheirAnswers("ai-puzzles/" + localDate.getDayOfMonth() + "-" + localDate.getMonthValue() 
+            //    + "-" + localDate.getYear() + "/solution.txt");
         }
         else
         {
@@ -1135,8 +1135,8 @@ public class FXMLDocumentController implements Initializable {
         
         solGrid.setVisible(true);
         
-        this.puzzleQs.matchQuestionsToTheirAnswers("ai-puzzles/" + localDate.getDayOfMonth() 
-                + "-" + localDate.getMonthValue() + "-" + localDate.getYear() + "/solution.txt");
+        //this.puzzleQs.matchQuestionsToTheirAnswers("ai-puzzles/" + localDate.getDayOfMonth() 
+        //        + "-" + localDate.getMonthValue() + "-" + localDate.getYear() + "/solution.txt");
         
                 
     }

@@ -499,6 +499,8 @@ public class PuzzleQuestions {
         
         StringBuilder questionAnswer = new StringBuilder();
         
+        System.out.println("PROBLEM???");
+        
         for(int i = 0; i < this.getAcrossQuestions().length; i++){
             HashMap<Integer, Integer> tmp = this.getAcrossQuestions()[i].gridIDsOfQuestion;
             for(int j = 0; j < tmp.values().toArray().length; j++){
@@ -506,7 +508,7 @@ public class PuzzleQuestions {
             }
             this.getAcrossQuestions()[i].setAnswer(questionAnswer.toString());
             
-            System.out.println("Question: " + this.getDownQuestions()[i].getQuestion() + " Answer :" + questionAnswer.toString());
+            System.out.println("Question: " + this.getAcrossQuestions()[i].getQuestion() + " Answer :" + questionAnswer.toString());
             
             questionAnswer.setLength(0);
         }
