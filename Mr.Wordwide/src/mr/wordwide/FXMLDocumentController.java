@@ -1656,6 +1656,7 @@ public class FXMLDocumentController implements Initializable {
             }*/
             
             for(int j = 0; j < tempFrequencyDomains.get(i).keySet().toArray().length; j++){
+                this.solveOutput.appendToOutput("" + this.numberOfSteps + ". " + "I am trying: " + tempFrequencyDomains.get(i).keySet().toArray()[j] + " for question: " + this.puzzleQs.getAcrossQuestions()[i].getQuestionNumber() +  " " + this.puzzleQs.getAcrossQuestions()[i].getQuestionType() + "\n");
                 System.out.println("1: " + tempFrequencyDomains.get(i).keySet().toArray()[j] + " 2: " + this.puzzleQs.getAcrossQuestions()[i].getAnswer());
                 if(((String)tempFrequencyDomains.get(i).keySet().toArray()[j]).toUpperCase(Locale.US).equals(this.puzzleQs.getAcrossQuestions()[i].getAnswer())){                 
                     fillGridsWithAnswers((String) tempFrequencyDomains.get(i).keySet().toArray()[j], this.puzzleQs.getAcrossQuestions()[i], false);
@@ -1686,6 +1687,7 @@ public class FXMLDocumentController implements Initializable {
             }*/
             
             for(int j = 0; j < tempFrequencyDomains.get(i).keySet().toArray().length; j++){
+                this.solveOutput.appendToOutput("" + this.numberOfSteps + ". " + "I am trying: " + tempFrequencyDomains.get(i).keySet().toArray()[j] + " for question: " + this.puzzleQs.getDownQuestions()[index].getQuestionNumber() +  " " + this.puzzleQs.getDownQuestions()[index].getQuestionType() + "\n");
                 System.out.println("1: " + tempFrequencyDomains.get(i).keySet().toArray()[j] + " 2: " + this.puzzleQs.getDownQuestions()[index].getAnswer());
                 if(((String)tempFrequencyDomains.get(i).keySet().toArray()[j]).toUpperCase(Locale.US).equals(this.puzzleQs.getDownQuestions()[index].getAnswer())){                 
                     fillGridsWithAnswers((String) tempFrequencyDomains.get(i).keySet().toArray()[j], this.puzzleQs.getDownQuestions()[index], false);
@@ -1718,7 +1720,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     public boolean fillGridsWithAnswers(String answer, Question question, boolean down){
-        this.solveOutput.appendToOutput("" + this.numberOfSteps + ". " + "I am trying: " + answer + " for question: " + question.getQuestionNumber() +  " " + question.getQuestionType() + "\n");
+       // this.solveOutput.appendToOutput("" + this.numberOfSteps + ". " + "I am trying: " + answer + " for question: " + question.getQuestionNumber() +  " " + question.getQuestionType() + "\n");
         numberOfSteps++;
         int[] questionIds = new int[question.getQuestionGridIds().values().toArray().length];
 
